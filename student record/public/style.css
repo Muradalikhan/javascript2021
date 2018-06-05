@@ -1,0 +1,70 @@
+body{
+    background-color: rgb(202, 196, 196);
+}
+.profile{
+    width:20%;
+    background-color: white;
+    padding: 20px;
+    margin-top: 50px;
+
+}
+.form input{
+    margin-top: 10px;
+
+}
+.cont{
+    margin-top:30px;
+    padding: 10px;
+}
+.cont input{ 
+  
+}
+.right-form{
+    margin-left: 30px;
+    margin-top: 50px;
+    background-color: white;
+    padding: 10px;
+}
+.btn-div{
+    margin-top: 20px;
+}
+#stdimg{
+    margin-left: 60px;
+   }
+   .atright{
+       float: right;
+   }
+   .borderclass{
+       border-top: 1px solid black;
+       margin-top: 20px;
+       margin-bottom: 20px;
+   }
+#stdName{
+    margin-left: 70px;
+}
+.leg{
+    border-radius: 10px 0 10px 0;
+    padding: 10px;
+}
+.header{
+    background-color: rgb(20, 148, 77);
+    padding: 10px;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+.header-contaner{
+    box-shadow: 10px 10px 5px rgb(87, 87, 87);
+}
+.most-right{
+    margin-top: 70px;
+}
+.multidata-form{
+    margin-top: 40px;
+    background-color: white;
+    padding: 20px;
+}
+.container{
+    margin-top: 50px;
+    background-color: white;
+    padding: 20px;
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div class="row">
+        <div class="col-sm-12 header-contaner">
+            <h2 class="bg-success text-center header">Make your Student profile</h2>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="col-sm-3 profile">
+            <div class="img-cont">
+                <img src="images/admin.png" id="stdimg" alt="stdpic" width="100px" height="100px">
+                <div>
+                    <h2 id="getname" class="col-sm-18">Jhon</h2>
+                </div>
+            </div>
+            <div class="borderclass">
+
+                Rollno
+                <i class="atright" id="getrollno">1230</i>
+            </div>
+            <div class="borderclass">
+                Enrollment
+                <i class="atright" id="getenroll">2011</i>
+            </div>
+            <div class="borderclass">
+                ClassID
+                <i class="atright" id="getclass">Batch-13</i>
+            </div>
+            <div class="borderclass">
+                Department
+                <i class="atright" id="getdepart">Computer Science</i>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onClick="printdata()">Veiw</button>
+        </div>
+
+        <div class="col-sm-6 right-form">
+            <form class="">
+                <fieldset class="">
+                    <legend class="bg-primary leg">Student Profile</legend>
+                    <div class="cont">
+                        <label class="col-sm-2">Name:</label>
+                        <input type="text" class="col-sm-10" id="stdname">
+                    </div>
+                    <div class="cont">
+                        <label class="col-sm-2">ClassID:</label>
+                        <input type="text" class="col-sm-10" id="stdclassid">
+                    </div>
+                    <div class="cont">
+                        <label class="col-sm-2">Rollno:</label>
+                        <input type="text" id="stdrollno" class="col-sm-10">
+                    </div>
+                    <div class="cont">
+                        <label class="col-sm-2">Enrollment:</label>
+                        <input type="text" id="stdenroll" class="col-sm-10">
+                    </div>
+                    <div class="cont">
+                        <label class="col-sm-2">Department:</label>
+                        <input type="text" id="sdtdepart" class="col-sm-10">
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn btn-primary pull-right btn-div" onClick="adddata()">Add</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-sm-3 most-right">
+            <div class="alert alert-info">
+                <strong>Info!</strong> Fill the form at the right side and click the Add button to see your profile just click the
+                veiw button after filling the form
+            </div>
+            <div class="alert alert-danger">
+                <strong>Alert!</strong> Make sure you are making your profile at onece. If for the second time you fill the form
+                with diffrent data then you will not be able to see your previous profile
+            </div>
+            <div class="alert alert-success">
+                <strong>Note!</strong>This form is only for single time profile if you want to store multi time data just skip this
+                form and go below to the next portion of this page
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 header-contaner">
+            <h2 class="bg-success text-center header">Store Data for multiple Student</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 multidata-form">
+            <form class="form-horizontal" action="#">
+                <h2 class="leg bg-primary">Students record</h2>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Email">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="ClassID" placeholder="Enter Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="ClassID">ClassID:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ClassID" placeholder="Enter ClassID">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label col-sm-2" for="Rollno">Rollno:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="Rollno" placeholder="Enter Rollno">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="control-label col-sm-2" for="Department">Department:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Department" placeholder="Enter Department">
+                            </div>
+                        </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="row">
+
+            <div class="container">
+                    <h2 class="leg bg-primary">Search Record</h2>
+                    <p>Type something in the input field to search the table for first names, last names or emails:</p>  
+                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                    <br>
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>ClassID</th>
+                          <th>Email</th>
+                          <th>Rollno</th>
+                          <th>Department</th>
+                        </tr>
+                      </thead>
+                      <tbody id="myTable">
+                        <tr>
+                          <td>John</td>
+                          <td>Doe</td>
+                          <td>john@example.com</td>
+                          <td>1234</td>
+                        </tr>
+                        <tr>
+                          <td>Mary</td>
+                          <td>Moe</td>
+                          <td>mary@mail.com</td>
+                        </tr>
+                        <tr>
+                          <td>July</td>
+                          <td>Dooley</td>
+                          <td>july@greatstuff.com</td>
+                        </tr>
+                        <tr>
+                          <td>Anja</td>
+                          <td>Ravendale</td>
+                          <td>a_r@test.com</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+                  </div>
+                  
+                  <script>
+                  $(document).ready(function(){
+                    $("#myInput").on("keyup", function() {
+                      var value = $(this).val().toLowerCase();
+                      $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                      });
+                    });
+                  });
+                  </script>
+                  
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
