@@ -1,0 +1,28 @@
+.card-main-div{
+    border: 0.5px solid lightgray;
+    margin:20px 20px;
+    display: inline-block;
+}
+.card-img{
+    width: 220px;
+    height:260px
+}
+.card-add-btn{
+    background-color: purple;
+    color: white;
+    padding: 5px;
+    margin-left: 50px;
+}
+.card-text{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.card-discription{
+    color: rgb(121, 121, 121);
+    width: 180px;
+}
+.card-header{
+    text-align: center;
+    text-shadow: lightslategrey 1px 2px;
+}
