@@ -1,0 +1,22 @@
+.card-main-div{
+
+    display: inline-block;
+    border: 0.5px solid lightgray;
+    padding: 10px;
+    width:150px;
+    height: 200px;
+}
+.card-discription{
+    color:#9d9d9d;
+    margin-top: 10px;
+    text-align: center;
+}
+.card-btn{
+    background: black;
+    color: white;
+    padding: 4px;
+    margin-top: 55px;
+}
+.card-price{
+    margin:5px;
+}
