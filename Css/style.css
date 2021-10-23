@@ -1,0 +1,18 @@
+.container{
+    background-color: lightgrey;
+    width: 30%;
+    height: 250px;
+    padding: 5px;
+    text-align:center;
+    display: inline-flex;
+    margin-top: 5px;
+}
+.text{
+   font-style:oblique;
+   font-style: initial;
+   font-size: 1.2em;
+   background-color: lightblue;
+   font-family: cursive;
+
+}
+
