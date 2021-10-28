@@ -2,6 +2,7 @@
 import './App.css';
 import CardComp from './componant/card/CardComponant';
 import FilterComp from './componant/filter/filter';
+import Quizapp from './componant/quizapp/Quizapp';
 
 function App() {
 
@@ -13,8 +14,8 @@ function App() {
   return (
     <div className="App">
      {/* <CardComp></CardComp> */}
-     <FilterComp></FilterComp>
-      
+     {/* <FilterComp></FilterComp> */}
+      <Quizapp></Quizapp>
     </div>
   )
 }
