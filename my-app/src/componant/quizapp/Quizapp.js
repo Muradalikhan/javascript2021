@@ -6,33 +6,50 @@ import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import { Toolbar } from "@mui/material";
 import { Button } from "@mui/material";
-import data from "./data";
+import data from "./data"; //data is Array 
 import Paper from '@mui/material/Paper';
+import './quiz.css'
 
 
 
 
 function Quizapp() {
-    let [question, setquestion] = useState(data);
+    let [questionArr, setquestionArr] = useState(data);
     let [questionInd, setQuestionInd] = useState(0);
+    let [scoreCount, setScoreCount] = useState(0);
+    let [colorWidth, setColorWidth] = useState(0);
     let [controllArrlength, setControllArrlength] = useState(true);
 
 
 
     let increament = () => {
 
-        if (questionInd === (question.length) - 1) {
+        if (questionInd === (questionArr.length) - 1) {
             setControllArrlength(false)
-            console.log(controllArrlength)
+            colorWidth=12
+            setColorWidth(colorWidth)
+
         }
         else {
             questionInd = questionInd + 1
             setQuestionInd(questionInd)
 
+            colorWidth=colorWidth+1
+            setColorWidth(colorWidth)
+
         }
 
 
     }
+
+    let checkAns=(selectedAns,correctAns)=>{
+        if(selectedAns===correctAns){
+            setScoreCount(scoreCount+1)
+        }
+    }
+
+
+
     return (
         <div>
             <Grid>
@@ -47,11 +64,13 @@ function Quizapp() {
                             </Toolbar>
                         </AppBar>
 
+                        <Grid className='time_bar' xs={colorWidth}></Grid>
+
                         <Grid className='p-3'>
 
                             <Typography >
                                 {
-                                    question[questionInd].question
+                                    questionArr[questionInd].question
                                 }
 
                             </Typography>
@@ -60,10 +79,10 @@ function Quizapp() {
                         <Grid>
 
                             {
-                                question[questionInd].option.map((item) => {
+                                questionArr[questionInd].option.map((item) => {
                                     return (
                                         <Grid className='p-2' >
-                                            <Button sx={{ width: 300 }} variant='contained'>{item}</Button>
+                                            <Button sx={{ width: 300 }} variant='contained' onClick={()=>checkAns(item,questionArr[questionInd].answer)}>{item}</Button>
 
                                         </Grid>
                                     )
@@ -88,10 +107,10 @@ function Quizapp() {
                                 </Typography>
                             </Toolbar>
                         </AppBar>
-
+                        <Grid className='time_bar' xs={colorWidth}></Grid>
                         <Grid className='p-3 d-flex justify-content-center'>
-                            <Paper sx={{ width: 1 / 2 }} elevation={3}>
-                                you scored :
+                            <Paper sx={{ width: 1 / 2 , height:200}} className='p-3' elevation={3}>
+                                you scored : {scoreCount} out of {questionArr.length}
                             </Paper>
                         </Grid>
                     </Grid>
