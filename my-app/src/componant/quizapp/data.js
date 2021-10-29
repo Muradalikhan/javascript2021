@@ -16,49 +16,49 @@ let data=[
         answer:'hyper text markup language'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'What is JSX?',
+        option:['wrong','wrong','syntax extension of JavaScript','wrong'],
+        answer:'syntax extension of JavaScript'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'Can web browsers read JSX directly?',
+        option:['wrong','No','wrong','yes'],
+        answer:'No'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'What is the virtual DOM?',
+        option:['wrong','wrong','wrong','Document Object Model'],
+        answer:'Document Object Model'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'Why use React instead of other frameworks, like Angular?',
+        option:['Reusable components','wrong','wrong','wrong'],
+        answer:'Reusable components'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'What is the difference between the ES6 and ES5 standards?',
+        option:['wrong','wrong','require vs import','wrong'],
+        answer:'require vs import'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'How do you create a React app?',
+        option:['wrong','Install NodeJS','wrong','wrong'],
+        answer:'Install NodeJS'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'What is an event in React?',
+        option:['wrong','wrong','wrong','An event is an action'],
+        answer:'An event is an action'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'What are synthetic events in React?',
+        option:['wrong','wrong','wrong','combine the response of different browser'],
+        answer:'combine the response of different browser'
     },
     {
-        question:'what does html means?',
-        option:['wrong','wrong','hyper text markup language','wrong'],
-        answer:'hyper text markup language'
+        question:'Why is there a need for using keys in Lists?',
+        option:['wrong','wrong','A key is a unique identifier','wrong'],
+        answer:'A key is a unique identifier'
     },
 ]
 

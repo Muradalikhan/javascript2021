@@ -13,7 +13,7 @@ import './quiz.css'
 
 
 
-function Quizapp() {
+function Quizapp(props) {
     let [questionArr, setquestionArr] = useState(data);
     let [questionInd, setQuestionInd] = useState(0);
     let [scoreCount, setScoreCount] = useState(0);
@@ -110,7 +110,12 @@ function Quizapp() {
                         <Grid className='time_bar' xs={colorWidth}></Grid>
                         <Grid className='p-3 d-flex justify-content-center'>
                             <Paper sx={{ width: 1 / 2 , height:200}} className='p-3' elevation={3}>
-                                you scored : {scoreCount} out of {questionArr.length}
+                                
+                               <p> Name: <b> {props.name}</b></p>
+                               <p> Email: <b>{props.email}</b></p>
+                                
+                               <p> you scored : <b>{scoreCount}</b> out of <b>{questionArr.length}</b></p>
+
                             </Paper>
                         </Grid>
                     </Grid>

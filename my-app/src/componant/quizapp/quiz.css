@@ -5,3 +5,10 @@
     border-radius: 10px;
     /* width:25%; */
 }
+.main_div{
+    border: 1px solid lightgrey;
+    text-align: center;
+    margin: 20px auto;
+    width: 60%;
+    height:500px
+}
