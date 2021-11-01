@@ -9,7 +9,7 @@ import Check from '@mui/icons-material/Check';
 
 export default function LeftCompHeader2() {
   return (
-    <Paper sx={{ width: 320 }}>
+    <Paper >
       <MenuList dense>
         <MenuItem>
           Custom: 1.2

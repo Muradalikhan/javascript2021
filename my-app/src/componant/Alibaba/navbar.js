@@ -12,37 +12,20 @@ import { Button, ButtonGroup } from '@mui/material';
 export default function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" color='default'>
                 <Toolbar variant="dense">
 
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                            <Button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                <MenuIcon />
-                                Categories
-                            </Button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </IconButton>
-                        <Button>Ready to Ship</Button>
-                        <Button>Personal Protective</Button>
-                        <Button>Trade Shows</Button>
-
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-
+                    <ButtonGroup variant="text" color='inherit' size='small' aria-label="text button group">
+                        <Button><MenuIcon/> Categories </Button>
+                        <Button className='px-2'>Ready to Ship</Button>
+                        <Button className='px-2'>Personal Protective</Button>
+                        <Button className='px-2'>Trade Shows</Button>
+                        <Button className='px-2'>Buyer Central</Button>
+                        <Button className='px-2'>Sell on Alibaba</Button>
+                        <Button className='px-2'>Help</Button>
+                        <Button className='pl-5 ml-5'>English - USD</Button>
+                        <Button>Shipt to:</Button>
+                    
                     </ButtonGroup>
 
 
