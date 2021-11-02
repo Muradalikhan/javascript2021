@@ -1,7 +1,12 @@
 import 'bootstrap-4-react'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
-import Image from './images/bake.jpeg'
+import Image1 from './images/head1.jpg'
+import Image2 from './images/head2.jpeg'
+import Image3 from './images/head3.jpeg'
+import Image4 from './images/watch.jpg'
+import Image5 from './images/watch2.jpg'
+import Image6 from './images/watch3.jpg'
 
 
 let Card1 = () => {
@@ -10,14 +15,21 @@ let Card1 = () => {
     let arr = [
         {
             title: 'title1',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
         },
         {
             title: 'title2',
-            img: [Image, Image, Image],
+            img: [Image4, Image5, Image6],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -31,14 +43,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
-            price: [50, 30, 60],
-            name: ['name1', 'name2', 'name3']
-
-        },
-        {
-            title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -52,7 +57,7 @@ let Card1 = () => {
         },
         {
             title: 'title1',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -66,7 +71,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -80,14 +85,14 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image1, Image2, Image3],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
