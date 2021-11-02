@@ -6,7 +6,7 @@ import SwipeableTextMobileStepper from "./imgSlider"
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import LeftCompHeader2 from './leftCompHeader2'
-import TopbarimageSlider from './topbarImagslider'
+import Card1 from './card1'
 
 
 let Alibaba = () => {
@@ -39,8 +39,11 @@ let Alibaba = () => {
                     <Paper> <LeftCompHeader2 /></Paper>
                 </Grid>
             </Grid>
-
-            <Body />
+            <Grid container className='mt-4 mx-auto' md={11}>
+            <Card1 />
+            <Card1 />
+            <Card1 />
+            </Grid>
             <Body />
             <Body />
             <Body />

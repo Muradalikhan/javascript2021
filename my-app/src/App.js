@@ -1,9 +1,9 @@
 
 import './App.css';
-import CardComp from './componant/card/CardComponant';
-import FilterComp from './componant/filter/filter';
-import Quizapp from './componant/quizapp/Quizapp';
-import Signup from './componant/quizapp/signup';
+// import CardComp from './componant/card/CardComponant';
+// import FilterComp from './componant/filter/filter';
+// import Quizapp from './componant/quizapp/Quizapp';
+// import Signup from './componant/quizapp/signup';
 import { useState } from 'react';
 import Alibaba from './componant/Alibaba/alibaba';
 
