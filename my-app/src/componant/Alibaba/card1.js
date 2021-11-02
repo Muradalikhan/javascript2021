@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper'
 import Image1 from './images/head1.jpg'
 import Image2 from './images/head2.jpeg'
 import Image3 from './images/head3.jpeg'
-import Image4 from './images/watch.jpg'
+import Image4 from './images/watch1.jpg'
 import Image5 from './images/watch2.jpg'
 import Image6 from './images/watch3.jpg'
 
@@ -36,7 +36,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image4, Image5, Image6],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -50,7 +50,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image4, Image5, Image6],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -64,7 +64,7 @@ let Card1 = () => {
         },
         {
             title: 'title2',
-            img: [Image, Image, Image],
+            img: [Image4, Image5, Image6],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -78,7 +78,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image, Image, Image],
+            img: [Image4, Image5, Image6],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
@@ -92,7 +92,7 @@ let Card1 = () => {
         },
         {
             title: 'title3',
-            img: [Image1, Image2, Image3],
+            img: [Image4, Image5, Image6],
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
