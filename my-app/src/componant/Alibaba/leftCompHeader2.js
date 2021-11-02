@@ -9,7 +9,9 @@ import Check from '@mui/icons-material/Check';
 
 export default function LeftCompHeader2() {
   return (
-    <Paper >
+    <Paper 
+    sx={{height:'497px'}}
+    >
       <MenuList dense>
         <MenuItem>
           Custom: 1.2
@@ -18,24 +20,31 @@ export default function LeftCompHeader2() {
         <MenuItem>
           <ListItemText>Add space before paragraph</ListItemText>
         </MenuItem>
+        <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+          <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+          <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+          <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+          <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+        <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>
+        <Divider />
         <MenuItem>
           <ListItemText>Add space after paragraph</ListItemText>
         </MenuItem>

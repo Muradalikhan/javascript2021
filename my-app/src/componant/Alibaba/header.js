@@ -32,7 +32,7 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(20),
     width: 'auto',
   },
 }));
@@ -195,12 +195,15 @@ let Header = () => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+              sx={{ display: { xs: 'none', sm: 'block'}, }}
             >
               <img src={logo} width={80}></img>
             </Typography>
-            <Search>
-              <SearchIconWrapper>
+            <Search
+           
+            >
+              <SearchIconWrapper
+             >
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase

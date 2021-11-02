@@ -7,7 +7,9 @@ let TopbarimageSlider = () => {
 
     return (
         <div>
-            <ButtonGroup size="large" color='inherit' variant='text' aria-label="large button group">
+            <ButtonGroup size="large" color='inherit' variant='text' aria-label="large button group"
+            sx={{height:'100px'}}
+            >
                 <Button className='px-5 '>one</Button>
                 <Button className='px-5 '>Free Inspection Services</Button>
                 <Button className='px-5 '>10000 ditial booth</Button>

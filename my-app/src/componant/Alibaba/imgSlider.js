@@ -60,7 +60,7 @@ function SwipeableTextMobileStepper() {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: 67,
+          height: 29,
           pl: 2,
           bgcolor: 'background.default',
         }}
@@ -79,7 +79,7 @@ function SwipeableTextMobileStepper() {
               <Box
                 component="img"
                 sx={{
-                  height: 255,
+                  height: 420,
                   display: 'block',
                   maxWidth: 1200,
                   overflow: 'hidden',

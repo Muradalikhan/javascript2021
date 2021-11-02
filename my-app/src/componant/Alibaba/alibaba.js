@@ -11,33 +11,31 @@ import TopbarimageSlider from './topbarImagslider'
 
 let Alibaba = () => {
     return (
-        <div>
-
+        <div >
+            <Grid
+             sx={{backgroundColor:'#d3d3d35c'}}
+            >
             <Grid container>
                 <Grid item xs={12} sm={12} md={12}>
                     <Header />
                     <Navbar />
                 </Grid>
             </Grid>
-            <Grid container>
-                <Grid item xs={12} sm={12} md={12}>
-                    <TopbarimageSlider />
-                   
-                </Grid>
-            </Grid>
 
-            <Grid container className='m-auto' md={10}>
-                <Grid item xs={12} sm={12} md={2}>
+            <Grid container className='mt-4 mx-auto' md={11}
+               sx={{border:'0.5px solid lightgrey',height:'500px'}}
+            >
+                <Grid item xs={12} sm={12} md={3}>
                     <Paper>
                         <LeftCompHeader2 />
                     </Paper>
                 </Grid>
-                <Grid item md={8} >
+                <Grid item md={6} >
                     <Paper>
                         <SwipeableTextMobileStepper />
                     </Paper>
                 </Grid>
-                <Grid item xs={12} sm={12} md={2}>
+                <Grid item xs={12} sm={12} md={3}>
                     <Paper> <LeftCompHeader2 /></Paper>
                 </Grid>
             </Grid>
@@ -83,6 +81,7 @@ let Alibaba = () => {
             <Body />
             <Body />
             <Footer />
+            </Grid>
         </div>
     )
 }
