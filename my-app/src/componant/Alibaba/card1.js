@@ -1,4 +1,4 @@
-
+import 'bootstrap-4-react'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Image from './images/bake.jpeg'
@@ -28,7 +28,71 @@ let Card1 = () => {
             price: [50, 30, 60],
             name: ['name1', 'name2', 'name3']
 
-        }
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title1',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title2',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+        {
+            title: 'title3',
+            img: [Image, Image, Image],
+            price: [50, 30, 60],
+            name: ['name1', 'name2', 'name3']
+
+        },
+
     ]
 
     return (
@@ -36,7 +100,7 @@ let Card1 = () => {
 
         <>
             {
-                arr.map((item,index) => {
+                arr.map((item, index) => {
                     console.log(item)
 
                     return (
@@ -54,12 +118,29 @@ let Card1 = () => {
 
                             <Grid container md={12}>
 
-                                <Grid md={3} className='mx-3'>
-                                    <div><img src={item.img[0]} width="120px" height="100px" alt='images'></img> </div>
-                                    <div>{item.price[0]}</div>
-                                    <div>{item.name[0]}</div>
-                                </Grid>
-
+                                {/* <span className='d-inline'>  */}
+                                {item.img.map((e, i) => {
+                                    return (
+                                        <Grid className='mx-3' md={3}>
+                                            <img src={e} width="120px" height="100px" alt='images' ></img>
+                                        </Grid>
+                                    )
+                                })}
+                                {item.price.map((e, i) => {
+                                    return (
+                                        <Grid className='mx-3' md={3}>
+                                           <h6>{e}</h6>
+                                        </Grid>
+                                    )
+                                })}
+                                {item.name.map((e, i) => {
+                                    return (
+                                        <Grid className='mx-3' md={3}>
+                                           <h5>{e}</h5>
+                                        </Grid>
+                                    )
+                                })}
+                               
                             </Grid>
 
                         </Paper>

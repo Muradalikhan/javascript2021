@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import "./App.css";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import Button from '@mui/material/Button';
 // import EditIcon from '@mui/icons-material/Edit';
 // import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
