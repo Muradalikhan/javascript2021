@@ -7,12 +7,14 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import LeftCompHeader2 from './leftCompHeader2'
 import Card1 from './card1'
+import Card2 from './card2'
+import Divider from '@mui/material/Divider'
 
 
 let Alibaba = () => {
     return (
         <div >
-            <Grid 
+            <Grid
                 sx={{ backgroundColor: '#d3d3d35c' }}
             >
                 <Grid container>
@@ -22,16 +24,16 @@ let Alibaba = () => {
                     </Grid>
                 </Grid>
 
-                <Grid container className='mt-4 mx-auto'  md={11}
+                <Grid container className='mt-4 mx-auto ' md={11}
                     sx={{ border: '0.5px solid lightgrey', height: '500px' }}
                 >
-                    <Grid item xs={12} sm={12} md={3}>
+                    <Grid item xs={12} sm={12} md={3} >
                         <Paper>
                             <LeftCompHeader2 />
                         </Paper>
                     </Grid>
-                    <Grid item md={6} >
-                        <Paper>
+                    <Grid item md={6} sm={12} >
+                        <Paper >
                             <SwipeableTextMobileStepper />
                         </Paper>
                     </Grid>
@@ -39,10 +41,13 @@ let Alibaba = () => {
                         <Paper> <LeftCompHeader2 /></Paper>
                     </Grid>
                 </Grid>
-                <Grid container className='mt-4 mx-auto' md={11}>
-                   
-                        <Card1 />
-                  
+                <Grid container className='mt-4 mx-auto ' md={11}>
+                    <Card1 />
+                </Grid>
+                <Divider className='mt-3'/>
+
+                <Grid container className='mt-4 mx-auto ' md={11}>
+                    <Card2 />
                 </Grid>
 
                 <Footer />

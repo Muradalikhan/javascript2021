@@ -114,7 +114,7 @@ let Card1 = () => {
                                 borderRadius: '10px',
                                 height: '200px',
                                 padding: '10px',
-                                width: '439.2px',
+                                width: '439px',
                                 margin: '5px 9px;'
                             }}
                         >
