@@ -27,16 +27,14 @@ let Card2 = () => {
             title: 'title1',
             discription: 'some discrition here some discrition here some discrition here some discrition here',
             img: [Image1, Image2, Image3],
-            price: [50, 30, 60],
-            name: ['name1', 'name2', 'name3']
+         
 
         },
         {
             title: 'title2',
             discription: 'some discrition here some discrition here some discrition here some discrition here',
             img: [Image4, Image5, Image6],
-            price: [50, 30, 60],
-            name: ['name1', 'name2', 'name3']
+            
 
         }
 
