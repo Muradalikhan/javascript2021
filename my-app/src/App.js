@@ -4,13 +4,12 @@ import './App.css';
 // import FilterComp from './componant/filter/filter';
 // import Quizapp from './componant/quizapp/Quizapp';
 // import Signup from './componant/quizapp/signup';
-import { useState } from 'react';
-import Alibaba from './componant/Alibaba/alibaba';
+// import Alibaba from './componant/Alibaba/alibaba';
+import Config from './componant/Routing/config';
 
 function App() {
 
 
-  let [compControll, setCompControll] = useState(true)
 
 
 
@@ -19,7 +18,8 @@ function App() {
       {/* <CardComp></CardComp> */}
       {/* <FilterComp></FilterComp> */}
       {/* <Signup ></Signup> */}
-      <Alibaba/>
+      {/* <Alibaba/> */}
+      <Config/>
 
     </div>
   )
