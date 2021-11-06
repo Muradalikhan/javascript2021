@@ -1,55 +1,39 @@
-people using the keyboard for navigation or screen readers will still be able to use this app.import React from "react";
+import 'bootstrap-4-react'
+import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
+import Home from './home';
+import SignIn from './signin';
+import SignUp from './signup';
+import ErrorPage from './error';
 
 export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
+        <nav className='p-3 bg-secondary'>
+          
+              <Link className='btn btn-primary' to="/home">Home</Link>
+            
+           
+              <Link className='btn btn-primary' to="/">SignIn</Link>
+        
+              <Link className='btn btn-primary' to="/signup">SignUp</Link>
+           
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<SignIn/>} />
+          <Route path="/signup" element={<SignUp/>} />
+          <Route path="/home"  element={<Home/>} />
+          <Route path="*"  element={<ErrorPage/>} />
+        </Routes>
       </div>
     </Router>
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}

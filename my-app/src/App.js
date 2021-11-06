@@ -14,7 +14,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App bg-secondary">
       {/* <CardComp></CardComp> */}
       {/* <FilterComp></FilterComp> */}
       {/* <Signup ></Signup> */}
