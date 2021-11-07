@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { HPlusMobiledata } from '@mui/icons-material';
+import Home from './home';
 
 
 
@@ -21,6 +23,7 @@ const theme = createTheme();
 export default function SignIn() {
 const [email,setEmail]=useState('')
 const [password,setPassword]=useState('')
+const [homeComp,setHomeComp]=useState(false)
 
 
 
@@ -32,6 +35,7 @@ const [password,setPassword]=useState('')
     }
     if(obj.email==='murad@gmail.com' && obj.password==='123'){
       console.log('valid user')
+      setHomeComp(true)
 
     }else
     {
@@ -41,7 +45,7 @@ const [password,setPassword]=useState('')
   };
 
   return (
-    <ThemeProvider theme={theme} >
+    homeComp===false?<ThemeProvider theme={theme} >
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -112,6 +116,7 @@ const [password,setPassword]=useState('')
         </Box>
        
       </Container>
-    </ThemeProvider>
+    </ThemeProvider>:
+    <Home/>
   );
 }

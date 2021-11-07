@@ -15,7 +15,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav className='p-3 bg-secondary'>
+        <nav className='p-3 bg-primary'>
           
               <Link className='btn btn-primary' to="/home">Home</Link>
             

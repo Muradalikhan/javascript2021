@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import firebaseInitialization from './firebase/firebase';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -29,15 +32,41 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (event) => {  
+    let obj={
+      fullname:`${firstName} ${lastName}`,
+      email:email,
+      password:password
+    }
+    if(obj.email==='murad@gmail.com' && obj.password==='123'){
+      console.log('user :',obj.fullname)
+
+    }else
+    {
+      console.log('invalid user')
+    }
+  }
+    //const auth = getAuth();
+    // createUserWithEmailAndPassword(auth, obj.email, obj.password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorMessage);
+
+    //   });
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,6 +78,8 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            backgroundColor: '#f8f9fa',
+            padding: '10px'
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -57,7 +88,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -68,6 +99,8 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e)=>{setFirstName(e.target.value)}}
+
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -78,6 +111,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e)=>{setLastName(e.target.value)}}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -88,6 +123,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>{setEmail(e.target.value)}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,6 +135,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e)=>{setPassword(e.target.value)}}
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,10 +147,11 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>
