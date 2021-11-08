@@ -12,22 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import firebaseInitialization from './firebase/firebase';
+import {createUserWithEmailAndPassword } from "firebase/auth";
+import auth from './firebase/firebase';
 import { useState } from 'react';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
@@ -52,20 +39,20 @@ export default function SignUp() {
       console.log('invalid user')
     }
   }
-    //const auth = getAuth();
-    // createUserWithEmailAndPassword(auth, obj.email, obj.password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(user);
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorMessage);
+   
+    createUserWithEmailAndPassword(auth, obj.email, obj.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
 
-    //   });
+      });
   
 
   return (
