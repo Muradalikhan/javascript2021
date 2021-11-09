@@ -12,16 +12,19 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-<<<<<<< Updated upstream
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
 import auth from './firebase/firebase';
-=======
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import firebaseInitialization from './firebase/firebase';
->>>>>>> Stashed changes
 import { useState } from 'react';
 
+
+
+
 const theme = createTheme();
+
+
+
+
+
 
 export default function SignUp() {
 
@@ -29,6 +32,7 @@ export default function SignUp() {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [user, setUser] = useState({})
 
   const handleSubmit = (event) => {  
     let obj={
@@ -36,20 +40,18 @@ export default function SignUp() {
       email:email,
       password:password
     }
-    if(obj.email==='murad@gmail.com' && obj.password==='123'){
-      console.log('user :',obj.fullname)
-
-    }else
-    {
-      console.log('invalid user')
-    }
+    setEmail(obj.email)
+    setPassword(obj.password)
+    
   }
-<<<<<<< Updated upstream
-   
-=======
-    const auth = getAuth();
->>>>>>> Stashed changes
-    createUserWithEmailAndPassword(auth, obj.email, obj.password)
+
+  onAuthStateChanged(auth,(currentUser)=>{
+    console.log(currentUser.email);
+    setUser(currentUser)
+  })
+  
+
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -160,7 +162,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+       <h1>{user.email}</h1>
       </Container>
     </ThemeProvider>
   );
