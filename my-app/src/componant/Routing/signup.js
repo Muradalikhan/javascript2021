@@ -34,7 +34,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState({})
 
-  const handleSubmit = (event) => {  
+  const SignUp = (event) => {  
     let obj={
       fullname:`${firstName} ${lastName}`,
       email:email,
@@ -42,28 +42,31 @@ export default function SignUp() {
     }
     setEmail(obj.email)
     setPassword(obj.password)
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+
+    });
     
   }
 
+  
+
   onAuthStateChanged(auth,(currentUser)=>{
-    console.log(currentUser.email);
     setUser(currentUser)
   })
   
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-
-      });
+ 
   
 
   return (
@@ -149,7 +152,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleSubmit}
+              onClick={SignUp}
             >
               Sign Up
             </Button>
@@ -162,7 +165,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-       <h1>{user.email}</h1>
+       <h1>{user?user.email:null}</h1>
       </Container>
     </ThemeProvider>
   );

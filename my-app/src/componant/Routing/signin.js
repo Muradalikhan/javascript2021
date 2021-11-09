@@ -13,8 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import { HPlusMobiledata } from '@mui/icons-material';
 import Home from './home';
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
+import auth from './firebase/firebase';
+
 
 
 
@@ -27,22 +29,32 @@ const [homeComp,setHomeComp]=useState(false)
 
 
 
-  const handleSubmit = (event) => {
-    
-    let obj={
-      email:email,
-      password:password
-    }
-    if(obj.email==='murad@gmail.com' && obj.password==='123'){
-      console.log('valid user')
-      setHomeComp(true)
+const login = (event) => {  
+  let obj={
+    email:email,
+    password:password
+  }
+  setEmail(obj.email)
+  setPassword(obj.password)
+  
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in
+    //show home page
+    setHomeComp(true)
+    const user = userCredential.user;
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
 
-    }else
-    {
-      console.log('invalid user')
-    }
+  });
+  
+}
 
-  };
 
   return (
     homeComp===false?<ThemeProvider theme={theme} >
@@ -96,7 +108,7 @@ const [homeComp,setHomeComp]=useState(false)
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleSubmit}
+              onClick={login}
             >
               Sign In
             </Button>
