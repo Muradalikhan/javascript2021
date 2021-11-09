@@ -12,8 +12,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+<<<<<<< Updated upstream
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import auth from './firebase/firebase';
+=======
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import firebaseInitialization from './firebase/firebase';
+>>>>>>> Stashed changes
 import { useState } from 'react';
 
 const theme = createTheme();
@@ -39,7 +44,11 @@ export default function SignUp() {
       console.log('invalid user')
     }
   }
+<<<<<<< Updated upstream
    
+=======
+    const auth = getAuth();
+>>>>>>> Stashed changes
     createUserWithEmailAndPassword(auth, obj.email, obj.password)
       .then((userCredential) => {
         // Signed in
