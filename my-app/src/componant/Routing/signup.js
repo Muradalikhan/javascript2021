@@ -12,10 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createUserWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import auth from './firebase/firebase';
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router';
+import { Alert } from '@mui/material';
 
 
 
@@ -33,41 +34,48 @@ export default function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState({})
+  let [errorControll, setErrorControll] = useState(false);
+  let [errorMsg, setErrorMsg] = useState('');
 
-  const SignUp = (event) => {  
-    let obj={
-      fullname:`${firstName} ${lastName}`,
-      email:email,
-      password:password
+  const navigate = useNavigate()
+
+  const SignUp = (event) => {
+    let obj = {
+      fullname: `${firstName} ${lastName}`,
+      email: email,
+      password: password
     }
     setEmail(obj.email)
     setPassword(obj.password)
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate('/login',{replace:true});
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        setErrorMsg(errorMessage)
+        setErrorControll(true)
 
-    });
-    
+      });
+
   }
 
-  
 
-  onAuthStateChanged(auth,(currentUser)=>{
+
+  onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser)
   })
-  
 
- 
-  
+
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,7 +97,8 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }}>
+          {errorControll ? <Alert severity="error">{errorMsg}</Alert> : null}
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -100,7 +109,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  onChange={(e)=>{setFirstName(e.target.value)}}
+                  onChange={(e) => { setFirstName(e.target.value) }}
 
                 />
               </Grid>
@@ -112,7 +121,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  onChange={(e)=>{setLastName(e.target.value)}}
+                  onChange={(e) => { setLastName(e.target.value) }}
 
                 />
               </Grid>
@@ -124,7 +133,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e)=>{setEmail(e.target.value)}}
+                  onChange={(e) => { setEmail(e.target.value) }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -136,7 +145,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e)=>{setPassword(e.target.value)}}
+                  onChange={(e) => { setPassword(e.target.value) }}
 
                 />
               </Grid>
@@ -148,7 +157,7 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
-              
+
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
@@ -165,7 +174,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-       <h1>{user?user.email:null}</h1>
+        <h1>{user ? user.email : null}</h1>
       </Container>
     </ThemeProvider>
   );

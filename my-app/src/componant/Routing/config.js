@@ -16,21 +16,23 @@ export default function App() {
     <Router>
       <div>
         <nav className='p-3 bg-primary'>
-          
-              <Link className='btn btn-primary' to="/home">Home</Link>
-            
-           
-              <Link className='btn btn-primary' to="/">SignIn</Link>
-        
-              <Link className='btn btn-primary' to="/signup">SignUp</Link>
-           
+
+          <Link className='btn btn-primary' to="/home">Home</Link>
+
+
+          <Link className='btn btn-primary' to="/login">SignIn</Link>
+
+
+          <Link className='btn btn-primary' to="/signup">SignUp</Link>
+
         </nav>
 
         <Routes>
-          <Route path="/" element={<SignIn/>} />
-          <Route path="/signup" element={<SignUp/>} />
-          <Route path="/home"  element={<Home/>} />
-          <Route path="*"  element={<ErrorPage/>} />
+          <Route index path="/" element={<SignIn />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </Router>

@@ -16,6 +16,9 @@ import { useState } from 'react';
 import Home from './home';
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
 import auth from './firebase/firebase';
+import { set } from '@firebase/database';
+import { Alert } from '@mui/material';
+import {  useNavigate } from 'react-router';
 
 
 
@@ -25,8 +28,10 @@ const theme = createTheme();
 export default function SignIn() {
 const [email,setEmail]=useState('')
 const [password,setPassword]=useState('')
-const [homeComp,setHomeComp]=useState(false)
+let [errorControll, setErrorControll] = useState(false);
+let [errorMsg, setErrorMsg] = useState('');
 
+const navigate=useNavigate()
 
 
 const login = (event) => {  
@@ -41,7 +46,7 @@ const login = (event) => {
   .then((userCredential) => {
     // Signed in
     //show home page
-    setHomeComp(true)
+   navigate('/home')
     const user = userCredential.user;
     console.log(user);
     // ...
@@ -50,6 +55,9 @@ const login = (event) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorMessage);
+    setErrorMsg(errorMessage)
+    setErrorControll(true)
+
 
   });
   
@@ -57,7 +65,7 @@ const login = (event) => {
 
 
   return (
-    homeComp===false?<ThemeProvider theme={theme} >
+  <ThemeProvider theme={theme} >
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -77,6 +85,7 @@ const login = (event) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {errorControll ? <Alert severity="error">{errorMsg}</Alert> : null}
           <Box component="form"  noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -128,7 +137,7 @@ const login = (event) => {
         </Box>
        
       </Container>
-    </ThemeProvider>:
-    <Home/>
+    </ThemeProvider>
+    
   );
 }
