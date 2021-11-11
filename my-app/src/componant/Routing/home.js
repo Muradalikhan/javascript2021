@@ -25,12 +25,12 @@ function Home() {
   }
 
   let fetchData=()=>{
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    fetch('https://jsonplaceholder.typicode.com/todos')
     .then(response => response.json())
     .then(dt => {
 
-      console.log(dt)
-      setData(dt.id)
+      setData(dt)
+      console.log(data)
 
     }
     
@@ -60,28 +60,24 @@ function Home() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>ID</TableCell>
+            <TableCell align="right">Title</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((dt) => (
+          {/* {data.map((dt,index) => ( */}
             <TableRow
-              key={dt.id}
+              // key={dt.index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {dt.title}
+                {/* {dt.id} */}
               </TableCell>
-              {/* <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell> */}
+              {/* <TableCell align="right">{dt.title}</TableCell> */}
+              
+             
             </TableRow>
-          ))}
+           ))} 
         </TableBody>
       </Table>
     </TableContainer>
