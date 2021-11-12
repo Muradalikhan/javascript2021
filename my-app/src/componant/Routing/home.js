@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import {signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import auth from "./firebase/firebase";
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -13,28 +13,33 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 function Home() {
-  let [data,setData]=useState('')
+  let [data, setData] = useState([])
 
-  let navigate=useNavigate()
+  let navigate = useNavigate()
 
 
-  let logout=()=>{
-    
+  let logout = () => {
+
     signOut(auth)
-    navigate('/login',{replace:true})
+    navigate('/login', { replace: true })
   }
 
-  let fetchData=()=>{
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then(response => response.json())
-    .then(dt => {
+  let fetchData = () => {
+    setTimeout(() => {
 
-      setData(dt)
-      console.log(data)
+      fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(response => response.json())
+        .then(dt => {
 
-    }
-    
-    )
+          setData(dt)
+          console.log(data)
+
+        }
+
+        )
+
+    },2000)
+
   }
 
 
@@ -53,34 +58,40 @@ function Home() {
       >
         Sign out
       </Button>
-      
+
 
 
       <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Title</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* {data.map((dt,index) => ( */}
-            <TableRow
-              // key={dt.index}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {/* {dt.id} */}
-              </TableCell>
-              {/* <TableCell align="right">{dt.title}</TableCell> */}
-              
-             
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell align="right">Title</TableCell>
             </TableRow>
-           ))} 
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {data.map((dt, index) => (
+              <TableRow
+                key={dt.index}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {dt.id}
+                </TableCell>
+                <TableCell align="right">{dt.completed}</TableCell>
+                <TableCell align="right">{dt.title}</TableCell>
+                <TableCell align="right">{dt.userId}</TableCell>
+                <TableCell align="right"></TableCell>
+
+
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
     </>
   );
