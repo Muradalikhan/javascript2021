@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 
 function Home() {
   let [data, setData] = useState([])
+  let [openDetail, setOpenDetail] = useState('')
 
   let navigate = useNavigate()
 
@@ -25,28 +26,29 @@ function Home() {
   }
 
   let fetchData = () => {
-    setTimeout(() => {
-
-      fetch('https://jsonplaceholder.typicode.com/todos')
+ 
+      fetch('https://api.covidtracking.com/v1/states/current.json')
         .then(response => response.json())
         .then(dt => {
 
           setData(dt)
           console.log(data)
 
-        }
-
-        )
-
-    },2000)
-
+        })
   }
 
+let openDetails=(item)=>{
+  console.log(item)
 
+  setOpenDetail(item)
+
+  navigate('/openDetail',{state:item})
+
+}
 
   return (
     <>
-      <h1>Home</h1>
+      <h1>Fetch Data from fake APi</h1>
 
       <Button variant='contained'
         onClick={fetchData}
@@ -65,26 +67,26 @@ function Home() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>ID</TableCell>
-              <TableCell>ID</TableCell>
-              <TableCell>ID</TableCell>
-              <TableCell align="right">Title</TableCell>
+              
+              <TableCell align="center">State</TableCell>
+              <TableCell align="center">Positive</TableCell>
+              <TableCell align="center">ProbaleCases</TableCell>
+              <TableCell align="center">Negative</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((dt, index) => (
-              <TableRow
+              <TableRow onClick={()=>openDetails(dt)}
                 key={dt.index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {dt.id}
+                <TableCell align="center" component="th" scope="row">
+                  {dt.date}
                 </TableCell>
-                <TableCell align="right">{dt.completed}</TableCell>
-                <TableCell align="right">{dt.title}</TableCell>
-                <TableCell align="right">{dt.userId}</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell align="center">{dt.state}</TableCell>
+                <TableCell align="center">{dt.positive}</TableCell>
+                <TableCell align="center">{dt.probableCases}</TableCell>
+                {/* <TableCell align="right">{dt.negative}</TableCell> */}
 
 
               </TableRow>

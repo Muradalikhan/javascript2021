@@ -10,6 +10,7 @@ import Home from './home';
 import SignIn from './signin';
 import SignUp from './signup';
 import ErrorPage from './error';
+import Details from './openDetail';
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/openDetail" element={<Details />} />
         </Routes>
       </div>
     </Router>
