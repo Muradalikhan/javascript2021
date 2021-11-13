@@ -1,11 +1,39 @@
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell,{tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useLocation } from 'react-router';
+import { styled } from '@mui/material/styles';
+
+
+
+
+
+
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 function Details() {
     let location=useLocation().state
@@ -15,18 +43,18 @@ function Details() {
         <>
 
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 , mixWidth:650}} aria-label="simple table">
+                <Table sx={{ minWidth: 650 , mixWidth:650}} aria-label="customized table">
                     <TableHead>
                         <TableRow>
 
-                            <TableCell align="right">State</TableCell>
-                            <TableCell align="right">Positive</TableCell>
-                            <TableCell align="right">ProbaleCases</TableCell>
-                            <TableCell align="right">Negative</TableCell>
+                            <StyledTableCell align="right">State</StyledTableCell>
+                            <StyledTableCell align="right">Positive</StyledTableCell>
+                            <StyledTableCell align="right">ProbaleCases</StyledTableCell>
+                            <StyledTableCell align="right">Negative</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
+                        <StyledTableRow>
                             <TableCell component="th" scope="row">
                                 {location.date}
                             </TableCell>
@@ -36,7 +64,7 @@ function Details() {
                             {/* <TableCell align="right">{dt.negative}</TableCell> */}
 
 
-                        </TableRow>
+                        </StyledTableRow>
 
                     </TableBody>
                 </Table>

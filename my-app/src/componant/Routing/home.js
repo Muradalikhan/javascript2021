@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import 'bootstrap-4-react'
+import { Button, Grid } from "@mui/material";
 import { signOut } from "firebase/auth";
 import auth from "./firebase/firebase";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 function Home() {
   let [data, setData] = useState([])
@@ -26,57 +27,106 @@ function Home() {
   }
 
   let fetchData = () => {
- 
-      fetch('https://api.covidtracking.com/v1/states/current.json')
-        .then(response => response.json())
-        .then(dt => {
 
-          setData(dt)
-          console.log(data)
+    fetch('https://api.covidtracking.com/v1/states/current.json')
+      .then(response => response.json())
+      .then(dt => {
 
-        })
+        setData(dt)
+        console.log(data)
+
+      })
   }
 
-let openDetails=(item)=>{
-  console.log(item)
+  let openDetails = (item) => {
+    console.log(item)
 
-  setOpenDetail(item)
+    setOpenDetail(item)
 
-  navigate('/openDetail',{state:item})
+    navigate('/openDetail', { state: item })
 
-}
+  }
+
+
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
   return (
     <>
       <h1>Fetch Data from fake APi</h1>
 
-      <Button variant='contained'
-        onClick={fetchData}
-      >
-        Fetch Data
-      </Button>
-      <Button variant='contained'
-        onClick={logout}
-      >
-        Sign out
-      </Button>
+
+      <Grid container >
+        <Grid item md={3}>
+          <div class="dropdown">
+            <button width='100px' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
+              Dropdown button
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+              <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+          </div>
+        </Grid>
+        <Grid item  md={3}>
+          <Button variant='contained'
+            onClick={fetchData}
+            fullWidth
+          >
+            Fetch Data
+          </Button>
+        </Grid>
+        <Grid item  md={3} >
+          <Button variant='contained'
+            onClick={logout}
+            fullWidth
+          >
+            Sign out
+          </Button>
+        </Grid>
+      </Grid>
+
+
+
+
+
+
 
 
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 400 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              
-              <TableCell align="center">State</TableCell>
-              <TableCell align="center">Positive</TableCell>
-              <TableCell align="center">ProbaleCases</TableCell>
-              <TableCell align="center">Negative</TableCell>
+
+              <StyledTableCell align="center">State</StyledTableCell>
+              <StyledTableCell align="center">Positive</StyledTableCell>
+              <StyledTableCell align="center">ProbaleCases</StyledTableCell>
+              <StyledTableCell align="center">Negative</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((dt, index) => (
-              <TableRow onClick={()=>openDetails(dt)}
+              <StyledTableRow onClick={() => openDetails(dt)}
                 key={dt.index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
@@ -89,7 +139,7 @@ let openDetails=(item)=>{
                 {/* <TableCell align="right">{dt.negative}</TableCell> */}
 
 
-              </TableRow>
+              </StyledTableRow >
             ))}
           </TableBody>
         </Table>
