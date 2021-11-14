@@ -12,6 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useEffect } from 'react';
 
 function Home() {
   let [data, setData] = useState([])
@@ -21,7 +26,6 @@ function Home() {
 
 
   let logout = () => {
-
     signOut(auth)
     navigate('/login', { replace: true })
   }
@@ -31,18 +35,18 @@ function Home() {
     fetch('https://api.covidtracking.com/v1/states/current.json')
       .then(response => response.json())
       .then(dt => {
-
         setData(dt)
         console.log(data)
-
       })
   }
 
+  useEffect(()=>{
+    fetchData()
+  },[])
+
   let openDetails = (item) => {
     console.log(item)
-
     setOpenDetail(item)
-
     navigate('/openDetail', { state: item })
 
   }
@@ -69,33 +73,89 @@ function Home() {
     },
   }));
 
+
+  const options = [
+    'None',
+    'Atria',
+    'Callisto',
+    'Dione',
+    'Ganymede',
+    'Hangouts Call',
+    'Luna',
+    'Oberon',
+    'Phobos',
+    'Pyxis',
+    'Sedna',
+    'Titania',
+    'Triton',
+    'Umbriel',
+  ];
+
+  const ITEM_HEIGHT = 48;
+
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <h1>Fetch Data from fake APi</h1>
 
 
-      <Grid container >
-        <Grid item md={3}>
-          <div class="dropdown">
-            <button width='100px' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
-              Dropdown button
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Link 1</a>
-              <a class="dropdown-item" href="#">Link 2</a>
-              <a class="dropdown-item" href="#">Link 3</a>
-            </div>
+      <Grid container xs={12} md={10} className='mx-auto'>
+        <Grid item xs={12} sm={7}  md={5}>
+          <div>
+            <Button
+              id="demo-customized-button"
+              aria-controls="demo-customized-menu"
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              variant="contained"
+              disableElevation
+              onClick={handleClick}
+              endIcon={<KeyboardArrowDownIcon />}
+              fullWidth
+            >
+              Fetch Data through specific colomn
+            </Button>
+            <Menu
+              id="long-menu"
+              MenuListProps={{
+                'aria-labelledby': 'long-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: '20ch',
+                },
+              }}
+            >
+              {data.map((option,index) => (
+                <MenuItem key={index} selected={option === 'Pyxis'} onClick={handleClose}>
+                  {option.state}
+                </MenuItem>
+              ))}
+            </Menu>
           </div>
         </Grid>
-        <Grid item  md={3}>
+        <Grid item xs={12} sm={3} md={4}>
           <Button variant='contained'
             onClick={fetchData}
             fullWidth
           >
-            Fetch Data
+            Fetch All Data
           </Button>
         </Grid>
-        <Grid item  md={3} >
+        <Grid item xs={12} sm={2} md={3} >
           <Button variant='contained'
             onClick={logout}
             fullWidth
@@ -103,17 +163,12 @@ function Home() {
             Sign out
           </Button>
         </Grid>
-      </Grid>
 
 
+    
 
 
-
-
-
-
-
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className='mx-auto' >
         <Table sx={{ minWidth: 400 }} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -127,7 +182,7 @@ function Home() {
           <TableBody>
             {data.map((dt, index) => (
               <StyledTableRow onClick={() => openDetails(dt)}
-                key={dt.index}
+                key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align="center" component="th" scope="row">
@@ -144,6 +199,8 @@ function Home() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      </Grid>
 
     </>
   );

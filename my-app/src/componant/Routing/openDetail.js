@@ -5,8 +5,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 import { styled } from '@mui/material/styles';
+import { KeyboardArrowLeft, KeyboardArrowLeftRounded } from '@mui/icons-material';
 
 
 
@@ -35,9 +36,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
+  let move=()=>{
+    Navigate('/home');
+  }
+
 function Details() {
     let location=useLocation().state
     
+    console.log(location)
 
     return (
         <>
@@ -47,21 +53,21 @@ function Details() {
                     <TableHead>
                         <TableRow>
 
+                            <StyledTableCell align="left"><KeyboardArrowLeftRounded onClick={move} /></StyledTableCell>
+                            <StyledTableCell align="right">Date</StyledTableCell>
                             <StyledTableCell align="right">State</StyledTableCell>
-                            <StyledTableCell align="right">Positive</StyledTableCell>
-                            <StyledTableCell align="right">ProbaleCases</StyledTableCell>
-                            <StyledTableCell align="right">Negative</StyledTableCell>
+                            <StyledTableCell align="right">Postive</StyledTableCell>
+                            <StyledTableCell align="right">ProbableCases</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <StyledTableRow>
-                            <TableCell component="th" scope="row">
-                                {location.date}
-                            </TableCell>
+                            <TableCell  align="right"></TableCell>
+                            <TableCell  align="right">{location.date}</TableCell>
                             <TableCell align="right">{location.state}</TableCell>
                             <TableCell align="right">{location.positive}</TableCell>
                             <TableCell align="right">{location.probableCases}</TableCell>
-                            {/* <TableCell align="right">{dt.negative}</TableCell> */}
+                            
 
 
                         </StyledTableRow>
