@@ -17,6 +17,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect } from 'react';
+import IconButton from '@mui/material/IconButton';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
 
 function Home() {
   let [data, setData] = useState([])
@@ -173,10 +180,10 @@ function Home() {
           <TableHead>
             <TableRow>
 
+              <StyledTableCell align="center">Date</StyledTableCell>
               <StyledTableCell align="center">State</StyledTableCell>
-              <StyledTableCell align="center">Positive</StyledTableCell>
-              <StyledTableCell align="center">ProbaleCases</StyledTableCell>
-              <StyledTableCell align="center">Negative</StyledTableCell>
+              <StyledTableCell align="center">positive</StyledTableCell>
+              <StyledTableCell align="center">probableCases</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -196,6 +203,7 @@ function Home() {
 
               </StyledTableRow >
             ))}
+             <TablePagination rowsPerPageOptions={[10, 50]} />
           </TableBody>
         </Table>
       </TableContainer>

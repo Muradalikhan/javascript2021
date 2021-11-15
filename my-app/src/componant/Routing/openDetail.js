@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Navigate, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { styled } from '@mui/material/styles';
 import { KeyboardArrowLeft, KeyboardArrowLeftRounded } from '@mui/icons-material';
 
@@ -36,14 +36,16 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  let move=()=>{
-    Navigate('/home');
-  }
+  
 
 function Details() {
     let location=useLocation().state
-    
-    console.log(location)
+    let navigate=useNavigate()
+
+
+    let move=()=>{
+      navigate('/home');
+    }
 
     return (
         <>
@@ -71,7 +73,7 @@ function Details() {
 
 
                         </StyledTableRow>
-
+                       
                     </TableBody>
                 </Table>
             </TableContainer>
