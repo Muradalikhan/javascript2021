@@ -12,6 +12,7 @@ import SignUp from './signup';
 import ErrorPage from './error';
 import Details from './openDetail';
 import DataTable from './dataTable';
+import PaginationTable from './tablePagination';
 
 export default function App() {
   return (
@@ -27,7 +28,9 @@ export default function App() {
 
           <Link className='btn btn-primary' to="/signup">SignUp</Link>
           
-          <Link className='btn btn-primary' to="/dataTable">DataTable</Link>
+          <Link className='btn btn-primary' to="/datatable">DataTable</Link>
+          
+          <Link className='btn btn-primary' to="/paginationtable">Pagenation Table</Link>
 
         </nav>
 
@@ -37,8 +40,9 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
-          <Route path="/openDetail" element={<Details />} />
-          <Route path="/dataTable" element={<DataTable />} />
+          <Route path="/opendetail" element={<Details />} />
+          <Route path="/datatable" element={<DataTable />} />
+          <Route path="/paginationtable" element={<PaginationTable />} />
         </Routes>
       </div>
     </Router>

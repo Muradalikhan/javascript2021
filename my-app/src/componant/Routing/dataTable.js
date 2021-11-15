@@ -167,14 +167,14 @@ function createData(id, dessert, calories, fat, carbs, protein) {
 
 const rows = [];
 
-for (let i = 0; i < 200; i += 1) {
+for (let i = 0; i < 20; i ++) {
   const randomSelection = sample[Math.floor(Math.random() * sample.length)];
   rows.push(createData(i, ...randomSelection));
 }
 
 export default function DataTable() {
   return (
-    <Paper style={{ height: 400, width: '100%' }}>
+    <Paper style={{ height: 400, width: '60%' }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
