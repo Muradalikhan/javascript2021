@@ -14,8 +14,8 @@ function InputField(props) {
 
     
     useEffect(()=>{
-        setData(props.dt)
-        console.log(data)
+       
+        // console.log(props)
 
     },[])
 

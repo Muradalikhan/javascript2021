@@ -2,14 +2,8 @@
 import * as React from 'react';
 import 'bootstrap-4-react'
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import InfoBoard from './Comp/InfoBoard';
-import InputField from './Comp/InputField';
-import {
-    Box, Table, TableBody, TableCell, TableContainer, TableFooter, TablePagination, TableRow, Paper, TableHead, IconButton, Grid, TextField,
-    tableCellClasses, styled, PropTypes, useTheme, FirstPageIcon, KeyboardArrowLeft, KeyboardArrowRight, LastPageIcon, MenuItem, FormHelperText, FormControl, Select
-} from './Comp/matrial'
-
+import {Box,Table,TableBody,TableCell,TableContainer,TableFooter,TablePagination,TableRow,Paper,TableHead,IconButton,Grid,TextField,
+    tableCellClasses,styled,PropTypes,useTheme,FirstPageIcon,KeyboardArrowLeft,KeyboardArrowRight,LastPageIcon} from './material'
 
 
 
@@ -78,17 +72,15 @@ TablePaginationActions.propTypes = {
 
 
 
-export default function PaginationTable() {
+export default function TableCovid19() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [data, setData] = useState([])
-    const [currency, setCurrency] = useState(' ');
-    const [label, setLable] = useState('');
-    const [selectedData, setSelectedData] = useState([]);
-
-
-
    
+
+
+
+
 
     let getData = () => {
         fetch('https://api.covidtracking.com/v1/states/current.json')
@@ -139,66 +131,12 @@ export default function PaginationTable() {
         },
     }));
 
-    const handleChangeSelect = (event) => {
-        setCurrency(event.target.value);
-        
-    };
-    const lableChange = () => {
-        setLable('Select by state')
-    }
-
-    let navigate=useNavigate()
-    let openDetails = (item) => {
-        // console.log(item)
-        // setOpenDetail(item)
-        navigate('/openDetail', { state: item })
-    
-      }
-
+  
 
     return (
 
-        <div className='text-center mx-auto w-75' >
-            <Paper elevation={12} className='p-3'>
-                <h2>Covid 19</h2>
-            </Paper>
-            <Paper elevation={12} className='p-2 my-2 '>
-                <Grid container>
-                    <Grid md={8}>
-                        <InfoBoard color='green' />
-                        <InfoBoard color='red' />
-                        <InfoBoard color='yellow' />
-                        <InfoBoard color='lightgrey' />
-
-                    </Grid>
-                    <Grid md={4}>
-                        <div className='m-3'>
-                            <TextField
-                                id="outlined-select-currency-native"
-                                select
-                                label={data ? '.' : label}
-                                onClick={lableChange}
-                                value={currency}
-                                onChange={handleChangeSelect}
-                                SelectProps={{
-                                    native: true,
-                                }}
-                                helperText="select by choosing state"
-                            >
-                                {data.map((option, index) => (
-                                    <option key={index} value={option.state} >
-                                        {option.state}
-                                    </option>
-                                ))}
-                            </TextField>
-
-                        </div>
-                      
-                    </Grid>
-
-                </Grid>
-
-            </Paper>
+        <div >
+            
 
 
             <TableContainer component={Paper}>
@@ -219,8 +157,8 @@ export default function PaginationTable() {
                         {(rowsPerPage > 0
                             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             : data
-                        ).map((row, index) => (
-                            <TableRow key={index} onClick={()=>openDetails(row)}>
+                        ).map((row) => (
+                            <TableRow key={row.date}>
                                 <TableCell style={{ width: 160 }} align="center">
                                     {row.date}
                                 </TableCell>
@@ -274,3 +212,5 @@ export default function PaginationTable() {
         </div>
     );
 }
+
+

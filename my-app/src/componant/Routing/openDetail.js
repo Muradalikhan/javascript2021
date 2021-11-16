@@ -44,7 +44,7 @@ function Details() {
 
 
     let move=()=>{
-      navigate('/home');
+      navigate('/');
     }
 
     return (

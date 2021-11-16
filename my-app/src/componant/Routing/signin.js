@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import Home from './home';
+import Home from './covid19';
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut } from "firebase/auth";
 import auth from './firebase/firebase';
 import { set } from '@firebase/database';

@@ -6,6 +6,7 @@ import './App.css';
 // import Signup from './componant/quizapp/signup';
 // import Alibaba from './componant/Alibaba/alibaba';
 import Config from './componant/Routing/config';
+import PaginationTable from './componant/Routing/tablePagination'
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
       {/* <Signup ></Signup> */}
       {/* <Alibaba/> */}
       <Config/>
-
+      {/* <PaginationTable/> */}
     </div>
   )
 }
