@@ -39,10 +39,10 @@ export default function App() {
           {/* <Route path="/login" element={<SignIn />} /> */}
           {/* <Route path="/signup" element={<SignUp />} /> */}
           {/* <Route path="/covid19" element={<Covid19 />} /> */}
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/opendetail" element={<Details />} />
+          {/* <Route path="*" element={<ErrorPage />} /> */}
+          {/* <Route path="/opendetail" element={<Details />} /> */}
           {/* <Route path="/datatable" element={<DataTable />} /> */}
-          <Route path="/" element={<PaginationTable />} />
+          {/* <Route path="/" element={<PaginationTable />} /> */}
         </Routes>
       </div>
     </Router>

@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid'
 function InfoBoard(prop){
     return(
         
-            <div className='p-3 m-1   d-inline-block' style={{backgroundColor: prop.color}}>
+            <div className='p-3 m-1   d-inline-block' style={{backgroundColor: prop.color , width:'240px',height:'150px'}}>
                 <Grid container md={12}>
                     <Grid md={8}>
                         <p>{prop.title}</p>
