@@ -9,6 +9,7 @@ import Leftbar from "./leftbar";
 import Post from "./post";
 import Right from "./rightbar";
 import Navbar from "./nav";
+import Crud from "./crud";
 
 
 // custome styling in mui
@@ -87,7 +88,8 @@ function DashBoard() {
                 </Grid>
                 <Grid item md={7} sm={10}>
                     <Post/>
-                </Grid>
+                    {/* <Crud/> */}
+                 </Grid>
                 <Grid item md={2} className={classes.hideGrid}>
                     <Right/>
                 </Grid>

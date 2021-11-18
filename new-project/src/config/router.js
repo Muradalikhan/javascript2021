@@ -9,6 +9,7 @@ import {
 import DashBoard from "../container/dashboard";
 import Login from "../container/login";
 import Signup from "../container/signup";
+import Crud from "../container/crud";
 
 export default function RouterApp() {
   return (
@@ -19,6 +20,7 @@ export default function RouterApp() {
           <Route path="/" element={<DashBoard/>}> </Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/signup" element={<Signup/>}> </Route>
+          <Route path="/crud" element={<Crud/>}> </Route>
         </Routes>
      
     </Router>
