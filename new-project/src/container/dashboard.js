@@ -37,6 +37,15 @@ function DashBoard() {
                 display:'block',
             },
         },
+        hideGrid:{
+            display:'block',
+            [theme.breakpoints.down('sm')]:{
+                display:'none',
+            },
+            [theme.breakpoints.down('xsm')]:{
+                display:'none',
+            },
+        },
         header: {
             color: 'red',
             display:'block',
@@ -72,14 +81,14 @@ function DashBoard() {
             </Button> */}
             <Navbar/>
             <Grid container>
-                <Grid item md={3}>
+                <Grid item md={3} sm={2}>
                     <Leftbar/>
                     
                 </Grid>
-                <Grid item md={7}>
+                <Grid item md={7} sm={10}>
                     <Post/>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item md={2} className={classes.hideGrid}>
                     <Right/>
                 </Grid>
             </Grid>
