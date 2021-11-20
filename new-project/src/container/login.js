@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 
 import {FirebaseConnection,getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword} from '../config/firebase';
+import { useNavigate } from 'react-router';
 
 const theme = createTheme();
 
@@ -22,7 +23,7 @@ export default function Login() {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
 
-
+    const navigate=useNavigate()
     const auth = getAuth();
     let login = () => {
 
@@ -30,6 +31,7 @@ export default function Login() {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                navigate('/')
                 // ...
             })
             .catch((error) => {
