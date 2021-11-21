@@ -23,6 +23,14 @@ export default function ImgMediaCard() {
             [theme.breakpoints.down('md')]:{
                 maxHeight:350,
             },
+            [theme.breakpoints.down('sm')]:{
+                height:200,
+            },
+        },
+        content:{
+            [theme.breakpoints.down('sm')]:{
+                height:120,
+            },
         },
     }))
     const classes = useStyles()
@@ -34,7 +42,7 @@ export default function ImgMediaCard() {
                className={classes.cardmedia}
                 image={img}
             />
-            <CardContent>
+            <CardContent className={classes.content}>
                 <Typography gutterBottom variant="h5" component="div">
                     Lizard
                 </Typography>

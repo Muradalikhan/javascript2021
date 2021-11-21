@@ -7,65 +7,76 @@ import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { getAuth, signOut } from '@firebase/auth';
-import { useNavigate } from 'react-router';
-import { useTheme } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Zoom from '@mui/material/Zoom';
 
-function ElevationScroll(props) {
+function ScrollTop(props) {
   const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
     target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      '#back-to-top-anchor',
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
 }
 
-ElevationScroll.propTypes = {
+ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window: PropTypes.func,
 };
 
-export default function Navbar(props) {
-
-  const   navigate=useNavigate()
-  const auth=getAuth()
-  let logout=()=>{
-    signOut(auth)
-    navigate('/login')
-  }
-
-
-  const theme=useTheme()
-  const useStyles=makeStyles(()=>({
-    navButton:{
-      marginLeft:50
-    },
-  }))
-
-  const classes=useStyles()
+export default function BackToTop(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <ElevationScroll {...props}>
-        <AppBar>
-          <Toolbar>
-            <Typography variant="h6" component="div">
-              Scroll to Elevate App Bar
-            </Typography>
-            <Typography variant="h5" className={classes.navButton} component="Button" onClick={logout}>
-              Sign out
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar />
+      <AppBar>
+        <Toolbar>
+          <Typography variant="h6" component="div">
+            Scroll to see button
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Toolbar id="back-to-top-anchor" />
       <Container>
+        
       </Container>
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </React.Fragment>
   );
 }

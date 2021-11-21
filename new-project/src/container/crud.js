@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import { Button } from '@mui/material'
 import { deleteUser } from '@firebase/auth'
 
 // import table
@@ -18,9 +17,11 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 // import input
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material'
 import TextField from '@mui/material/TextField';
 //import icon from mui
-import { Add, AddRounded, Delete, Edit } from '@mui/icons-material'
+import { Add, AddRounded, Delete, Edit, KeyboardArrowLeft } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 
 
 
@@ -89,7 +90,10 @@ function Crud() {
 
     return (
         <>
-            <h1>  Crud operation</h1>
+          <div>
+           <Link to='/' color='primary'><KeyboardArrowLeft/> Go back</Link>
+          <h1>  Crud operation</h1>
+          </div>
            <Paper  sx={{ width: '80%', overflow: 'hidden', margin: 'auto' ,padding:'10px' }} elevation={12}>
            <Box
                 component="form"

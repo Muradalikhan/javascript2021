@@ -13,8 +13,6 @@ import Crud from "./crud";
 import { getAuth, onAuthStateChanged } from '../config/firebase'
 
 
-// custome styling in mui
-
 
 
 
