@@ -23,6 +23,8 @@ import TextField from '@mui/material/TextField';
 import { Add, AddRounded, Delete, Edit, KeyboardArrowLeft } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
+import loader from '../asset/img/loader3.gif'
+
 
 
 
@@ -34,10 +36,12 @@ import { Link } from 'react-router-dom'
 
 
 function Crud() {
+    let [updateUserID, setUpdateUserID] = useState('')
     let [name, setName] = useState('')
     let [email, setEmail] = useState('')
     let [age, setAge] = useState('')
     let [user, setUser] = useState([])
+    let [btnControll, setBtnControll] = useState(true)
     let [page, setPage] = React.useState(0);
     let [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -63,10 +67,27 @@ function Crud() {
     }
 
     //update data
-    let updateUser = async (id, age) => {
-        const userDoc = doc(db, 'user', id)
-        const updatedField = { age: age + 1 }
+    let updateUser =async () => {
+        const userDoc = doc(db, 'user', updateUserID)
+        const updatedField = { name:name,email:email,age:age }
         await updateDoc(userDoc, updatedField)
+
+       
+        setName('')
+        setEmail('')
+        setAge('')
+        setBtnControll(true)
+
+    }
+
+    let setupdateField =  (id, age, name, email) => {
+        setUpdateUserID(id)
+        setName(name)
+        setEmail(email)
+        setAge(age)
+        setBtnControll(false)
+
+        
     }
 
     //delte data
@@ -90,28 +111,30 @@ function Crud() {
 
     return (
         <>
-          <div>
-           <Link to='/' color='primary'><KeyboardArrowLeft/> Go back</Link>
-          <h1>  Crud operation</h1>
-          </div>
-           <Paper  sx={{ width: '80%', overflow: 'hidden', margin: 'auto' ,padding:'10px' }} elevation={12}>
-           <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField value={name} id="outlined-search" label="Name" type="Text" onChange={(e) => setName(e.target.value)} />
-                <TextField value={email} id="outlined-search" label="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
-                <TextField value={age} id="outlined-search" label="Age" type="Number" onChange={(e) => setAge(e.target.value)} />
-                <Button variant='contained' size='large' sx={{width:90,marginTop:2}} onClick={addData}><AddRounded />Add</Button>
-            </Box>
-           </Paper>
+            <div>
+                <Link to='/' color='primary'><KeyboardArrowLeft /> Go back</Link>
+                <h1>  Crud operation</h1>
+            </div>
+            <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
+                <Box
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField value={name} id="outlined-search" label="Name" type="Text" onChange={(e) => setName(e.target.value)} />
+                    <TextField value={email} id="outlined-search" label="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
+                    <TextField value={age} id="outlined-search" label="Age" type="Number" onChange={(e) => setAge(e.target.value)} />
+                    {btnControll ? <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={addData}><AddRounded />ADD</Button>
+                        : <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={updateUser}><AddRounded />Update</Button>}
+
+                </Box>
+            </Paper>
 
 
-            <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto'  ,padding:'10px' }} elevation={12}>
+            <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -133,34 +156,37 @@ function Crud() {
                                 </TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
-                            {user
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((user, index) => {
-                                    return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                        {user ?
+                            <TableBody>
+                                {user
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map((user, index) => {
+                                        return (
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
 
-                                            <TableCell align={user.align}>
-                                                {index + 1}
-                                            </TableCell>
-                                            <TableCell align={user.align}>
-                                                {user.name}
-                                            </TableCell>
-                                            <TableCell align={user.align}>
-                                                {user.email}
-                                            </TableCell>
-                                            <TableCell align={user.align}>
-                                                {user.age}
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button variant='contained' color='success' size="small" onClick={() => { updateUser(user.id, user.age) }}><Edit /></Button>
-                                                <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
-                                            </TableCell>
+                                                <TableCell align={user.align}>
+                                                    {index + 1}
+                                                </TableCell>
+                                                <TableCell align={user.align}>
+                                                    {user.name}
+                                                </TableCell>
+                                                <TableCell align={user.align}>
+                                                    {user.email}
+                                                </TableCell>
+                                                <TableCell align={user.align}>
+                                                    {user.age}
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.age, user.name, user.email) }}><Edit /></Button>
+                                                    <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
+                                                </TableCell>
 
-                                        </TableRow>
-                                    );
-                                })}
-                        </TableBody>
+                                            </TableRow>
+                                        );
+                                    })}
+                            </TableBody>
+                            :
+                            <img src={loader} alt='spinner'></img>}
                     </Table>
                 </TableContainer>
                 <TablePagination

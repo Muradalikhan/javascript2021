@@ -11,6 +11,11 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
 
+import { getAuth, onAuthStateChanged } from '../config/firebase'
+import { signOut } from '@firebase/auth';
+import { useNavigate } from 'react-router';
+
+
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -35,6 +40,9 @@ function ScrollTop(props) {
     }
   };
 
+
+  
+
   return (
     <Zoom in={trigger}>
       <Box
@@ -58,6 +66,14 @@ ScrollTop.propTypes = {
 };
 
 export default function BackToTop(props) {
+
+const navigate=useNavigate()
+const auth=getAuth();
+let logout=()=>{
+  signOut(auth)
+  navigate('/login');
+}
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -66,11 +82,18 @@ export default function BackToTop(props) {
           <Typography variant="h6" component="div">
             Scroll to see button
           </Typography>
+          <Typography variant='h5' component="div" ml={63}>
+          {props.user}
+          </Typography>
+          <Typography variant='p' component="button" ml={4} onClick={logout}>
+         sign out
+          </Typography>
+
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
-        
+        {props.user}
       </Container>
       <ScrollTop {...props}>
         <Fab color="secondary" size="small" aria-label="scroll back to top">

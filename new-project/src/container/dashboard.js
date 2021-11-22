@@ -70,6 +70,8 @@ function DashBoard() {
 
                 const uid = user.uid;
                 console.log('user is Sign in',uid)
+                setUserLogin(user.email)
+                console.log(user)
             } else {
                console.log('user is sign out ')
                navigate('/login')
@@ -87,7 +89,7 @@ function DashBoard() {
             >
                 Sign in
             </Button> */}
-            <Navbar />
+            <Navbar user={userLogin}/>
             <Grid container>
                 <Grid item md={3} sm={2} xs={2}>
                     <Leftbar />
