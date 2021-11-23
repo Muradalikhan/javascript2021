@@ -80,7 +80,7 @@ let logout=()=>{
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div">
-            Scroll to see button
+            Logo
           </Typography>
           <Typography variant='h5' component="div" ml={63}>
           {props.user}

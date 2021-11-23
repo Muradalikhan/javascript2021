@@ -30,11 +30,6 @@ import loader from '../asset/img/loader3.gif'
 
 
 
-
-
-
-
-
 function Crud() {
     let [updateUserID, setUpdateUserID] = useState('')
     let [name, setName] = useState('')
@@ -48,6 +43,7 @@ function Crud() {
     //database refrence
     let userCollectionRef = collection(db, 'user')
 
+    
     useEffect(() => {
         const getUsers = async () => {
             const data = await getDocs(userCollectionRef)
@@ -55,7 +51,7 @@ function Crud() {
         }
 
         getUsers();
-    })
+    },[])
 
 
     //add data 
