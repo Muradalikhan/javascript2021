@@ -18,11 +18,12 @@ export default function RouterApp() {
       
      
         <Routes>
-          <Route path="/" element={<DashBoard/>}> </Route>
+          {/* <Route path="/" element={<DashBoard/>}> </Route> */}
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/signup" element={<Signup/>}> </Route>
           <Route path="/crud" element={<Crud/>}> </Route>
-          <Route path="/redux" element={<ReduxTest/>}> </Route>
+          <Route path="/" element={<ReduxTest/>}> </Route>
+          <Route path="/quizapp" element={<ReduxTest/>}> </Route>
         </Routes>
      
     </Router>
