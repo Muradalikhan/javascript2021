@@ -1,0 +1,11 @@
+
+node_modules/.bin/jsesc
+node_modules/.bin/jsesc.cmd
+*.ps1
+node_modules
+node_modules
+node_modules/.bin/jsesc
+node_modules/.bin/jsesc.cmd
+*.cmd
+*.ps1
+*.js
