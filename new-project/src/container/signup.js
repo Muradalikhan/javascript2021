@@ -13,8 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
-import {FirebaseConnection,getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword} from '../config/firebase';
+import {FirebaseConnection,getAuth,createUserWithEmailAndPassword,db} from '../config/firebase';
 
 
 
@@ -22,14 +23,16 @@ import {FirebaseConnection,getAuth,signInWithEmailAndPassword,createUserWithEmai
 const theme = createTheme();
 
 export default function Signup() {
+    let [name, setName] = useState('')
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
 
 
     const auth = getAuth();
-
+    const navigate=useNavigate()
     let signup = () => {
         let obj={
+            name,
             email,
             password
         }
@@ -38,6 +41,7 @@ export default function Signup() {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                navigate('/login')
                 // ...
             })
             .catch((error) => {
@@ -58,6 +62,9 @@ export default function Signup() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        border:'1px solid lightgrey',
+                        padding:'20px',
+                        boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -71,11 +78,21 @@ export default function Signup() {
                             margin="normal"
                             required
                             fullWidth
+                            id="name"
+                            label="Name"
+                            name="name"
+                            autoComplete="name"
+                            autoFocus
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
                             id="email"
                             label="Email Address"
                             name="email"
                             autoComplete="email"
-                            autoFocus
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField

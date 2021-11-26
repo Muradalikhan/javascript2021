@@ -17,18 +17,24 @@ import { useTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 //router
 import {useNavigate} from 'react-router-dom'
-
+// authentication 
+import { getAuth, onAuthStateChanged } from '../config/firebase'
+import {signOut} from '@firebase/auth'
 
 
 
 function ReduxTest() {
 
+    
+   
+
+    let [username, serUserName] = useState('');
+    let [useremail, setUserEmail] = useState('');
     let [questionInd, setQuestionInd] = useState(0);
     let [scoreCount, setScoreCount] = useState(0);
     let [colorWidth, setColorWidth] = useState(0);
     let [controllArrlength, setControllArrlength] = useState(true);
-
-
+   
 
     //custome responsive
 
@@ -53,6 +59,11 @@ function ReduxTest() {
                 color:'whitesmoke',
                 height:'100vh'
             },
+            [theme.breakpoints.up('sm')]:{
+                border:'1px solid lightgrey',
+                boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
+                
+            },
         }
        
     }))
@@ -60,7 +71,26 @@ function ReduxTest() {
 
 
 
+    //authentication
+    const auth = getAuth();
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
 
+                const uid = user.uid;
+                console.log('user is Sign in',uid)
+                serUserName(user.displayName)
+                setUserEmail(user.email)
+                console.log(user)
+
+               
+            } else {
+               console.log('user is sign out ')
+               navigate('/login')
+            }
+        });
+
+    }, [])
 
 
 
@@ -91,8 +121,10 @@ function ReduxTest() {
     }
 
     let navigate=useNavigate()
-    let reloadPage=()=>{
-     navigate('/quizapp')
+    let logout=()=>{
+        signOut(auth)
+        navigate('/login')
+
     }
 
     const questionArr = useSelector((state) => state)
@@ -106,12 +138,20 @@ function ReduxTest() {
                 <Grid container className={classes.mobileResposnsive}>
                     {
                         controllArrlength ?
-                            <Grid item md={12} xs={12} >
+                            <Grid item md={12} xs={12} 
+                           
+                            >
                                 <AppBar position="static">
                                     <Toolbar>
 
-                                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                            Quiz App
+                                        <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
+                                          Logo
+                                        </Typography>
+                                        <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
+                                          Quiz App
+                                        </Typography>
+                                        <Typography variant="h6" component="div" sx={{ flexGrow: 2 }}>
+                                           {useremail}
                                         </Typography>
                                     </Toolbar>
                                 </AppBar>
@@ -166,8 +206,7 @@ function ReduxTest() {
                                     <Paper  className={`p-5 ${classes.scoreBoard}`} elevation={3}>
 
                                         <h1>Score board</h1>
-                                        <p> Name: <b> name</b></p>
-                                        <p> Email: <b>email</b></p>
+                                        <p> Email: <b>{useremail}</b></p>
 
                                         <p> you scored : <b>{scoreCount}</b> out of <b>{questionArr.length}</b></p>
                                         
@@ -175,7 +214,7 @@ function ReduxTest() {
                                     </Paper>
                                 </Grid>
 
-                                <Button variant='contained' className={classes.nextBtn} onClick={reloadPage}>Go back</Button>
+                                <Button variant='contained' className={classes.nextBtn} onClick={logout}>Sign out</Button>
                             </Grid>
                     }
 

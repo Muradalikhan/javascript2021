@@ -11,7 +11,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
 
-import { getAuth, onAuthStateChanged } from '../config/firebase'
+import { getAuth } from '../config/firebase'
 import { signOut } from '@firebase/auth';
 import { useNavigate } from 'react-router';
 
@@ -93,7 +93,7 @@ let logout=()=>{
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
-        {props.user}
+       
       </Container>
       <ScrollTop {...props}>
         <Fab color="secondary" size="small" aria-label="scroll back to top">
