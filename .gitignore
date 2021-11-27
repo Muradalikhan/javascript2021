@@ -9,3 +9,12 @@ node_modules/.bin/jsesc.cmd
 *.cmd
 *.ps1
 *.js
+new-project/.firebase/hosting.YnVpbGQ.cache
+new-project/.firebaserc
+new-project/firebase.json
+redux-app/src/logo.svg
+redux-app/public/manifest.json
+redux-app/public/logo192.png
+redux-app/public/favicon.ico
+redux-app/README.md
+redux-app/public/logo512.png

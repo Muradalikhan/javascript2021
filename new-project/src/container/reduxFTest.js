@@ -10,7 +10,7 @@ import { Toolbar } from "@mui/material";
 import { Button } from "@mui/material";
 import Paper from '@mui/material/Paper';
 //redux
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 //custome css
 import './../components/quiz.css'
 import { useTheme } from '@mui/material/styles';
@@ -18,8 +18,8 @@ import { makeStyles } from '@mui/styles';
 //router
 import {useNavigate} from 'react-router-dom'
 // authentication 
-import { getAuth, onAuthStateChanged } from '../config/firebase'
-import {signOut} from '@firebase/auth'
+// import { getAuth, onAuthStateChanged } from '../config/firebase'
+// import {signOut} from '@firebase/auth'
 
 
 
@@ -28,113 +28,136 @@ function ReduxTest() {
     
    
 
-    let [username, serUserName] = useState('');
-    let [useremail, setUserEmail] = useState('');
-    let [questionInd, setQuestionInd] = useState(0);
-    let [scoreCount, setScoreCount] = useState(0);
-    let [colorWidth, setColorWidth] = useState(0);
-    let [controllArrlength, setControllArrlength] = useState(true);
+    let [obj, setObj] = useState({});
+    let [user, setUser] = useState([]);
+    // let [username, serUserName] = useState('');
+    // let [useremail, setUserEmail] = useState('');
+    // let [questionInd, setQuestionInd] = useState(0);
+    // let [scoreCount, setScoreCount] = useState(0);
+    // let [colorWidth, setColorWidth] = useState(0);
+    // let [controllArrlength, setControllArrlength] = useState(true);
    
 
     //custome responsive
 
-    const theme=useTheme();
-    const useStyles=makeStyles(()=>({
+    // const theme=useTheme();
+    // const useStyles=makeStyles(()=>({
 
-        nextBtn:{
+    //     nextBtn:{
            
-            [theme.breakpoints.down('md')]:{
-                width:300,
-            }
-        },
-        scoreBoard:{
-            width:500,
-            height:'400px',
+    //         [theme.breakpoints.down('md')]:{
+    //             width:300,
+    //         }
+    //     },
+    //     scoreBoard:{
+    //         width:500,
+    //         height:'400px',
            
-        },
-        mobileResposnsive:{
-            [theme.breakpoints.down('sm')]:{
+    //     },
+    //     mobileResposnsive:{
+    //         [theme.breakpoints.down('sm')]:{
 
-                backgroundColor:'black',
-                color:'whitesmoke',
-                height:'100vh'
-            },
-            [theme.breakpoints.up('sm')]:{
-                border:'1px solid lightgrey',
-                boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
+    //             backgroundColor:'black',
+    //             color:'whitesmoke',
+    //             height:'100vh'
+    //         },
+    //         [theme.breakpoints.up('sm')]:{
+    //             border:'1px solid lightgrey',
+    //             boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
                 
-            },
-        }
+    //         },
+    //     }
        
-    }))
-    const classes=useStyles()
+    // }))
+    // const classes=useStyles()
 
 
 
     //authentication
-    const auth = getAuth();
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
+    // const auth = getAuth();
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         if (user) {
 
-                const uid = user.uid;
-                console.log('user is Sign in',uid)
-                serUserName(user.displayName)
-                setUserEmail(user.email)
-                console.log(user)
+    //             const uid = user.uid;
+    //             console.log('user is Sign in',uid)
+    //             serUserName(user.displayName)
+    //             setUserEmail(user.email)
+    //             console.log(user)
 
                
-            } else {
-               console.log('user is sign out ')
-               navigate('/login')
-            }
-        });
+    //         } else {
+    //            console.log('user is sign out ')
+    //            navigate('/login')
+    //         }
+    //     });
 
-    }, [])
-
-
-
-    let increament = () => {
-
-        if (questionInd === (questionArr.length) - 1) {
-            setControllArrlength(false)
-            colorWidth = 12
-            setColorWidth(colorWidth)
-
-        }
-        else {
-            questionInd = questionInd + 1
-            setQuestionInd(questionInd)
-
-            colorWidth = colorWidth + 1
-            setColorWidth(colorWidth)
-
-        }
+    // }, [])
 
 
+
+    // let increament = () => {
+
+    //     if (questionInd === (questionArr.length) - 1) {
+    //         setControllArrlength(false)
+    //         colorWidth = 12
+    //         setColorWidth(colorWidth)
+
+    //     }
+    //     else {
+    //         questionInd = questionInd + 1
+    //         setQuestionInd(questionInd)
+
+    //         colorWidth = colorWidth + 1
+    //         setColorWidth(colorWidth)
+
+    //     }
+
+
+    // }
+
+    // let checkAns = (selectedAns, correctAns) => {
+    //     if (selectedAns === correctAns) {
+    //         setScoreCount(scoreCount + 1)
+    //     }
+    // }
+
+    // let navigate=useNavigate()
+    // let logout=()=>{
+    //     signOut(auth)
+    //     navigate('/login')
+
+    // }
+
+    // const questionArr = useSelector((state) => state)
+
+    const data = useSelector((state) => state)
+
+    const dispatch=useDispatch()
+    let update=()=>{
+        dispatch({
+            type:'UPDATEINITIALSTATE',
+            apiData:user
+        })
+       
     }
 
-    let checkAns = (selectedAns, correctAns) => {
-        if (selectedAns === correctAns) {
-            setScoreCount(scoreCount + 1)
-        }
-    }
 
-    let navigate=useNavigate()
-    let logout=()=>{
-        signOut(auth)
-        navigate('/login')
-
-    }
-
-    const questionArr = useSelector((state) => state)
-
+    //fething api
+    useEffect(()=>{
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res=>res.json())
+        .then(res=>{
+            setUser(res)
+            
+        })
+    },[])
 
     return (
         <>
             
 
-            <div>
+            {/* <div>
                 <Grid container className={classes.mobileResposnsive}>
                     {
                         controllArrlength ?
@@ -222,6 +245,41 @@ function ReduxTest() {
 
 
                 </Grid>
+            </div> */}
+
+
+
+
+
+
+
+            <div>
+                <h1></h1>
+                <div>
+                    <input placeholder='name' onChange={(e)=>setObj({...data,userName:e.target.value})}/>
+                </div>
+                <button onClick={update}>update</button>
+
+                <table style={{border:'1px solid black',margin:'auto',padding:'10px'}}>
+                    <tr>
+                        <th>Name</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                    </tr>
+                    {
+                        data.map((user,index)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{user.name}</td>
+                                    <td>{user.username}</td>
+                                    <td>{user.email}</td>
+                                </tr>
+                            )
+                        })
+
+                        // console.log(data[0])
+                    }
+                </table>
             </div>
         </>
     )

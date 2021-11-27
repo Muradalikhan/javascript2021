@@ -36,7 +36,7 @@ const Leftbar = () => {
     return (
         <>
             <Container className={classes.leftContainer}>
-                <h4 className={classes.leftbar}> <Home className={classes.icon} />   <Link to='/redux' className={classes.text}>Redux</Link></h4>
+                <h4 className={classes.leftbar}> <Home className={classes.icon} />   <Link to='/quizapp' className={classes.text}>Redux</Link></h4>
                 <h4 className={classes.leftbar}> <AdbOutlined className={classes.icon} />   <span className={classes.text}>Leftbar</span></h4>
                 <h4 className={classes.leftbar}> <ContactMail className={classes.icon} />   <span className={classes.text}>Leftbar</span></h4>
                 <h4 className={classes.leftbar}> <AddBox className={classes.icon} />   <span className={classes.text}>Leftbar</span></h4>
