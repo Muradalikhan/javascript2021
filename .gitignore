@@ -8,7 +8,6 @@ node_modules/.bin/jsesc
 node_modules/.bin/jsesc.cmd
 *.cmd
 *.ps1
-*.js
 new-project/.firebase/hosting.YnVpbGQ.cache
 new-project/.firebaserc
 new-project/firebase.json
