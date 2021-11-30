@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 
 
-function Dashboard(){
+function Dashboard() {
 
     return (
         <>
-        <Link to='/amazon'>Amazon</Link>
+            <ul>
+                <li><Link to='/amazon'>Amazon</Link></li>
+                <li> <Link to='/argos'>Argos</Link></li>
+
+
+            </ul>
         </>
     )
 }
