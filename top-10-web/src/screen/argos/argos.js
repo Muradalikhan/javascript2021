@@ -1,3 +1,4 @@
+import Cards from "./component/body/cards"
 import QuiltedImageList from "./component/body/imageLibrary"
 import Header_Argos from "./component/header/header1"
 import Header2_Argos from "./component/header/header2"
@@ -10,6 +11,8 @@ function ArgosMain(){
            <Header2_Argos/>
            <QuiltedImageList/>
            <QuiltedImageList/>
+           <Cards/>
+           <Cards/>
         </div>
     )
 }
