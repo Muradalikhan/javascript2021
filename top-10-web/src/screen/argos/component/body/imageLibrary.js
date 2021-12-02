@@ -2,6 +2,7 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 function srcset(image, size, rows = 1, cols = 1) {
     return {
@@ -11,11 +12,26 @@ function srcset(image, size, rows = 1, cols = 1) {
     };
 }
 
+const Styles=makeStyles((theme)=>({
+    imgResposives: {
+        width: "80%",
+        margin: '50px auto',
+        height: 600,
+        [theme.breakpoints.only("xs")]: {
+            width: "70%",
+            margin: '50px auto',
+            height: 300,
+        },
+      }
+}))
+
+const classes=Styles()
+
 export default function QuiltedImageList() {
     return (
         <>
             <ImageList
-                sx={{ width: "80%", margin: '50px auto', height: 600 }}
+                className={classes.imgResposives}
                 variant="quilted"
                 cols={4}
                 rowHeight={200}
