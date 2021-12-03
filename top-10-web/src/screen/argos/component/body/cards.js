@@ -21,7 +21,7 @@ export default function Cards() {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Some random text
+                                Murad random text
                                 </Typography>
 
                             </CardContent>
@@ -40,7 +40,7 @@ export default function Cards() {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Some random text
+                                    Murad random text
                                 </Typography>
 
                             </CardContent>
@@ -59,7 +59,7 @@ export default function Cards() {
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Some random text
+                                Murad random text
                                 </Typography>
 
                             </CardContent>
