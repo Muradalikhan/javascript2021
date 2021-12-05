@@ -7,5 +7,19 @@
   --lightcolor:#db00b6;
 }
 
+.btnColor{
+  background-color: var(--lightcolor);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
 
+.btnColor:active{
+  background-color: var(--darkcolor);
+}
 
+.heading{
+  color: var(--darkcolor);
+  text-shadow:1px 2px 2px var(--lightcolor);
+}
