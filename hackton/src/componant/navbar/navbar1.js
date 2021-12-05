@@ -60,6 +60,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function Navbar_1() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -162,20 +175,25 @@ export default function Navbar_1() {
 
 
 
+  const pages=['dashboard','two','table']
 
+  const navigate = useNavigate()
+  const auth = getAuth()
+  const signout = () => {
+    signOut(auth)
+    navigate('/login')
 
-      const navigate=useNavigate()
-      const auth=getAuth()
-      const signout=()=>{
-        signOut(auth)
-        navigate('/login')
+  }
 
-      }
+  const goToPage=(page)=>{
+    navigate(`/${page}`)
+
+  }
 
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" color='secondary' >
+      <AppBar position="fixed" sx={{backgroundColor:'#248277'}} >
         <Toolbar>
           <IconButton
             size="large"
@@ -204,6 +222,24 @@ export default function Navbar_1() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
+
+
+
+
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={()=>goToPage(page)}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
@@ -229,7 +265,7 @@ export default function Navbar_1() {
               color="inherit"
             >
               <AccountCircle />
-             
+
             </IconButton>
             <IconButton
               size="large"
@@ -240,11 +276,11 @@ export default function Navbar_1() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <ExitToAppRounded onClick={signout}/>
-             
+              <ExitToAppRounded onClick={signout} />
+
             </IconButton>
           </Box>
-          
+
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"

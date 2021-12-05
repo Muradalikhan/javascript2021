@@ -3,8 +3,8 @@
 }
 
 :root{
-  --darkcolor:#9c27b0;
-  --lightcolor:#db00b6;
+  --darkcolor:#248277;
+  --lightcolor:#469d89;
 }
 
 .btnColor{
@@ -18,6 +18,9 @@
 .btnColor:active{
   background-color: var(--darkcolor);
 }
+/* .btnColor:hover{
+  background-color: var(--darkcolor);
+} */
 
 .heading{
   color: var(--darkcolor);
