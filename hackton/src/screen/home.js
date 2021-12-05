@@ -2,6 +2,10 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useState } from 'react';
 import { getAuth, onAuthStateChanged } from '../config/firebase/firebase.js'
+import Navbar_1 from "../componant/navbar/navbar1.js";
+import Card_1 from "../componant/card/card1.js";
+import { Grid } from "@mui/material";
+
 
 function Home(){
 
@@ -27,7 +31,14 @@ function Home(){
     }, [])
     return(
         <div>
-            <h1>Home</h1>
+           <Navbar_1/>
+          <Grid container>
+              <Grid item md={3}><Card_1/></Grid>
+              <Grid item md={3}><Card_1/></Grid>
+              <Grid item md={3}><Card_1/></Grid>
+          </Grid>
+         
+           
         </div>
     )
 }
