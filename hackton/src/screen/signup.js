@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,8 +12,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-import {getAuth,createUserWithEmailAndPassword} from '../config/firebase/firebase.js';
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { db } from '../config/firebase/firebase.js'
+import { getAuth, createUserWithEmailAndPassword } from '../config/firebase/firebase.js';
+import { Alert } from "@mui/material";
 
 
 
@@ -26,45 +26,76 @@ export default function Signup() {
     let [name, setName] = useState('')
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
+    let [country, setCountry] = useState('')
+    let [contact, setContact] = useState(0)
+    let [errorMsg, setErrorMsg] = useState('')
+    let [errorControll, setErrorControll] = useState(false);
+    let [compControll, setCompControll] = useState(true)
 
 
     const auth = getAuth();
-    const navigate=useNavigate()
+    //database refrence
+    let userCollectionRef = collection(db, 'users')
+
+    const navigate = useNavigate()
     let signup = () => {
-        let obj={
+        let obj = {
             name,
             email,
-            password
+            password,
+            country,
+            contact
         }
 
-        createUserWithEmailAndPassword(auth, obj.email, obj.password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                navigate('/login')
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
+        
+       
+            createUserWithEmailAndPassword(auth, obj.email, obj.password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    addData()
+                    navigate('/')
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage)
+                    setErrorControll(true);
+                    setErrorMsg(errorMessage)
+
+                    // ..
+                });
+        
+
 
     }
 
+
+    //add data 
+    let addData = async () => {
+        await addDoc(userCollectionRef, { name, email, country, contact })
+        setName('')
+        setEmail('')
+        setPassword('')
+        setCountry('')
+        setContact('')
+    }
+
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}  >
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+
                 <Box
                     sx={{
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        border:'1px solid lightgrey',
-                        padding:'20px',
-                        boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
+                        border: '1px solid lightgrey',
+                        padding: '20px',
+                        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -73,6 +104,7 @@ export default function Signup() {
                     <Typography component="h1" variant="h5">
                         Sign Up
                     </Typography>
+                    {errorControll ? <Alert severity="error">{errorMsg}</Alert> : null}
                     <Box component="form" noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -106,10 +138,32 @@ export default function Signup() {
                             autoComplete="current-password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <FormControlLabel
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="country"
+                            label="country"
+                            type="text"
+                            id="country"
+                            autoComplete="current-country"
+                            onChange={(e) => setCountry(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="contact"
+                            label="contact"
+                            type="text"
+                            id="contact"
+                            autoComplete="current-contact"
+                            onChange={(e) => setContact(e.target.value)}
+                        />
+                        {/* <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
-                        />
+                        /> */}
                         <Button
                             onClick={signup}
                             fullWidth
@@ -120,9 +174,9 @@ export default function Signup() {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                {/* <Link href="#" variant="body2">
                                     Forgot password?
-                                </Link>
+                                </Link> */}
                             </Grid>
                             <Grid item>
                                 <Link href="/login" variant="body2">
