@@ -22,11 +22,14 @@
 }
 .item3{
     background-color: rgb(240, 128, 165);
+    grid-column: 4/-1;
+    grid-row:2/4;
 }
 .item4{
     background-color: rgb(240, 128, 240);
-    grid-column: 3/-1;
+    grid-column: 2/4;
     padding: 10px;
+    grid-row: 2/4;
 
     display: grid;
     grid-template-columns: repeat(2,1fr);
