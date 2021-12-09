@@ -54,7 +54,6 @@ export default function Login() {
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage)
                 setErrorControll(true);
@@ -67,8 +66,8 @@ export default function Login() {
         <>
             {/* {spinner ? <img src={loader} alt='loader' /> : */}
 
-                <ThemeProvider theme={theme}>
-                    <Container component="main" maxWidth="xs">
+                <ThemeProvider theme={theme} >
+                    <Container component="main" maxWidth="xs" >
                         <CssBaseline />
                         <Box
                             sx={{
@@ -79,6 +78,8 @@ export default function Login() {
                                 border: '1px solid lightgrey',
                                 padding: '20px',
                                 boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
+                                backgroundColor:'white',
+                                borderRadius:'10px'
                             }}
                         >
                             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import { deleteUser } from '@firebase/auth'
+
 
 // import table
 import * as React from 'react';
@@ -35,7 +35,9 @@ function Users() {
     let [updateUserID, setUpdateUserID] = useState('')
     let [name, setName] = useState('')
     let [email, setEmail] = useState('')
-    let [age, setAge] = useState('')
+    let [contact, setContact] = useState('')
+    let [country, setCountry] = useState('')
+    let [searchUser, setSearchUser] = useState('')
     let [user, setUser] = useState([])
     let [btnControll, setBtnControll] = useState(true)
     let [page, setPage] = React.useState(0);
@@ -52,36 +54,39 @@ function Users() {
         }
 
         getUsers();
-    }, [])
+    }, [user])
 
 
     //add data 
     let addData = async () => {
-        await addDoc(userCollectionRef, { name, email,  })
+        await addDoc(userCollectionRef, { name, email,country,contact  })
         setName('')
         setEmail('')
-        setAge('')
+        setCountry('')
+        setContact('')
     }
 
     //update data
     let updateUser = async () => {
-        const userDoc = doc(db, 'user', updateUserID)
-        const updatedField = { name: name, email: email, age: age }
+        const userDoc = doc(db, 'users', updateUserID)
+        const updatedField = { name: name, email: email, contact: contact,country:country }
         await updateDoc(userDoc, updatedField)
 
 
         setName('')
         setEmail('')
-        setAge('')
+        setContact('')
+        setCountry('')
         setBtnControll(true)
 
     }
 
-    let setupdateField = (id, age, name, email) => {
+    let setupdateField = (id,name,email,country,contact) => {
         setUpdateUserID(id)
         setName(name)
         setEmail(email)
-        setAge(age)
+        setContact(contact)
+        setCountry(country)
         setBtnControll(false)
 
 
@@ -89,7 +94,7 @@ function Users() {
 
     //delte data
     let deleteUser = (id) => {
-        const userDoc = doc(db, 'user', id)
+        const userDoc = doc(db, 'users', id)
         deleteDoc(userDoc)
     }
 
@@ -123,7 +128,9 @@ function Users() {
                 >
                     <TextField value={name} id="outlined-search" label="Name" type="Text" onChange={(e) => setName(e.target.value)} />
                     <TextField value={email} id="outlined-search" label="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
-                    <TextField value={age} id="outlined-search" label="Age" type="Number" onChange={(e) => setAge(e.target.value)} />
+                    <TextField value={country} id="outlined-search" label="Country" type="text" onChange={(e) => setCountry(e.target.value)} />
+                    <TextField value={contact} id="outlined-search" label="Contact" type="text" onChange={(e) => setContact(e.target.value)} />
+                    <TextField value={searchUser} id="outlined-search" label="Search by name" type="text" onChange={(e) => setSearchUser(e.target.value)} />
                     {btnControll ? <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={addData}><AddRounded />ADD</Button>
                         : <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={updateUser}><AddRounded />Update</Button>}
 
@@ -146,7 +153,10 @@ function Users() {
                                     <b>Email</b>
                                 </TableCell>
                                 <TableCell>
-                                    <b>Age</b>
+                                    <b>Country</b>
+                                </TableCell>
+                                <TableCell>
+                                    <b>Contact</b>
                                 </TableCell>
                                 <TableCell>
                                     <b>Action</b>
@@ -157,6 +167,62 @@ function Users() {
                             <TableBody>
                                 {user
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .filter((user,index)=>{
+                                        if(searchUser===''){
+                                            return (
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+    
+                                                    <TableCell align={user.align}>
+                                                        {index + 1}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.name}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.email}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.country}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.contact}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
+                                                    </TableCell>
+    
+                                                </TableRow>
+                                            );
+                                        }else if(user.name.toLowerCase().includes(searchUser.toLowerCase()))
+                                        {
+                                            return (
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+    
+                                                    <TableCell align={user.align}>
+                                                        {index + 1}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.name}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.email}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.country}
+                                                    </TableCell>
+                                                    <TableCell align={user.align}>
+                                                        {user.contact}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
+                                                    </TableCell>
+    
+                                                </TableRow>
+                                            );
+                                        }
+                                    })
                                     .map((user, index) => {
                                         return (
                                             <TableRow hover role="checkbox" tabIndex={-1} key={index}>
@@ -173,8 +239,11 @@ function Users() {
                                                 <TableCell align={user.align}>
                                                     {user.country}
                                                 </TableCell>
+                                                <TableCell align={user.align}>
+                                                    {user.contact}
+                                                </TableCell>
                                                 <TableCell>
-                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.age, user.name, user.email) }}><Edit /></Button>
+                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
                                                     <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
                                                 </TableCell>
 

@@ -96,6 +96,8 @@ export default function Signup() {
                         border: '1px solid lightgrey',
                         padding: '20px',
                         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
+                        backgroundColor:'white',
+                        borderRadius:'10px',
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
