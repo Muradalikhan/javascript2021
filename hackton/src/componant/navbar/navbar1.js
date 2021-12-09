@@ -175,7 +175,7 @@ export default function Navbar_1() {
 
 
 
-  const pages=['dashboard','users','table']
+  const pages=['dashboard','users','table','chatApp']
 
   const navigate = useNavigate()
   const auth = getAuth()
