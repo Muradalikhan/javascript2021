@@ -25,6 +25,7 @@ let About = () => {
             <h1> {myState.city}</h1>
             <button onClick={updateState}>Update age</button>
             <button><Link to='/'>Go to home</Link></button>
+            
         </div>
     )
 }

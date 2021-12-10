@@ -32,6 +32,7 @@ function Home() {
             <button onClick={update}>Increment</button>
 
             <button><Link to='/about'>Go to About</Link></button>
+            <button><Link to='/context'>Go to Context Api </Link></button>
         </div>
     )
 }
