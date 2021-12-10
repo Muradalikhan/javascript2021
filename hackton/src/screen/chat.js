@@ -1,41 +1,49 @@
 import { Send } from '@mui/icons-material'
 import { Input, Paper, Button } from '@mui/material'
-import { db, getAuth } from '../config/firebase/firebase.js'
-import React, { useState, useEffect } from 'react'
+import { db, FirebaseConnection, getAuth } from '../config/firebase/firebase.js'
+import React, { useState, useEffect, useRef } from 'react'
 import Navbar_1 from '../componant/navbar/navbar1'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
+import '../componant/style/chat.css'
+
 
 
 export default function Chat() {
+    const scroll = useRef()
     const [msg, setMsg] = useState('')
     const [messages, setMessages] = useState([])
+    const [spinner, setSpinner] = useState(false)
 
 
     let collectionRef = collection(db, 'messages')
+    let q = query(collectionRef, orderBy('createdAt', 'asc'))
 
     useEffect(() => {
+        setSpinner(true)
         const getMessages = async () => {
-            const data = await getDocs(collectionRef)
+            const data = await getDocs(q)
             setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            setSpinner(false)
+
         }
 
         getMessages();
+
     }, [messages])
 
 
     const auth = getAuth()
-   
-    async function sendMsg(e) {
+    const sendMsg = async (e) => {
         // e.preventDefault()
         const { uid } = auth.currentUser
-
-        await db.collection('messages').add({
+        await addDoc(collectionRef, {
             text: msg,
             uid,
-            // createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            photoURL: 'https://oliver-andersen.se/wp-content/uploads/2018/03/cropped-Profile-Picture-Round-Color.png',
+            createdAt: serverTimestamp()
         })
-        setMsg('')
-        // scroll.current.scrollIntoView({ behavior: 'smooth' })
+        setMsg(' ')
+        scroll.current.scrollIntoView({ behavior: 'smooth' })
     }
 
 
@@ -56,20 +64,27 @@ export default function Chat() {
             <Navbar_1 />
             <Paper elevation={12} sx={{ margin: '100px auto', width: '50%' }}>
                 <h1>Chat app</h1>
-                <div className='chatScree'>
 
-                    {messages.map(({ id, text, photoURL, uid }) => (
-                        <div>
-                            <div key={id} >
-                                <img src={photoURL} alt="img" />
-                                <p>{text}</p>
+                {spinner ? <p>Data is loading...<div>Or check your connection</div></p>
+                    :
+                    <div className=' msgs'>
+
+                        {messages.map(({ id, text, photoURL, uid }) => (
+                            <div>
+
+                                <div key={id} className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`} >
+                                    <span className='close'>x</span>
+                                    <img src={photoURL} alt="img" />
+                                    <p> {text} </p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
 
-                </div>
-                <Input placeholder='Write message' onChange={e => setMsg(e.target.value)}/>
+                    </div>
+                }
+                <Input placeholder='Write message' onChange={e => setMsg(e.target.value)} />
                 <Button variant='contained' onClick={sendMsg}><Send /> Send</Button>
+                <div ref={scroll}></div>
             </Paper>
         </div>
     )

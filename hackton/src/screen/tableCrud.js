@@ -153,7 +153,7 @@ function TableCrud() {
                                 </TableCell>
                             </TableRow>
                         </TableHead>
-                        {user ?
+                        {user.length!==0 ?
                             <TableBody>
                                 {user
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -183,7 +183,7 @@ function TableCrud() {
                                     })}
                             </TableBody>
                             :
-                            <img src={loader} alt='spinner'></img>}
+                            <img src={loader} alt='spinner' style={{margin:'10px auto'}}></img>}
                     </Table>
                 </TableContainer>
                 <TablePagination
