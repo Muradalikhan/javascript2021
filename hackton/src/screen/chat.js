@@ -1,4 +1,4 @@
-import { Send } from '@mui/icons-material'
+import { KeyboardArrowDown, Send } from '@mui/icons-material'
 import { Input, Paper, Button } from '@mui/material'
 import { db, FirebaseConnection, getAuth } from '../config/firebase/firebase.js'
 import React, { useState, useEffect, useRef } from 'react'
@@ -13,7 +13,7 @@ export default function Chat() {
     const [msg, setMsg] = useState('')
     const [messages, setMessages] = useState([])
     const [spinner, setSpinner] = useState(false)
-
+    const [isOpened, setIsOpened] = useState(false);
 
     let collectionRef = collection(db, 'messages')
     let q = query(collectionRef, orderBy('createdAt', 'asc'))
@@ -48,10 +48,15 @@ export default function Chat() {
 
 
 
+    const deletemsg=(id)=>{
+        const userMsg=doc(db,'messages',id)
+        deleteDoc(userMsg);
+    }
 
 
-
-
+    const toggle=()=>{
+        setIsOpened(!isOpened)
+    }
 
 
 
@@ -65,7 +70,7 @@ export default function Chat() {
             <Paper elevation={12} sx={{ margin: '100px auto', width: '50%' }}>
                 <h1>Chat app</h1>
 
-                {spinner ? <p>Data is loading...<div>Or check your connection</div></p>
+                {!spinner ? <p>Data is loading...</p>
                     :
                     <div className=' msgs'>
 
@@ -73,8 +78,9 @@ export default function Chat() {
                             <div>
 
                                 <div key={id} className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`} >
-                                    <span className='close'>x</span>
-                                    <img src={photoURL} alt="img" />
+                                    <span className={`${uid===auth.currentUser.uid?'closeBtnSender':'closeBtnReciever'}`} onClick={toggle}><KeyboardArrowDown/> </span>
+                                    {isOpened && <button className={`${uid===auth.currentUser.uid?'deleteBtnSender':'deleteBtnReciever'}`} onClick={()=>deletemsg(id)}>Delete</button>}
+                                    <img src={photoURL} alt="img" className='chatimg' />
                                     <p> {text} </p>
                                 </div>
                             </div>

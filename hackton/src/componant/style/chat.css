@@ -1,16 +1,47 @@
-img {
+.chatimg {
     border-radius: 50%;
     height: 45px;
     margin-top: -20px;
     border: 2px solid black;
   }
-  .close{
-    background-color: firebrick;
+  .closeBtnSender {
+    background-color: rgb(255 255 255 / 15%);
     color: white;
-    padding: 10px;
+    padding: 2px;
     border-radius: 50%;
-    margin-top: -100px;
+    margin-top: -71px;
     margin-right: -20px;
+}
+
+.closeBtnReciever {
+  background-color: rgb(0 0 0 / 12%);
+  color: rgb(0 0 0 / 87%);
+  padding: 2px;
+  border-radius: 50%;
+  margin-top: -77px;
+  margin-left: -19px;
+  
+}
+.deleteBtnSender{
+  background-color: rgb(255 255 255 / 15%);
+  color: white;
+  padding: 2px;
+  border-radius: 10%;
+  margin-top: -32px;
+  margin-right: -28px;
+  border: none;
+  /* display: none; */
+
+}
+.deleteBtnReciever{
+  background-color: rgb(0 0 0 / 12%);
+  color: rgb(0 0 0 / 87%);
+  padding: 2px;
+  border-radius: 10%;
+  margin-top: -42px;
+  margin-left: -29px;
+  border: none;
+  /* display: none; */
 }
   
   p {
@@ -79,7 +110,7 @@ img {
     .received {
       padding: 10px 10px 0 10px;
     }
-    img {
+    chatimg {
       height: 35px;
       margin-top: -10px;
     }
@@ -95,7 +126,7 @@ img {
     .received {
       padding: 7px 7px 0 7px;
     }
-    img {
+    chatimg {
       height: 30px;
       margin-top: -7px;
     }
