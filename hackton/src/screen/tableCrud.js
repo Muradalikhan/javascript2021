@@ -109,7 +109,7 @@ function TableCrud() {
     return (
         <>
             <div>
-                <Navbar_1/>
+                <Navbar_1 />
                 <h1>  Crud operation</h1>
             </div>
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
@@ -132,28 +132,29 @@ function TableCrud() {
 
 
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>
-                                    <b> ID </b>
-                                </TableCell>
-                                <TableCell>
-                                    <b>  Name</b>
-                                </TableCell>
-                                <TableCell>
-                                    <b>Email</b>
-                                </TableCell>
-                                <TableCell>
-                                    <b>Age</b>
-                                </TableCell>
-                                <TableCell>
-                                    <b>Action</b>
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        {user.length!==0 ?
+                {user.length !== 0 ?
+                    <TableContainer sx={{ maxHeight: 440 }}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>
+                                        <b> ID </b>
+                                    </TableCell>
+                                    <TableCell>
+                                        <b>  Name</b>
+                                    </TableCell>
+                                    <TableCell>
+                                        <b>Email</b>
+                                    </TableCell>
+                                    <TableCell>
+                                        <b>Age</b>
+                                    </TableCell>
+                                    <TableCell>
+                                        <b>Action</b>
+                                    </TableCell>
+                                </TableRow>
+                            </TableHead>
+
                             <TableBody>
                                 {user
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -182,10 +183,14 @@ function TableCrud() {
                                         );
                                     })}
                             </TableBody>
-                            :
-                            <img src={loader} alt='spinner' style={{margin:'10px auto'}}></img>}
-                    </Table>
-                </TableContainer>
+                        </Table>
+                    </TableContainer>
+                    :
+                    <div style={{ width: '100%', textAlign: 'center' }}>
+                        <img src={loader} style={{ margin: '0 auto' }} alt='spinner'></img>
+
+                    </div>
+                }
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"

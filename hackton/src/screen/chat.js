@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Navbar_1 from '../componant/navbar/navbar1'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
 import '../componant/style/chat.css'
+// import ReactScrollableFeed from 'react-scrollable-feed'
 
 
 
@@ -48,13 +49,13 @@ export default function Chat() {
 
 
 
-    const deletemsg=(id)=>{
-        const userMsg=doc(db,'messages',id)
+    const deletemsg = (id) => {
+        const userMsg = doc(db, 'messages', id)
         deleteDoc(userMsg);
     }
 
 
-    const toggle=()=>{
+    const toggle = () => {
         setIsOpened(!isOpened)
     }
 
@@ -67,31 +68,33 @@ export default function Chat() {
     return (
         <div>
             <Navbar_1 />
-            <Paper elevation={12} sx={{ margin: '100px auto', width: '50%' }}>
+            <Paper elevation={12} sx={{ margin: '100px auto', width: '50%'}}>
                 <h1>Chat app</h1>
 
                 {!spinner ? <p>Data is loading...</p>
                     :
-                    <div className=' msgs'>
+                   
+                        <div className=' msgs'>
 
-                        {messages.map(({ id, text, photoURL, uid }) => (
-                            <div>
+                            {messages.map(({ id, text, photoURL, uid }) => (
+                                <div>
 
-                                <div key={id} className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`} >
-                                    <span className={`${uid===auth.currentUser.uid?'closeBtnSender':'closeBtnReciever'}`} onClick={toggle}><KeyboardArrowDown/> </span>
-                                    {isOpened && <button className={`${uid===auth.currentUser.uid?'deleteBtnSender':'deleteBtnReciever'}`} onClick={()=>deletemsg(id)}>Delete</button>}
-                                    <img src={photoURL} alt="img" className='chatimg' />
-                                    <p> {text} </p>
+                                    <div key={id} className={`msg ${uid === auth.currentUser.uid ? 'sent' : 'received'}`} >
+                                        <span className={`${uid === auth.currentUser.uid ? 'closeBtnSender' : 'closeBtnReciever'}`} onClick={toggle}><KeyboardArrowDown /> </span>
+                                        {isOpened && <button className={`${uid === auth.currentUser.uid ? 'deleteBtnSender' : 'deleteBtnReciever'}`} onClick={() => deletemsg(id)}>Delete</button>}
+                                        <img src={photoURL} alt="img" className='chatimg' />
+                                        <p> {text} </p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
 
-                    </div>
+                        </div>
+                   
                 }
                 <Input placeholder='Write message' onChange={e => setMsg(e.target.value)} />
                 <Button variant='contained' onClick={sendMsg}><Send /> Send</Button>
-                <div ref={scroll}></div>
             </Paper>
+                <div ref={scroll}></div>
         </div>
     )
 }

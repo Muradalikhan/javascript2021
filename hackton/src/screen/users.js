@@ -20,8 +20,8 @@ import Box from '@mui/material/Box';
 import { Button } from '@mui/material'
 import TextField from '@mui/material/TextField';
 //import icon from mui
-import { Add, AddRounded, Delete, Edit, KeyboardArrowLeft } from '@mui/icons-material'
-import { Link } from 'react-router-dom'
+import { AddRounded, Delete, Edit } from '@mui/icons-material'
+
 
 import loader from '../asset/img/loader3.gif'
 import Navbar_1 from '../componant/navbar/navbar1.js';
@@ -59,7 +59,7 @@ function Users() {
 
     //add data 
     let addData = async () => {
-        await addDoc(userCollectionRef, { name, email,country,contact  })
+        await addDoc(userCollectionRef, { name, email, country, contact })
         setName('')
         setEmail('')
         setCountry('')
@@ -69,7 +69,7 @@ function Users() {
     //update data
     let updateUser = async () => {
         const userDoc = doc(db, 'users', updateUserID)
-        const updatedField = { name: name, email: email, contact: contact,country:country }
+        const updatedField = { name: name, email: email, contact: contact, country: country }
         await updateDoc(userDoc, updatedField)
 
 
@@ -81,7 +81,7 @@ function Users() {
 
     }
 
-    let setupdateField = (id,name,email,country,contact) => {
+    let setupdateField = (id, name, email, country, contact) => {
         setUpdateUserID(id)
         setName(name)
         setEmail(email)
@@ -114,7 +114,7 @@ function Users() {
     return (
         <>
             <div>
-                <Navbar_1/>
+                <Navbar_1 />
                 <h1>  Crud operation</h1>
             </div>
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
@@ -139,6 +139,7 @@ function Users() {
 
 
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
+            {user.length !== 0 ?
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -163,15 +164,15 @@ function Users() {
                                 </TableCell>
                             </TableRow>
                         </TableHead>
-                        {user ?
+                      
                             <TableBody>
                                 {user
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .filter((user,index)=>{
-                                        if(searchUser===''){
+                                    .filter((user, index) => {
+                                        if (searchUser === '') {
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-    
+
                                                     <TableCell align={user.align}>
                                                         {index + 1}
                                                     </TableCell>
@@ -188,17 +189,16 @@ function Users() {
                                                         {user.contact}
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country, user.contact) }}><Edit /></Button>
                                                         <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
                                                     </TableCell>
-    
+
                                                 </TableRow>
                                             );
-                                        }else if(user.name.toLowerCase().includes(searchUser.toLowerCase()))
-                                        {
+                                        } else if (user.name.toLowerCase().includes(searchUser.toLowerCase())) {
                                             return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-    
+
                                                     <TableCell align={user.align}>
                                                         {index + 1}
                                                     </TableCell>
@@ -215,10 +215,10 @@ function Users() {
                                                         {user.contact}
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country, user.contact) }}><Edit /></Button>
                                                         <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
                                                     </TableCell>
-    
+
                                                 </TableRow>
                                             );
                                         }
@@ -243,7 +243,7 @@ function Users() {
                                                     {user.contact}
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country,user.contact) }}><Edit /></Button>
+                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(user.id, user.name, user.email, user.country, user.contact) }}><Edit /></Button>
                                                     <Button variant='contained' color='error' size="small" onClick={() => deleteUser(user.id)}> <Delete /></Button>
                                                 </TableCell>
 
@@ -251,10 +251,14 @@ function Users() {
                                         );
                                     })}
                             </TableBody>
-                            :
-                            <img src={loader} alt='spinner'></img>}
                     </Table>
                 </TableContainer>
+                            :
+                            <div style={{ width:'100%',textAlign:'center' }}>
+                                <img src={loader} style={{ margin: '0 auto' }} alt='spinner'></img>
+
+                            </div>
+                        }
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
