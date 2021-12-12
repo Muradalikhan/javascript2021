@@ -94,12 +94,31 @@
   }
   
   .msgs {
-    margin: 110px 0;
+    margin: 50px 0;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    height: 400px;
    
   }
-  
+  .msgs::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+  .msgs::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F5F5F5;
+    display: none;
+  }
+  .msgs::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #666666;
+  }
+  .chatScreen{
+    width:50%;
+  }
+    
 
   @media (max-width: 775px) {
     p {
@@ -111,9 +130,12 @@
     .received {
       padding: 10px 10px 0 10px;
     }
-    chatimg {
+    .chatimg {
       height: 35px;
       margin-top: -10px;
+    }
+    .chatScreen{
+      width:100%;
     }
   }
   
@@ -127,8 +149,11 @@
     .received {
       padding: 7px 7px 0 7px;
     }
-    chatimg {
+    .chatimg {
       height: 30px;
       margin-top: -7px;
+    }
+    .chatScreen{
+      width:100%;
     }
   }
