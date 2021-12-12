@@ -3,7 +3,7 @@ import { Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 
 import { auth, signInWithEmailAndPassword } from "../config/firebase";
-import { db, get, ref, onValue } from "../config/firebase";
+import { db,ref, onValue } from "../config/firebase";
 
 
 
@@ -33,6 +33,8 @@ export default function Login() {
                   console.log(snapshot.val());
                   let userObj = snapshot.val();
                   navigate("/", { state: userObj });
+                }else{
+                  alert('data not found')
                 }
               });
       
@@ -60,7 +62,7 @@ export default function Login() {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1">@</span>
-                <input type="text" className="form-control" placeholder="password" onChange={e => setPassword(e.target.value)} aria-label="Username" aria-describedby="basic-addon1" />
+                <input type="password" className="form-control" placeholder="password" onChange={e => setPassword(e.target.value)} aria-label="Username" aria-describedby="basic-addon1" />
             </div>
 
             <button className='btn btn-primary' onClick={login}>Login</button>
