@@ -25,8 +25,6 @@ export default function Dashboard() {
   const Navigation = useNavigate();
 
 
-
-
   useEffect(() => {
 
     setLoader(true);
@@ -80,29 +78,34 @@ export default function Dashboard() {
           <Header />
 
           <div>
-            <table style={{ margin: '80px auto' }}>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
 
+            <table className="table" style={{ margin: '80px auto',width:'80%' }}>
+              <thead>
+                <tr className='table-dark'>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
 
-              {userList.map((e, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{e.name}</td>
-                    <td>{e.email}</td>
-                    <td>
+              <tbody>
+                {userList.map((e, i) => {
+                  return (
+                    <tr key={i}>
+                      <th scope="row">{i}</th>
+                      <td>{e.name}</td>
+                      <td>{e.email}</td>
+                      <td>
 
-                      {/* <span class="material-icons md-36"  onClick={() => updateUser(e.uid)}>edit_note</span> */}
-                      <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}>delete</button>
+                        {/* <span class="material-icons md-36"  onClick={() => updateUser(e.uid)}>edit_note</span> */}
+                        <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}>delete</button>
 
-                    </td>
-                  </tr>
-                );
-              })}
-
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
 
             </table>
 

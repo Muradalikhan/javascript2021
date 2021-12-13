@@ -4,8 +4,8 @@ import { useState } from 'react'
 
 import { auth, signInWithEmailAndPassword } from "../config/firebase";
 import { db,ref, onValue } from "../config/firebase";
-
-
+import { setUser } from '../config/redux/action/userAction';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -17,6 +17,7 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch=useDispatch()
     const navigate=useNavigate('')
     const login = () => {
         let obj = {
@@ -32,6 +33,7 @@ export default function Login() {
                 if (snapshot.exists()) {
                   console.log(snapshot.val());
                   let userObj = snapshot.val();
+                  dispatch(setUser(userObj))
                   navigate("/", { state: userObj });
                 }else{
                   alert('data not found')
