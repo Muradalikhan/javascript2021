@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import { auth, createUserWithEmailAndPassword ,db, set, ref} from "../config/firebase";
-
-
+import { useDispatch } from 'react-redux';
+import { setUser } from '../config/redux/action/userAction';
 
 
 export default function Signup() {
@@ -12,6 +12,7 @@ export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch=useDispatch()
     const navigate=useNavigate('')
     const signup = () => {
         let obj={
@@ -25,6 +26,7 @@ export default function Signup() {
                 console.log(uid);
                 obj.uid = uid;
                 const refrence = ref(db, `/users/${obj.uid}`);
+                dispatch(setUser(obj))
                 set(refrence, obj).then(() => {
                     setEmail("");
                     setPassword("");

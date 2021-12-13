@@ -4,12 +4,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import {
   auth,
   onAuthStateChanged,
-  signOut,
   ref,
   db,
   onChildAdded,
   remove,
 } from "../config/firebase";
+import Header from './header';
 
 
 
@@ -66,16 +66,7 @@ export default function Dashboard() {
   }
 
 
-  const logout = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Sign out");
-        Navigation("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
 
 
 
@@ -85,12 +76,11 @@ export default function Dashboard() {
         <h1>Loading...</h1>
       ) : (
         <div>
-          
-  
-          <button className='btn btn-primary' onClick={logout}>Log Out</button>
+
+          <Header />
 
           <div>
-            <table style={{margin:'80px auto'}}>
+            <table style={{ margin: '80px auto' }}>
               <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -115,7 +105,7 @@ export default function Dashboard() {
 
 
             </table>
-           
+
           </div>
         </div>
       )}
