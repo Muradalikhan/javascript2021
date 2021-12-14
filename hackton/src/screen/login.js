@@ -17,7 +17,7 @@ import { Alert } from "@mui/material";
 
 import { getAuth, signInWithEmailAndPassword } from '../config/firebase/firebase.js';
 import { useNavigate } from 'react-router';
-import loader from '../asset/img/loader3.gif'
+
 
 const theme = createTheme();
 
@@ -44,27 +44,41 @@ export default function Login() {
 
 
     let login = () => {
-        // setTimeout(() => setSpinner(true), 1000)
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // setSpinner(false)
-                navigate('/')
-                // ...
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage)
-                setErrorControll(true);
-                setErrorMsg(errorMessage)
-            });
+        setSpinner(true)
+
+        if (email === '' || password === '') {
+            setSpinner(false)
+            setErrorControll(true);
+            setErrorMsg('empty field not allowed')
+        }
+        else {
+            setSpinner(false)
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user)
+                    setSpinner(false)
+                    navigate('/')
+
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    console.log(errorMessage)
+                    setErrorControll(true);
+                    setErrorMsg(errorMessage)
+                    setSpinner(false)
+                });
+
+
+        }
+
 
     }
 
     return (
         <>
-            {/* {spinner ? <img src={loader} alt='loader' /> : */}
+
+            {!spinner ?
 
                 <ThemeProvider theme={theme} >
                     <Container component="main" maxWidth="xs" >
@@ -78,11 +92,11 @@ export default function Login() {
                                 border: '1px solid lightgrey',
                                 padding: '20px',
                                 boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.21)',
-                                backgroundColor:'white',
-                                borderRadius:'10px'
+                                backgroundColor: 'white',
+                                borderRadius: '10px'
                             }}
                         >
-                            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <Avatar sx={{ m: 1, bgcolor: '#469d89' }}>
                                 <LockOutlinedIcon />
                             </Avatar>
                             <Typography component="h1" variant="h5">
@@ -120,7 +134,7 @@ export default function Login() {
                                     onClick={login}
                                     fullWidth
                                     variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
+                                    sx={{ mt: 3, mb: 2, backgroundColor: '#469d89' }}
                                 >
                                     Login
                                 </Button>
@@ -141,7 +155,9 @@ export default function Login() {
 
                     </Container>
                 </ThemeProvider>
-            {/* } */}
+
+                :
+                <div className="lds-ellipsis centerOfpage"><div></div><div></div><div></div><div></div></div>}
 
         </>
     );

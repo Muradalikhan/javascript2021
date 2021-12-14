@@ -24,7 +24,7 @@ import { AddRounded, Delete, Edit } from '@mui/icons-material'
 
 
 import loader from '../asset/img/loader3.gif'
-import Navbar_1 from '../componant/navbar/navbar1.js';
+import Navbar1 from '../componant/navbar/navbar1.js';
 
 
 
@@ -50,7 +50,7 @@ function Users() {
     useEffect(() => {
         const getUsers = async () => {
             const data = await getDocs(userCollectionRef)
-            setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            setUser(data.docs.map((doc,index) => ({ ...doc.data(), id: doc.id,key:index })))
         }
 
         getUsers();
@@ -114,7 +114,7 @@ function Users() {
     return (
         <>
             <div>
-                <Navbar_1 />
+                <Navbar1 />
                 <h1>  Crud operation</h1>
             </div>
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>

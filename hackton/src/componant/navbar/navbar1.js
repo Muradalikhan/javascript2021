@@ -73,7 +73,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-export default function Navbar_1() {
+export default function Navbar1() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -97,6 +97,14 @@ export default function Navbar_1() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const navigate = useNavigate()
+  const auth = getAuth()
+  const signout = () => {
+    signOut(auth)
+    navigate('/login')
+
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -116,7 +124,7 @@ export default function Navbar_1() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
+      <MenuItem onClick={handleMenuClose,signout}>Sign out</MenuItem>
     </Menu>
   );
 
@@ -175,15 +183,9 @@ export default function Navbar_1() {
 
 
 
-  const pages=['dashboard','users','table','chatApp']
+  const pages=['dashboard','users','chatApp','signup','login']
 
-  const navigate = useNavigate()
-  const auth = getAuth()
-  const signout = () => {
-    signOut(auth)
-    navigate('/login')
-
-  }
+ 
 
   const goToPage=(page)=>{
     navigate(`/${page}`)
@@ -210,7 +212,7 @@ export default function Navbar_1() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Hotel
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -241,20 +243,8 @@ export default function Navbar_1() {
 
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
+            
             <IconButton
               size="large"
               edge="end"

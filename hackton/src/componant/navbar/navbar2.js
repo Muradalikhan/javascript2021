@@ -24,7 +24,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 
-const Navbar_2 = () => {
+const Navbar2 = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -146,4 +146,4 @@ const Navbar_2 = () => {
     </AppBar>
   );
 };
-export default Navbar_2;
+export default Navbar2;

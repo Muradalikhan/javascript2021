@@ -1,9 +1,9 @@
 import { KeyboardArrowDown, Send } from '@mui/icons-material'
 import { Input, Paper, Button } from '@mui/material'
-import { db, FirebaseConnection, getAuth } from '../config/firebase/firebase.js'
+import { db,getAuth } from '../config/firebase/firebase.js'
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar_1 from '../componant/navbar/navbar1'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
+import { collection, getDocs, addDoc, doc, deleteDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
 import '../componant/style/chat.css'
 // import ReactScrollableFeed from 'react-scrollable-feed'
 
@@ -24,7 +24,7 @@ export default function Chat() {
         setSpinner(true)
         const getMessages = async () => {
             const data = await getDocs(q)
-            setMessages(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            setMessages(data.docs.map((doc,index) => ({ ...doc.data(), id: doc.id,key:index })))
             setSpinner(false)
         }
 

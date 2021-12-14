@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import img1 from '../../asset/img/img1.jpg'
 import '../../App.css'
 
-export default function Card_1() {
+export default function Card1() {
     return (
         <Card sx={{ maxWidth: 345,margin:'30px 10px 10px 10px',position:'relative' }}>
             <CardMedia
