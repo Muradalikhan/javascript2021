@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 // import table
 import * as React from 'react';
@@ -17,14 +17,14 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 // import input
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material'
 import TextField from '@mui/material/TextField';
 //import icon from mui
-import { AddRounded, Delete, Edit } from '@mui/icons-material'
+
 
 
 import loader from '../asset/img/loader3.gif'
 import Navbar1 from '../componant/navbar/navbar1.js';
+import AdminNavbar from '../componant/navbar/navbar3.js';
 
 
 
@@ -36,13 +36,28 @@ function BookingList() {
     let [searchUser, setSearchUser] = useState('')
     let [user, setUser] = useState([])
     let [page, setPage] = React.useState(0);
+    let [isLogin, setIsLogin] = useState(false)
     let [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     //database refrence
     let userCollectionRef = collection(db, 'bookingDetails')
-
+    let auth = getAuth();
 
     useEffect(() => {
+
+        //check admin
+        onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser.email === 'admin@gmail.com') {
+                setIsLogin(true)
+
+            } else {
+                setIsLogin(false)
+
+            }
+        });
+
+
+
         const getUsers = async () => {
             const data = await getDocs(userCollectionRef)
             setUser(data.docs.map((doc, index) => ({ ...doc.data(), id: doc.id, key: index })))
@@ -70,11 +85,11 @@ function BookingList() {
 
     return (
         <>
-            <Navbar1 />
-            <div style={{ margin: '80px auto' }} className="bg-dark text-white">
+            {isLogin===true ? <AdminNavbar /> : <Navbar1 />}
+            <div  className="p-1 bg-dark text-white">
                 <h1 className='p-2'>  Booking Details</h1>
             </div>
-            <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
+            <Paper sx={{ width: '80%', overflow: 'hidden', margin: '40px auto 0 auto', padding: '10px' }} elevation={12}>
                 <Box
                     component="form"
                     sx={{

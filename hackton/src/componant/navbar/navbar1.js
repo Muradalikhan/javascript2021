@@ -124,7 +124,7 @@ export default function Navbar1() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose,signout}>Sign out</MenuItem>
+      <MenuItem onClick={handleMenuClose, signout}>Sign out</MenuItem>
     </Menu>
   );
 
@@ -183,11 +183,11 @@ export default function Navbar1() {
 
 
 
-  const pages=['dashboard','users','chatApp','signup','login']
+  const pages = ['dashboard', 'users', 'chatApp', 'signup', 'login']
 
- 
 
-  const goToPage=(page)=>{
+
+  const goToPage = (page) => {
     navigate(`/${page}`)
 
   }
@@ -195,7 +195,7 @@ export default function Navbar1() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{backgroundColor:'#248277'}} >
+      <AppBar position="fixed" sx={{ backgroundColor: '#248277' }} >
         <Toolbar>
           <IconButton
             size="large"
@@ -212,9 +212,9 @@ export default function Navbar1() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Hotel
+            HotelManagement
           </Typography>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -222,7 +222,7 @@ export default function Navbar1() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
 
 
@@ -233,7 +233,7 @@ export default function Navbar1() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={()=>goToPage(page)}
+                onClick={() => goToPage(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -243,9 +243,9 @@ export default function Navbar1() {
 
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            
-            
-            <IconButton
+
+
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -256,7 +256,7 @@ export default function Navbar1() {
             >
               <AccountCircle />
 
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
               edge="end"

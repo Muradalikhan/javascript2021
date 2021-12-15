@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-
+import { getAuth,onAuthStateChanged } from 'firebase/auth';
 
 // import table
 import * as React from 'react';
@@ -25,7 +25,7 @@ import { AddRounded, Delete, Edit } from '@mui/icons-material'
 
 import loader from '../asset/img/loader3.gif'
 import Navbar1 from '../componant/navbar/navbar1.js';
-
+import AdminNavbar from '../componant/navbar/navbar3.js';
 
 
 
@@ -43,14 +43,32 @@ function HotelRegistration() {
     let [hotel, setHotel] = useState([])
     let [hotelImgUrl, setHotelImgUrl] = useState('')
     let [btnControll, setBtnControll] = useState(true)
+    let [isLogin, setIsLogin] = useState(false)
+
     let [page, setPage] = React.useState(0);
     let [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     //database refrence
     let hotelCollectionRef = collection(db, 'hotelRegistration')
-
+    const auth=getAuth()
 
     useEffect(() => {
+
+         //check admin
+         onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser.email === 'admin@gmail.com') {
+                setIsLogin(true)
+
+            } else {
+                setIsLogin(false)
+
+            }
+        });
+
+
+
+
+
         const getHotelsList = async () => {
             const data = await getDocs(hotelCollectionRef)
             setHotel(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
@@ -126,8 +144,8 @@ function HotelRegistration() {
     return (
         <>
             <div>
-                <Navbar1 />
-                <h1>  Crud operation</h1>
+            {isLogin===true ? <AdminNavbar /> : <Navbar1 />}
+                <h1 className='p-3 bg-dark text-white'>  Hotel Registration</h1>
             </div>
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
                 <Box

@@ -1,11 +1,12 @@
 import { KeyboardArrowDown, Send } from '@mui/icons-material'
 import { Input, Paper, Button } from '@mui/material'
-import { db,getAuth } from '../config/firebase/firebase.js'
+import { db, getAuth, onAuthStateChanged } from '../config/firebase/firebase.js'
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar_1 from '../componant/navbar/navbar1'
 import { collection, getDocs, addDoc, doc, deleteDoc, serverTimestamp, query, orderBy } from 'firebase/firestore'
 import '../componant/style/chat.css'
-// import ReactScrollableFeed from 'react-scrollable-feed'
+import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -15,25 +16,38 @@ export default function Chat() {
     const [spinner, setSpinner] = useState(false)
     const [isOpened, setIsOpened] = useState(false);
 
+    const navigate = useNavigate()
+    const auth = getAuth();
     const scroll = useRef()
     let collectionRef = collection(db, 'messages')
     let q = query(collectionRef, orderBy('createdAt', 'asc'))
 
 
     useEffect(() => {
-        setSpinner(true)
-        const getMessages = async () => {
-            const data = await getDocs(q)
-            setMessages(data.docs.map((doc,index) => ({ ...doc.data(), id: doc.id,key:index })))
-            setSpinner(false)
-        }
 
-        getMessages();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setSpinner(true)
+                const getMessages = async () => {
+                    const data = await getDocs(q)
+                    setMessages(data.docs.map((doc, index) => ({ ...doc.data(), id: doc.id, key: index })))
+                    setSpinner(false)
+                }
+
+                getMessages();
+            }
+            else {
+                console.log('plz login first')
+                navigate('/login')
+            }
+        })
+
+
 
     }, [messages])
 
 
-    const auth = getAuth()
+
     const sendMsg = async () => {
         const { uid } = auth.currentUser
         await addDoc(collectionRef, {
@@ -70,7 +84,7 @@ export default function Chat() {
             <Paper elevation={12} sx={{ margin: '100px auto' }} className={`chatScreen`}>
                 <h1>Chat app</h1>
 
-                {!spinner ? <p>Data is loading...</p>
+                {!spinner ?  <div className="lds-ellipsis centerOfpage"><div></div><div></div><div></div><div></div></div>
                     :
 
                     <div className=' msgs'>
@@ -86,12 +100,12 @@ export default function Chat() {
                                 </div>
                             </div>
                         ))}
-                        <div ref={scroll}></div>
                     </div>
 
                 }
+                <div ref={scroll}></div>
 
-                <div style={{ position: 'sticky', bottom: '2px',padding:'2px',backgroundColor:'white' }}>
+                <div style={{ position: 'sticky', bottom: '2px', padding: '2px', backgroundColor: 'white' }}>
                     <Input placeholder='Write message' sx={{ width: '70%' }} value={msg} onChange={e => setMsg(e.target.value)} />
                     <Button variant='contained' onClick={sendMsg}><Send /> Send</Button>
                 </div>

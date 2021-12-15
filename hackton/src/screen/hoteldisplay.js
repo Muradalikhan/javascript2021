@@ -59,7 +59,7 @@ export default function HotelDisplay() {
 
         <>
             <Navbar1 />
-            <Paper sx={{ width: '80%', overflow: 'hidden', margin: '70px auto', padding: '10px' }} elevation={12}>
+            <Paper sx={{ width: '80%', overflow: 'hidden', margin: '70px auto', padding: '10px',zIndex:'2' }} elevation={12}>
                 <Box
                     component="form"
                     sx={{
@@ -74,7 +74,7 @@ export default function HotelDisplay() {
 
 
             {hotel.length !== 0 ?
-                <div className='col-sm-10 ' style={{ margin: '30px auto' }}>
+                <div className='col-sm-10 ' style={{ margin: '20px auto' }}>
                     {
                         hotel
                             .filter((hotel, index) => {
