@@ -64,7 +64,9 @@ export default function Dashboard() {
   }
 
 
-
+  const updateUser=(id)=>{
+    console.log(id)
+  }
 
 
 
@@ -79,12 +81,12 @@ export default function Dashboard() {
 
           <div>
 
-            <table className="table" style={{ margin: '80px auto',width:'80%' }}>
+            <table className="table" style={{ margin: '80px auto', width: '80%' }}>
               <thead>
                 <tr className='table-dark'>
                   <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Handle</th>
                 </tr>
               </thead>
@@ -98,8 +100,9 @@ export default function Dashboard() {
                       <td>{e.email}</td>
                       <td>
 
-                        {/* <span class="material-icons md-36"  onClick={() => updateUser(e.uid)}>edit_note</span> */}
-                        <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}>delete</button>
+
+                        <button className="btn btn-success" onClick={() => updateUser(e.uid)}><span class="material-icons md-18">edit_note</span></button>
+                        <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}><span class="material-icons md-18">delete</span></button>
 
                       </td>
                     </tr>

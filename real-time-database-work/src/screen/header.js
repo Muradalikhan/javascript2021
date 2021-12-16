@@ -1,17 +1,53 @@
 
-import React from 'react'
-import { signOut,getAuth } from 'firebase/auth';
+import React, { useEffect, useState } from 'react'
+import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  ref,
+  db,
+  onChildAdded,
+  onValue,
+
+} from "../config/firebase";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function Header() {
 
-  const user=useSelector(state=>state.setuser)
+  const user = useSelector(state => state.setuser)
+  const [currentUser, setCurrentUser] = useState();
+  const [currentUserUid, setCurrentUserUid] = useState();
 
 
 
-  const Navigation=useNavigate()
-  const auth=getAuth()
+  const Navigation = useNavigate()
+  const auth = getAuth()
+
+  useEffect(() => {
+
+    onAuthStateChanged(auth, (isLogin) => {
+      if (isLogin) {
+
+        setCurrentUserUid(isLogin.uid)
+        getCurrentUser()
+      }
+      else {
+        setCurrentUser('Login')
+
+      }
+    })
+
+  }, [])
+
+
+
+  const getCurrentUser = () => {
+    let refrence = ref(db, `/users/`);
+
+      console.log(refrence)
+  }
+
+
+
 
   const logout = () => {
     signOut(auth)
@@ -24,8 +60,8 @@ export default function Header() {
       });
   };
 
-  
-  
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,7 +85,7 @@ export default function Header() {
                 <a className="nav-link" href="#" onClick={logout}>SignOut</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link bg-secondary text-white" href="#" >{user.name}</a>
+                <a className="nav-link bg-secondary text-white" href="#" >{currentUser}</a>
               </li>
 
 

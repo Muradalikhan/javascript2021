@@ -110,6 +110,8 @@ export default function Booking() {
         setPersons('')
         setDays('')
 
+        handleOpen()
+
     }
 
 
@@ -187,7 +189,7 @@ export default function Booking() {
 
                 </div>
                 <div className='form-row d-flex justify-content-between'>
-                    <button className="btn btnColor" style={{ width: '50%' }} onClick={saveBookingDetails,handleOpen}>Confirm Booking</button>
+                    <button className="btn btnColor" style={{ width: '50%' }} onClick={saveBookingDetails}>Confirm Booking</button>
                     <button className="btn btnColor" style={{ width: '42%' }} onClick={goToPage}>Cancel Booking</button>
                 </div>
 
