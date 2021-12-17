@@ -2,7 +2,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-import { auth, createUserWithEmailAndPassword ,db, set, ref} from "../config/firebase";
+// import { updateProfile } from 'firebase/auth';
+import { auth, createUserWithEmailAndPassword ,db, set, ref,} from "../config/firebase";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../config/redux/action/userAction';
 
@@ -25,6 +26,7 @@ export default function Signup() {
                 let uid = res.user.uid;
                 console.log(uid);
                 obj.uid = uid;
+                res.user.displayName=obj.name
                 const refrence = ref(db, `/users/${obj.uid}`);
                 dispatch(setUser(obj))
                 set(refrence, obj).then(() => {

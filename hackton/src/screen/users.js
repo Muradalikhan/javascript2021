@@ -1,5 +1,5 @@
 
-
+//data base
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
@@ -23,7 +23,7 @@ import TextField from '@mui/material/TextField';
 //import icon from mui
 import { AddRounded, Delete, Edit } from '@mui/icons-material'
 
-
+// navbar
 import loader from '../asset/img/loader3.gif'
 import Navbar1 from '../componant/navbar/navbar1.js';
 import AdminNavbar from '../componant/navbar/navbar3.js';

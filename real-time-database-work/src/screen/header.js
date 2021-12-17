@@ -5,7 +5,7 @@ import {
   ref,
   db,
   onChildAdded,
-  onValue,
+
 
 } from "../config/firebase";
 import { useNavigate } from 'react-router-dom';
@@ -26,9 +26,7 @@ export default function Header() {
 
     onAuthStateChanged(auth, (isLogin) => {
       if (isLogin) {
-
-        setCurrentUserUid(isLogin.uid)
-        getCurrentUser()
+        setCurrentUser(isLogin.displayName)
       }
       else {
         setCurrentUser('Login')
@@ -40,11 +38,6 @@ export default function Header() {
 
 
 
-  const getCurrentUser = () => {
-    let refrence = ref(db, `/users/`);
-
-      console.log(refrence)
-  }
 
 
 

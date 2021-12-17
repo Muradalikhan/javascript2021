@@ -9,6 +9,13 @@ import Navbar1 from '../componant/navbar/navbar1'
 import { useLocation } from 'react-router-dom'
 
 
+
+
+
+
+
+
+
 export default function HotelDetail() {
     const [loader, setLoader] = useState(false)
 

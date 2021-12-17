@@ -1,11 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+// database
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import Navbar1 from '../componant/navbar/navbar1.js'
 import { getAuth, onAuthStateChanged } from '../config/firebase/firebase.js'
 import { Box, Paper, TextField } from '@mui/material'
+
+
+
+
+
 
 
 export default function HotelDisplay() {
