@@ -36,7 +36,7 @@ export default function ProductList() {
                 <h1 className='m-3'>ProductList</h1>
 
                 {!loader ? <ProductComponant /> :
-                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 
                 }
             </div>

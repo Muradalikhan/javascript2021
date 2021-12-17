@@ -1,31 +1,31 @@
 
 import React, { useEffect, useState } from 'react'
 import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
-import {
-  ref,
-  db,
-  onChildAdded,
 
-
-} from "../config/firebase";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+
+
+
+
+
 export default function Header() {
 
-  const user = useSelector(state => state.setuser)
+  // const user = useSelector(state => state.setuser)
   const [currentUser, setCurrentUser] = useState();
-  const [currentUserUid, setCurrentUserUid] = useState();
+
 
 
 
   const Navigation = useNavigate()
   const auth = getAuth()
 
+
   useEffect(() => {
 
     onAuthStateChanged(auth, (isLogin) => {
-      if (isLogin) {
+      if (isLogin.displayName!==undefined) {
         setCurrentUser(isLogin.displayName)
       }
       else {
@@ -38,7 +38,8 @@ export default function Header() {
 
 
 
-
+  
+  
 
 
 
@@ -74,19 +75,19 @@ export default function Header() {
               <li className="nav-item">
                 <a className="nav-link" href="products">Profile</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#" onClick={logout}>SignOut</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link bg-secondary text-white" href="#" >{currentUser}</a>
-              </li>
-
-
+             
             </ul>
+            
+            
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <button className="btn btn-outline-success me-2" type="button" onClick={logout}>SignOut</button>
             </form>
+            <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+            <li className="nav-item">
+                <a className="nav-link bg-secondary text-white" href="#" >{currentUser}</a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
