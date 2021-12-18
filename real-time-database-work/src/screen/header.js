@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { signOut, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
+
 
 
 
@@ -12,12 +13,12 @@ import { useSelector } from 'react-redux';
 
 export default function Header() {
 
-  // const user = useSelector(state => state.setuser)
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState('');
+  const [search, setSearch] = useState('');
 
 
 
-
+  const dispatch=useDispatch()
   const Navigation = useNavigate()
   const auth = getAuth()
 
@@ -34,11 +35,19 @@ export default function Header() {
       }
     })
 
+
+    
+
   }, [])
 
 
-
-  
+  const sendValToRedux=(inpValue)=>{
+    setSearch(inpValue)
+    dispatch({
+      type:'SEARCH',
+      payload:search,
+    })
+  }
   
 
 
@@ -80,7 +89,7 @@ export default function Header() {
             
             
             <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <input className="form-control me-2"  type="search" value={search} placeholder="Search" aria-label="Search" onChange={e=>sendValToRedux(e.target.value)} />
               <button className="btn btn-outline-success me-2" type="button" onClick={logout}>SignOut</button>
             </form>
             <ul className="navbar-nav me-2 mb-2 mb-lg-0">

@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 
 
 
+
 export default function ProductComponant() {
     const products = useSelector(state => state.allproduct.products)
+
 
     const renderList = products.map((products) => {
             const {id,title,price,image}=products

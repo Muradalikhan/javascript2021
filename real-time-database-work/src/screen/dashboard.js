@@ -10,6 +10,10 @@ import {
   remove,
 } from "../config/firebase";
 import Header from './header';
+import { useSelector } from 'react-redux';
+import { filterTable } from '../config/redux/reducers/productReducer';
+
+
 
 
 
@@ -20,6 +24,8 @@ export default function Dashboard() {
   const [loader, setLoader] = useState(false);
   const [userList, setUserList] = useState([]);
   const [userData, setUserData] = useState({});
+  const searchValue = useSelector(state => state.filterTable)
+
 
   const location = useLocation();
   const Navigation = useNavigate();
@@ -80,6 +86,8 @@ export default function Dashboard() {
           <Header />
 
           <div>
+             <h2>{searchValue}</h2> 
+            
 
             <table className="table" style={{ margin: '80px auto', width: '80%' }}>
               <thead>
@@ -92,7 +100,47 @@ export default function Dashboard() {
               </thead>
 
               <tbody>
-                {userList.map((e, i) => {
+                {userList
+                .filter((e,i)=>{
+                  if(searchValue===''){
+                    return(
+                      <tr key={i}>
+                      <th scope="row">{i}</th>
+                      <td>{e.name}</td>
+                      <td>{e.email}</td>
+                      <td>
+                      
+  
+                        <button className="btn btn-success" onClick={() => updateUser(e.uid)}><span class="material-icons md-18">edit_note</span></button>
+                        <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}><span class="material-icons md-18">delete</span></button>
+  
+                      </td>
+                    </tr>
+                    )
+                  }
+                  else if( e.toLowerCase().includes(searchValue.toLowerCase()) ){
+
+                     return(
+                      <tr key={i}>
+                      <th scope="row">{i}</th>
+                      <td>{e.name}</td>
+                      <td>{e.email}</td>
+                      <td>
+  
+  
+                        <button className="btn btn-success" onClick={() => updateUser(e.uid)}><span class="material-icons md-18">edit_note</span></button>
+                        <button className="btn btn-danger" onClick={() => deleteUser(e.uid)}><span class="material-icons md-18">delete</span></button>
+  
+                      </td>
+                    </tr>
+                    )
+                  }
+                 
+                })
+                
+                
+                
+                .map((e, i) => {
                   return (
                     <tr key={i}>
                       <th scope="row">{i}</th>

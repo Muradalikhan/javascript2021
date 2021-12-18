@@ -35,6 +35,20 @@ export const selectedProduct = (state = {}, { type, payload }) => {
 }
 
 
+export const filterTable = (state = '', { type, payload }) => {
+
+    switch (type) {
+        case 'SEARCH':
+            return state=payload
+
+        default:
+            return state
+    }
+
+
+}
+
+
 
 
 

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchProductsFromFakeApi } from '../config/redux/action/productAction'
 import ProductComponant from './productComponant'
-import { useParams } from 'react-router-dom'
 import Header from './header'
 import '../App.css'
 
@@ -15,6 +14,7 @@ import '../App.css'
 
 export default function ProductList() {
     const [loader, setLoader] = useState(false)
+   
 
    
     const dispatch = useDispatch()
