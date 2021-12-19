@@ -90,11 +90,11 @@ export default function Header() {
             
             <form className="d-flex">
               <input className="form-control me-2"  type="search" value={search} placeholder="Search" aria-label="Search" onChange={e=>sendValToRedux(e.target.value)} />
-              <button className="btn btn-outline-success me-2" type="button" onClick={logout}>SignOut</button>
+              <button className="btn btnColor me-2" type="button" onClick={logout}>SignOut</button>
             </form>
             <ul className="navbar-nav me-2 mb-2 mb-lg-0">
             <li className="nav-item">
-                <a className="nav-link bg-secondary text-white" href="#" >{currentUser}</a>
+                <a className="nav-link btnColor " href="#" >  <span class="material-icons md-18"> person </span> <b> {currentUser} </b> </a>
               </li>
             </ul>
           </div>

@@ -28,9 +28,23 @@
 .material-icons.md-48 { font-size: 48px; }
 
 
+.btnColor{
+  background-color: #ffc107;
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+.btnColor:active{
+  background-color: #e5ac00;
+}
 
-
+.header{
+  margin-bottom: 40px;
+  margin-top: -70px;
+  background-color: #ffc107;
+  padding: 10px;
+  
+}
 
 
 
