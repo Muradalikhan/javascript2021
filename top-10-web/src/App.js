@@ -1,4 +1,5 @@
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import RouterApp from './config/router/router';
 

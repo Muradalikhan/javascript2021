@@ -37,6 +37,9 @@ function Dashboard(props) {
     else if(textMatch==='Argos'){
         naviagte('./argos')
     }
+    else if(textMatch==='Happy'){
+        naviagte('./happy')
+    }
   }
 
   const drawer = (
@@ -44,7 +47,7 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
-        {['Amazon', 'Argos', 'Send email', 'Drafts'].map((text, index) => (
+        {['Amazon', 'Argos','Happy', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -186,21 +189,3 @@ export default Dashboard;
 
 
 
-
-
-
-// function Dashboard() {
-
-//     return (
-//         <>
-//             <ul>
-//                 <li><Link to='/amazon'>Amazon</Link></li>
-//                 <li> <Link to='/argos'>Argos</Link></li>
-
-
-//             </ul>
-//         </>
-//     )
-// }
-
-// export default Dashboard
