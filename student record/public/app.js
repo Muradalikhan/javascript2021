@@ -25,6 +25,8 @@ function adddata(){
 
 function printdata(){
 
+    console.log(localStorage.getItem('name'))
+
     printName.innerHTML=localStorage.getItem('name');
     printClassId.innerHTML=localStorage.getItem('classid');
     printRollno.innerHTML=localStorage.getItem('rollno');

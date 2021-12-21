@@ -32,8 +32,6 @@ function fetchData() {
 
     //         })
 
-
-
     //     })
 
 
@@ -47,37 +45,56 @@ function fetchData() {
 var nam = document.getElementById('nameInp')
 var userName = document.getElementById('userNameInp')
 var email = document.getElementById('emailInp')
-var arr=[]
+var arr = []
 function saveData() {
     console.log('i m working')
 
-    var obj = {
-        nam: nam.value,
-        userName: userName.value,
-        email: email.value
-    }
-
-    if (localStorage !== null) {
-       arr= arr.push(obj)
-        console.log('local storage is availible')
-        localStorage.setItem('userarr', arr)
-        
+        localStorage.name=nam.value
+        localStorage.userName=userName.value
+        localStorage.email=email.value
 
 
-        // displayTable.innerHTML = `
-            
-        // <tr>
-        //     <th scope="row">${1}</th>
-        //     <td>${localStorage.getItem('name')}</td>
-        //     <td>${localStorage.getItem('userName')}</td>
-        //     <td>${localStorage.getItem('email')}</td>   
-        //     <td>
-        //         <span class="material-icons border border-secondary">delete</span>
-        //         <span class="material-icons border border-secondary">edit</span>
-        //     </td>
-        // </tr>
-         
-        `
-    }
+    nam.value=''
+    userName.value=''
+    email.value=''
+     
 
+    displayTable.innerHTML += `
+
+    <tr>
+        <th scope="row">${1}</th>
+        <td>${localStorage.getItem('name')}</td>
+        <td>${localStorage.getItem('userName')}</td>
+        <td>${localStorage.getItem('email')}</td>   
+        <td>
+            <span class="material-icons border border-secondary">delete</span>
+            <span class="material-icons border border-secondary">edit</span>
+        </td>
+    </tr>
+
+    `
+    
+
+}
+
+function printData(){
+
+    // console.log(localStorage.getItem('name'));
+    // console.log(localStorage.getItem('userName'));
+    // console.log(localStorage.getItem('email'));
+
+    // displayTable.innerHTML += `
+
+    // <tr>
+    //     <th scope="row">${1}</th>
+    //     <td>${localStorage.getItem('name')}</td>
+    //     <td>${localStorage.getItem('userName')}</td>
+    //     <td>${localStorage.getItem('email')}</td>   
+    //     <td>
+    //         <span class="material-icons border border-secondary">delete</span>
+    //         <span class="material-icons border border-secondary">edit</span>
+    //     </td>
+    // </tr>
+
+    // `
 }
