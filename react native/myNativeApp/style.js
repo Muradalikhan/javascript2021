@@ -6,8 +6,6 @@ export const styles = StyleSheet.create({
 
     container: {
       flex: 1,
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
       backgroundColor: '#3c6e71',
       color: 'white',
       fontSize: 16,
@@ -25,37 +23,34 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',
         textAlign:'center',
     },
-    heading: {
-      fontSize: 36,
-      fontFamily: 'Arial',
-      fontWeight: 'bold',
-      marginVertical: 20,
-      marginTop:20,
-      color:'white',
-  
-  
+    content:{
+      alignItems: 'center',
+
     },
     boxContainer: {
       display: 'flex',
       padding: 20,
     },
     box: {
-      width: '100%',
-      height: 100,
-      backgroundColor: '#9a8c98',
-      marginVertical: 20,
+      width: '80%',
+      height: 50,
+      backgroundColor: '#8ecae6',
+      marginVertical: 10,
+      marginHorizontal:20,
+      borderRadius:10,
   
     },
     boxText: {
-      fontSize: 24,
+      fontSize: 16,
       fontWeight: 'bold',
-      padding: 20,
+      padding: 10,
+      color:'#006d77'
     },
     inputView:{
         backgroundColor:'white',
         padding:10,
         fontSize:20,
-        width:'100%',
+        width:'80%',
         borderRadius:10,
         fontSize:18,
         marginTop:20,
@@ -67,16 +62,18 @@ export const styles = StyleSheet.create({
     },
     inputText:{
         color:'black',
+        alignItems:'center'
+
     },
     btn:{
-        backgroundColor:'#83c5be',
+        backgroundColor:'#fca311',
         color:'white',
         padding:20,
-        margin:10,
+        marginVertical:20,
         borderRadius:10,
         fontWeight:'bold',
         fontSize:18,
-        width:'100%',
+        width:'80%',
 
 
     }
