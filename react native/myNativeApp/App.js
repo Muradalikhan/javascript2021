@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react'
-import { View, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text,TextInput, TouchableOpacity, FlatList,Alert } from 'react-native'
 import { styles } from './style'
 import Header from './componants/header'
 
@@ -21,16 +21,22 @@ export default App = () => {
   const [userList, setUserList] = useState(arr)
 
   let count = 10
-  const updateUser = () => {
-    setUserList((previousUser) => {
-
-      return ([
-        ...previousUser,
-        { name: inputText, key: count + 1 }
+  const addTodo = () => {
+    if(inputText.length>3){
+      setUserList((previousUser) => {
+        return ([
+          ...previousUser,
+          { name: inputText, key: count + 1 }
+        ])
+      })
+  
+      setInputText('')
+    }else{
+      Alert.alert('Ooops!','char should be larger than 3',[
+        {text:'close',onPress:()=>console.log('close')}
       ])
-    })
-
-    setInputText('')
+    }
+   
   }
 
   const deleteItem = (key) => {
@@ -57,13 +63,15 @@ export default App = () => {
             />
           </View>
 
-          <TouchableOpacity onPress={updateUser}>
+          <TouchableOpacity onPress={addTodo}>
             <Text style={styles.btn}> +Add</Text>
           </TouchableOpacity>
 
           <View>
             <FlatList
               data={userList}
+              horizontal={false}
+              numColumns={2}
               renderItem={({ item }) => (
                 <TouchableOpacity style={styles.box} onPress={() => deleteItem(item.key)}>
                   <Text style={styles.boxText}>{item.name}</Text>

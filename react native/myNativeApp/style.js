@@ -32,19 +32,21 @@ export const styles = StyleSheet.create({
       padding: 20,
     },
     box: {
-      width: '80%',
+      width: '30%',
       height: 50,
       backgroundColor: '#8ecae6',
       marginVertical: 10,
       marginHorizontal:20,
       borderRadius:10,
+      elevation: 12,
+      textAlign:'center',
   
     },
     boxText: {
       fontSize: 16,
       fontWeight: 'bold',
       padding: 10,
-      color:'#006d77'
+      color:'white',
     },
     inputView:{
         backgroundColor:'white',
@@ -62,7 +64,8 @@ export const styles = StyleSheet.create({
     },
     inputText:{
         color:'black',
-        alignItems:'center'
+        alignItems:'center',
+        fontSize:20,
 
     },
     btn:{
