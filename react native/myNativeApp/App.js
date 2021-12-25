@@ -5,6 +5,8 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, TouchableWith
 import { styles } from './style'
 import Header from './componants/header'
 
+
+
 const arr = [
   { name: 'murad', key: 1 },
   { name: 'ali', key: 2 },
@@ -48,14 +50,14 @@ export default App = () => {
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={()=>{
-            Keyboard.dismiss()
+      <TouchableWithoutFeedback onPress={() => {
+        Keyboard.dismiss()
       }}>
-            <View style={styles.container}>
+        <View style={styles.container}>
 
-              <Header />
-              <View style={styles.content}>
-                <View style={styles.inputView} >
+          <Header />
+          <View style={styles.form}>
+              <View style={styles.inputView} >
                   <TextInput
                     style={styles.inputText}
                     placeholder="Email..."
@@ -63,27 +65,28 @@ export default App = () => {
                     onChangeText={text => setInputText(text)}
                     value={inputText}
                   />
-                </View>
-
-                <TouchableOpacity onPress={addTodo}>
-                  <Text style={styles.btn}> +Add</Text>
-                </TouchableOpacity>
-
-                <View>
-                  <FlatList
-                    data={userList}
-                    horizontal={false}
-                    numColumns={2}
-                    renderItem={({ item }) => (
-                      <TouchableOpacity style={styles.box} onPress={() => deleteItem(item.key)}>
-                        <Text style={styles.boxText}>{item.name}</Text>
-                      </TouchableOpacity>
-                    )}
-                  />
-                </View>
               </View>
-
+              <TouchableOpacity onPress={addTodo}>
+                <Text style={styles.btn}> +Add</Text>
+              </TouchableOpacity>
+          </View>
+          <View style={styles.content}>
+            <View>
+              <FlatList
+                data={userList}
+                horizontal={false}
+                numColumns={2}
+                renderItem={({ item }) => (
+                  <TouchableOpacity style={styles.box} onPress={() => deleteItem(item.key)}>
+                    <Text style={styles.boxText}>{item.name}</Text>
+                   
+                  </TouchableOpacity>
+                )}
+              />
             </View>
+          </View>
+
+        </View>
       </TouchableWithoutFeedback>
 
     </>
