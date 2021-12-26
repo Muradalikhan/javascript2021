@@ -47,6 +47,10 @@ export default App = () => {
     })
   }
 
+  const deleteAll = () => {
+    setUserList([])
+  }
+
 
   return (
     <>
@@ -57,18 +61,25 @@ export default App = () => {
 
           <Header />
           <View style={styles.form}>
-              <View style={styles.inputView} >
-                  <TextInput
-                    style={styles.inputText}
-                    placeholder="Email..."
-                    placeholderTextColor="#9a8c98"
-                    onChangeText={text => setInputText(text)}
-                    value={inputText}
-                  />
-              </View>
+            <View style={styles.inputView} >
+              <TextInput
+                style={styles.inputText}
+                placeholder="write todo..."
+                placeholderTextColor="#9a8c98"
+                onChangeText={text => setInputText(text)}
+                value={inputText}
+              />
+            </View>
+
+            <View style={styles.btnContainer}>
               <TouchableOpacity onPress={addTodo}>
-                <Text style={styles.btn}> +Add</Text>
+                <Text style={styles.btn} > +Add</Text>
               </TouchableOpacity>
+              <TouchableOpacity onPress={deleteAll}>
+                <Text style={styles.btn}> DeleteAll</Text>
+              </TouchableOpacity>
+            </View>
+
           </View>
           <View style={styles.content}>
             <View>
@@ -79,7 +90,7 @@ export default App = () => {
                 renderItem={({ item }) => (
                   <TouchableOpacity style={styles.box} onPress={() => deleteItem(item.key)}>
                     <Text style={styles.boxText}>{item.name}</Text>
-                   
+
                   </TouchableOpacity>
                 )}
               />

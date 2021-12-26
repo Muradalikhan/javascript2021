@@ -26,14 +26,23 @@ export const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     flex: 1,
+  
 
   },
   form:{
     alignItems:'center',
-    display:'flex',
+    flex:1,
+    flexDirection:'column',
+   
+
+  },
+  btnContainer:{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'space-between',
   },
   box: {
-    width: '30%',
+    width: '40%',
     height: 50,
     backgroundColor: '#8ecae6',
     marginVertical: 10,
@@ -69,13 +78,15 @@ export const styles = StyleSheet.create({
 
   },
   btn: {
-    backgroundColor: '#fca311',
+    backgroundColor: '#2a9d8f',
     color: 'white',
     padding: 20,
     marginVertical: 20,
+    marginHorizontal:10,
     borderRadius: 10,
     fontWeight: 'bold',
     fontSize: 18,
+    elevation:10,
   }
 
 
