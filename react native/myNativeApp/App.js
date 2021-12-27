@@ -10,10 +10,6 @@ import Header from './componants/header'
 const arr = [
   { name: 'murad', key: 1 },
   { name: 'ali', key: 2 },
-  { name: 'khan', key: 3 },
-  { name: 'jadoon', key: 4 },
-  { name: 'zain', key: 5 },
-  { name: 'haris', key: 6 },
 ]
 
 
