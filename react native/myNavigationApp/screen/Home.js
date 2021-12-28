@@ -11,7 +11,7 @@ export default function Home({navigation}) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text >Home Screen</Text>
-        <Icon name="rocket" size={50} color="#900" />
+        <Icon name="home" size={50} color="#900" />
         <Button title='go to About' onPress={pressHandler}/>
       </View>
     )
