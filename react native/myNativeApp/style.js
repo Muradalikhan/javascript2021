@@ -160,7 +160,7 @@ export const styles = StyleSheet.create({
     bottom:60,
     width:'100%',
     flexDirection:'row',
-    justifyContent:'space-between',
+    justifyContent:'space-around',
     alignItems:'center',
   },
   input: {
@@ -172,7 +172,18 @@ export const styles = StyleSheet.create({
     borderWidth:1,
 
   },
-  addWrapper: {},
+  addWrapper: {
+    width:60,
+    height:60,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#fff',
+    borderRadius:50,
+    borderColor:'#C0C0C0',
+    borderWidth:1,
+
+
+  },
   addText: {},
 
 })
