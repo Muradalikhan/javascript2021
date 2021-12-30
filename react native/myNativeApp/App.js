@@ -16,10 +16,16 @@ export default App = () => {
   const [taskList, setTaskList] = useState([])
 
 
-  const handleAddTask=()=>{
+  const handleAddTask = () => {
     Keyboard.dismiss()
-    setTaskList([...taskList,task])
+    setTaskList([...taskList, task])
     setTask('')
+  }
+
+  const deleteTask=(item)=>{
+    let copyOftaskList=[...taskList]
+    copyOftaskList.splice(item,1)
+    setTaskList(copyOftaskList)
   }
 
 
@@ -30,11 +36,14 @@ export default App = () => {
           <Text style={styles.sectionTitle}>Today's task</Text>
 
           <View style={styles.items}>
-           {
-             taskList.map((item,index)=>{
-               return <Task key={index} text={item}/>
-             })
-           }
+            {
+              taskList.map((item, index) => {
+                return <TouchableOpacity key={index} onPress={()=>deleteTask(index)}>
+                  <Task  text={item} />
+                </TouchableOpacity>
+
+              })
+            }
           </View>
         </View>
 
@@ -42,7 +51,7 @@ export default App = () => {
           behavior={Platform.OS === "ios" ? 'padding' : 'height'}
           style={styles.writeTaskWrapper}
         >
-          <TextInput placeholder='Write Task...' style={styles.input} value={task} onChangeText={text=>setTask(text)} />
+          <TextInput placeholder='Write Task...' style={styles.input} value={task} onChangeText={text => setTask(text)} />
 
           <TouchableOpacity onPress={handleAddTask}>
             <View style={styles.addWrapper}>
