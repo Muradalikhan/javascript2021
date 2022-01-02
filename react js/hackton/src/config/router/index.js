@@ -17,6 +17,7 @@ import AdminDashboard from "../../screen/admin";
 import Booking from "../../screen/booking"
 import BookingList from "../../screen/bookingList";
 import UserRealdb from "../../screen/tableCrudWithRealTimedb"
+import Testing from "../../screen/testing";
 
 export default function RouterApp() {
     return (
@@ -31,6 +32,7 @@ export default function RouterApp() {
             <Route path="/detail" element={<HotelDetail/>}> </Route>
             <Route path="/booking" element={<Booking/>}> </Route>
             <Route path="/bookinglist" element={<BookingList/>}> </Route>
+            <Route path="/testing" element={<Testing/>}> </Route>
           
 
 
