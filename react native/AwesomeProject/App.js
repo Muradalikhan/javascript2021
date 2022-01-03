@@ -1,115 +1,22 @@
-import React from "react";
-import img from "./asset/img1.png"
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+// In App.js in a new project
+
+import * as React from 'react';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screen/homeScreen'
 
 
+const Stack = createNativeStackNavigator();
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  
-  },
-  loginHeader: {
-    marginVertical: 10,
-    fontSize: 28,
-    color: '#ff5400',
-    fontWeight: 'bold',
-  },
-  inputView: {
-    width: "80%",
-    backgroundColor: "#e5e5e5",
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
-  },
-  inputText: {
-    height: 50,
-    color: "black",
-    fontSize: 16,
-  },
-  loginBtn: {
-    width: "80%",
-    backgroundColor: "#ff5400",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    marginBottom: 10
-  },
-  loginText: {
-    color: 'white',
-    fontSize: 16
-  },
-  image: {
-    flex: 1,
-    alignSelf: 'stretch',
-    width: null,
-    justifyContent: "center",
-    alignItems: "center",
-
-
-  },
-
-
-});
-
-
-
-
-
-
-
-
-export default App = () => {
-
-
-
+function App() {
   return (
-    <>
-
-      <View style={styles.container}>
-        <ImageBackground source={img} style={styles.image} resizeMode="cover">
-          <Text style={styles.loginHeader}>Welcome!</Text>
-
-          <View style={styles.inputView} >
-            <TextInput
-              style={styles.inputText}
-              placeholder="Email..."
-              placeholderTextColor="#9a8c98"
-            // onChangeText={text => this.setState({ email: text })} 
-            />
-          </View>
-          <View style={styles.inputView} >
-            <TextInput
-              style={styles.inputText}
-              secureTextEntry={true}
-              placeholder="Password..."
-              placeholderTextColor="#9a8c98"
-            // onChangeText={text => this.setState({ email: text })} 
-            />
-          </View>
-
-          <View>
-            <Text style={{color:'white'}}>forgot password?</Text>
-          </View>
-
-          <TouchableOpacity style={styles.loginBtn}>
-            <Text style={styles.loginText}>LOGIN</Text>
-          </TouchableOpacity>
-          
-          <View>
-            <Text style={{color:'white'}}>Don't have account? <Text style={{color:'#ff5400',fontWeight:'bold'}}>Sign Up</Text> </Text>
-          </View>
-        </ImageBackground>
-      </View>
-
-    </>
-  )
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
+
+export default App;

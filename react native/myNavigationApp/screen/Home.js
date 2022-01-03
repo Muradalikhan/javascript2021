@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Text, View, Button, FlatList, TouchableOpacity } from 'react-native'
+import Catogories from './component/catagories'
+import Trending from './component/trending'
 // import Icon from 'react-native-vector-icons/FontAwesome'
 import globleStyles from './globleStyles'
 
-export default function Home({ navigation }) {
+export default function HomeScreen({ navigation }) {
 
     const [deals, setDeals] = useState([
         { title: 'burger', price: '100', drink: 'pepsi' },
@@ -12,26 +14,57 @@ export default function Home({ navigation }) {
     ])
 
 
-    const pressHandler=()=>{
-        navigation.navigate('About')
-    }
+    // const pressHandler = () => {
+    //     navigation.navigate('Details')
+    // }
+
+
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={globleStyles.subHeader}>Menu</Text>
-            <Button title='go to about' onPress={pressHandler} />
+        <View>
 
-            {
+            <Catogories navigation={navigation}/>
+
+            <Trending/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <Text style={globleStyles.subHeader}>Menu</Text> */}
+            {/* <Button title='go to Details' onPress={pressHandler} /> */}
+
+            {/* {
                 deals.map((item, index) => {
                     return (
                         <View key={index} style={globleStyles.itemWrapper}>
                             <Text style={globleStyles.item}>{item.title}</Text>
-                            <Button title='View Details'  onPress={() => navigation.navigate('About')} />
+                            <Button
+                                title="Go to Details"
+                                onPress={() => { navigation.navigate('Details', item) }}
+                            />
                         </View>
                     )
                 })
-            }
-           
+            } */}
+
         </View>
     )
 }
