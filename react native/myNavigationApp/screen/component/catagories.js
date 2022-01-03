@@ -1,26 +1,43 @@
 import React from "react"
-import {StyleSheet, ScrollView, View,Text } from "react-native"
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 
-const catag=['Entertainment','Habits','Sports','Shows','Politics']
+const catag = [
+    'Entertainment',
+    'Business',
+    'Politics',
+    'Health',
+    'Technology',
+    'Sports',]
 
-const Catogories=({navigation})=>{
-    return(
+const Catogories = ({ navigation }) => {
+    return (
         <>
-        <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        >
-            {
-                catag.map((item,index)=>{
-                    return(
-                        <View key={index} style={styles.catagoryWraper}>
-                            <Text style={styles.catogryText}>{item}</Text>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                {catag.map((category, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        onPress={() =>
+                            navigation.navigate('GetNews', {
+                                category,
+                            })
+                        }>
+                        <View>
+                            <Text
+                                style={{
+                                    padding: 10,
+                                    borderWidth: 1,
+                                    borderColor: 'black',
+                                    fontSize: 19,
+                                    margin: 10,
+                                    borderRadius: 10,
+                                }}>
+                                {category}
+                            </Text>
                         </View>
-                    )
-                })
-            }
-        </ScrollView>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
         </>
     )
 }
@@ -28,17 +45,3 @@ const Catogories=({navigation})=>{
 export default Catogories
 
 
-const styles=StyleSheet.create({
-    catagoryWraper:{
-        marginHorizontal:5,
-        marginVertical:5,
-        borderWidth:1,
-        borderStyle:'solid',
-        borderColor:'balck',
-        borderRadius:10,
-        padding:5,
-    },
-    catogryText:{
-        fontSize:18,
-    }
-})

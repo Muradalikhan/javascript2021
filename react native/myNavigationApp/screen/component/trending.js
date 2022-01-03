@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, View, Image, Text, TouchableOpacity } from 'react-native';
 import API_KEY from "../../config/config";
 
 
-const Trending = () => {
+const Trending = ({ navigatation }) => {
     const [news, setNews] = useState([])
 
 
@@ -16,7 +16,6 @@ const Trending = () => {
             .then(res => {
                 setNews(res.articles)
             })
-        console.log(news.length)
     }
 
     useEffect(() => {
@@ -27,28 +26,30 @@ const Trending = () => {
 
 
     return (
-        <>
-            <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-            >
-                {
-                    news.map((item, index) => {
-                        return (
-                            <View key={index} style={{margin:10}}>
+       <View>
+            {news.length === 0 ? (
+                <ActivityIndicator color="black" size="large" />
+            ) : (
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {news.map((news, index) => (
+                        <TouchableOpacity key={index} onPress={() => navigatation.navigate('WebView', {
+                            url: news.url
+                        })}>
+                            <View style={{ margin: 10 }}>
                                 <Image
-                                    source={{uri:`${item.urlToImage} `}}
-                                    style={{ width:200,height:200,borderRadius:10}} />
-                                <Text style={{width:200,textAlign:'justify'}}>{item.title}</Text>
+                                    source={{ uri: `${news.urlToImage}` }}
+                                    style={{ height: 200, width: 200, borderRadius: 10 }}
+                                />
+                                <Text style={{ width: 200, textAlign: 'justify' }}>
+                                    {news.title}
+                                </Text>
                             </View>
-                        )
-                    })
-                }
-
-
-
-            </ScrollView>
-        </>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+            )}
+        </View>
+       
     )
 }
 

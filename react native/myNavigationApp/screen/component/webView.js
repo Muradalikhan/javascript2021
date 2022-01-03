@@ -1,9 +1,9 @@
 import React from 'react'
-import {WebView} from 'react-native-webview'
-const WebViewComp=()=>{
+import { WebView } from 'react-native-webview'
+const WebViewComp = ({ route }) => {
 
-    return(
-        <WebView/>
+    return (
+        <WebView source={{ uri: `${route.params.url}` }} />
     )
 }
 
