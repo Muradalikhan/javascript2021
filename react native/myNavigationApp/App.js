@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screen/Home';
 import DetailsScreen from './screen/DetailsScreen';
 import GetNews from './screen/GetNews';
-import WebViewComp from './screen/component/webView';
+import SavedNewsComp from './screen/component/savedNews';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +20,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="GetNews" component={GetNews} />
-        <Stack.Screen name="WebView" component={WebViewComp} />
+        <Stack.Screen name="SavedNews" component={SavedNewsComp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

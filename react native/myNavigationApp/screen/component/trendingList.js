@@ -4,7 +4,7 @@ import { ActivityIndicator, ScrollView, View, Image, Text, TouchableOpacity } fr
 import API_KEY from "../../config/config";
 
 
-const Trending = ({ navigation }) => {
+const TrendingList = ({ navigatation }) => {
     const [news, setNews] = useState([])
 
 
@@ -30,15 +30,17 @@ const Trending = ({ navigation }) => {
             {news.length === 0 ? (
                 <ActivityIndicator color="black" size="large" />
             ) : (
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                <ScrollView horizontal={false} showsHorizontalScrollIndicator={false} style={{height:200}}>
                     {news.map((news, index) => (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate('SavedNews',news)}>
-                            <View style={{ margin: 10 }}>
+                        <TouchableOpacity key={index} onPress={() => navigatation.navigate('WebView', {
+                            url: news.url
+                        })}>
+                            <View style={{ margin: 10,flexDirection:'row' }}>
                                 <Image
                                     source={{ uri: `${news.urlToImage}` }}
-                                    style={{ height: 200, width: 200, borderRadius: 10 }}
+                                    style={{ height: 100, width: 100, borderRadius: 10 }}
                                 />
-                                <Text style={{ width: 200, textAlign: 'justify' }}>
+                                <Text style={{ width: 100, textAlign: 'justify' }}>
                                     {news.title}
                                 </Text>
                             </View>
@@ -51,4 +53,4 @@ const Trending = ({ navigation }) => {
     )
 }
 
-export default Trending
+export default TrendingList

@@ -13,14 +13,12 @@ const catag = [
 const Catogories = ({ navigation }) => {
     return (
         <>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
                 {catag.map((category, index) => (
                     <TouchableOpacity
                         key={index}
                         onPress={() =>
-                            navigation.navigate('GetNews', {
-                                category,
-                            })
+                            navigation.navigate('GetNews',category)
                         }>
                         <View>
                             <Text

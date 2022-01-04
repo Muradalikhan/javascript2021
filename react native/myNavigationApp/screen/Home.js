@@ -11,6 +11,7 @@ import {
 import API_KEY from '../config/config';
 import Catogories from './component/catagories'
 import Trending from './component/trending'
+// import TrendingList from './component/trendingList';
 
 // import Icon from 'react-native-vector-icons/FontAwesome'
 //import globleStyles from './globleStyles'
@@ -39,7 +40,7 @@ export default function HomeScreen({ navigation }) {
     }, [])
 
     return (
-        <View style={{flexDirection:'column',flex:1,}}>
+        <View style={{}}>
 
             <Catogories navigation={navigation} />
 
@@ -47,8 +48,7 @@ export default function HomeScreen({ navigation }) {
 
 
 
-
-            <View style={{ alignItems: 'center',marginTop:20}}>
+              <View style={{ alignItems: 'center',height:250}}>
                 {news.length === 0 ? (
                     <View
                         style={{
@@ -65,9 +65,7 @@ export default function HomeScreen({ navigation }) {
                                 <TouchableOpacity
                                     key={index}
                                     onPress={() =>
-                                       navigation.navigate('WebView', {
-                                            url: news.url,
-                                        })
+                                       navigation.navigate('SavedNews',news)
                                     }>
                                     <View
                                         style={{
@@ -97,7 +95,7 @@ export default function HomeScreen({ navigation }) {
                         )}
                     </ScrollView>
                 )}
-            </View>
+            </View> 
 
 
 

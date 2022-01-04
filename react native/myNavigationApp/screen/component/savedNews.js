@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from 'react'
 import { View,Text,Image } from 'react-native'
 import { ActivityIndicator,Dimensions,ScrollView,TouchableOpacity  } from 'react-native'
-import API_KEY from '../config/config'
+
+
 
 
 
@@ -9,32 +10,25 @@ const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
 
-const GetNews=({route,navigation})=>{
-    const [news, setNews] = useState([])
 
-    const recParamIs=route.params
 
-    const fetchDataFromApi = async () => {
+const SavedNewsComp = ({ route,navigation }) => {
 
-        await fetch(`https://newsapi.org/v2/top-headlines?category=${recParamIs}&country=us&apiKey=${API_KEY}`)
-            .then(res => res.json())
-            .then(res => {
-                setNews(res.articles)
-            })
-    }
+    const [savedNews, setSavedNews] = useState([])
 
+    
     useEffect(()=>{
         navigation.setOptions({
-            title:recParamIs
+            title:'Saved News'
         })
-
-        fetchDataFromApi()
-
+        setSavedNews([
+            ...savedNews,
+            route.params
+        ])
     },[])
-
-    return(
+    return (
         <View style={{alignItems: 'center'}}>
-        {news.length === 0 ? (
+        {savedNews.length === 0 ? (
           <ActivityIndicator
             style={{
               height: deviceHeight,
@@ -47,13 +41,11 @@ const GetNews=({route,navigation})=>{
           />
         ) : (
           <ScrollView showsVerticalScrollIndicator={false}>
-            {news.map((news, index) =>
+            {savedNews.map((news, index) =>
               news.urlToImage ? (
                 <TouchableOpacity
                   key={index}
-                  onPress={() =>
-                   navigation.navigate('SavedNews',news)
-                  }>
+                  onPress={() =>{}}>
                   <View
                     style={{
                       display: 'flex',
@@ -82,8 +74,8 @@ const GetNews=({route,navigation})=>{
             )}
           </ScrollView>
         )}
-      </View>
+      </View>       
     )
 }
 
-export default GetNews
+export default SavedNewsComp
