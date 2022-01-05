@@ -52,7 +52,7 @@ const GetNews=({route,navigation})=>{
                 <TouchableOpacity
                   key={index}
                   onPress={() =>
-                   navigation.navigate('SavedNews',news)
+                   navigation.navigate('webViews',news.url)
                   }>
                   <View
                     style={{

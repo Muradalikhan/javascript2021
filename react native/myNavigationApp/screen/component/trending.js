@@ -32,7 +32,7 @@ const Trending = ({ navigation }) => {
             ) : (
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     {news.map((news, index) => (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate('SavedNews',news)}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('webViews',news.url)}>
                             <View style={{ margin: 10 }}>
                                 <Image
                                     source={{ uri: `${news.urlToImage}` }}
