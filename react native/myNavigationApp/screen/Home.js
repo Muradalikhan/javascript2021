@@ -41,10 +41,12 @@ export default function HomeScreen({ navigation }) {
 
     }, [])
 
-
+    let arr=[]
     const saveNews = async (value) => {
         try {
-            await AsyncStorage.setItem('@storage_Key', value)
+           
+            arr.push(value)
+            await AsyncStorage.setItem('@storage_Key',JSON.stringify( arr))
             navigation.navigate('SavedNews')
           } catch (e) {
             // saving error
@@ -102,7 +104,7 @@ export default function HomeScreen({ navigation }) {
                                                 <TouchableOpacity onPress={() => navigation.navigate('webViews', news.url)}>
                                                     <Text> <Icon name="remove-red-eye" size={20} color="#900" /></Text>
                                                 </TouchableOpacity>
-                                                <TouchableOpacity onPress={()=>saveNews('ali')}>
+                                                <TouchableOpacity onPress={()=>saveNews(news)}>
                                                     <Text> <Icon name="save" size={20} color="#900" /></Text>
                                                 </TouchableOpacity>
 
