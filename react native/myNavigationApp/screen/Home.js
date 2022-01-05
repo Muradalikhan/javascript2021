@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     ActivityIndicator,
     ScrollView,
@@ -7,13 +7,15 @@ import {
     Image,
     Dimensions,
     TouchableOpacity,
+    Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import API_KEY from '../config/config';
 import Catogories from './component/catagories'
 import Trending from './component/trending'
 // import TrendingList from './component/trendingList';
 
-// import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 //import globleStyles from './globleStyles'
 
 
@@ -39,16 +41,27 @@ export default function HomeScreen({ navigation }) {
 
     }, [])
 
+
+    const saveNews = async (value) => {
+        try {
+            await AsyncStorage.setItem('@storage_Key', value)
+            navigation.navigate('SavedNews')
+          } catch (e) {
+            // saving error
+          }
+       
+      }
+
     return (
         <View style={{}}>
 
             <Catogories navigation={navigation} />
 
-            <Trending  navigation={navigation}/>
+            <Trending navigation={navigation} />
 
 
 
-              <View style={{ alignItems: 'center',height:250}}>
+            <View style={{ alignItems: 'center', height: 250 }}>
                 {news.length === 0 ? (
                     <View
                         style={{
@@ -62,12 +75,8 @@ export default function HomeScreen({ navigation }) {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {news.map((news, index) =>
                             news.urlToImage ? (
-                                <TouchableOpacity
-                                    key={index}
-                                    onPress={() =>
-                                       navigation.navigate('webViews',news.url)
-                                    }>
                                     <View
+                                        key={index}
                                         style={{
                                             display: 'flex',
                                             flexDirection: 'row',
@@ -77,25 +86,34 @@ export default function HomeScreen({ navigation }) {
                                             width: deviceWidth - 30,
                                             marginVertical: 7,
                                         }}>
-                                        <Image
-                                            source={{ uri: `${news.urlToImage}` }}
-                                            style={{ height: 100, width: 100, borderRadius: 10 }}
-                                        />
-                                        <Text
-                                            style={{
-                                                width: deviceWidth - 130,
-                                                paddingLeft: 10,
-                                                paddingTop: 5,
-                                            }}>
-                                            {news.title}
-                                        </Text>
+                                            <Image
+                                                source={{ uri: `${news.urlToImage}` }}
+                                                style={{ height: 100, width: 100, borderRadius: 10 }}
+                                            />
+                                            <Text
+                                                style={{
+                                                    width: deviceWidth - 160,
+                                                    paddingLeft: 10,
+                                                    paddingTop: 5,
+                                                }}>
+                                                {news.title}
+                                            </Text>
+                                            <View style={{ justifyContent: 'space-around' }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('webViews', news.url)}>
+                                                    <Text> <Icon name="remove-red-eye" size={20} color="#900" /></Text>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={()=>saveNews('ali')}>
+                                                    <Text> <Icon name="save" size={20} color="#900" /></Text>
+                                                </TouchableOpacity>
+
+                                            </View>
                                     </View>
-                                </TouchableOpacity>
+                               
                             ) : null,
                         )}
                     </ScrollView>
                 )}
-            </View> 
+            </View>
 
 
 
