@@ -113,6 +113,12 @@ export const styles = StyleSheet.create({
   taskWraper: {
     paddingTop: 80,
     paddingHorizontal: 20,
+
+  },
+  header:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
   },
   sectionTitle: {
     fontSize: 24,
@@ -128,6 +134,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    elevation:12,
+
   },
   leftItem: {
     flexDirection: 'row',
@@ -164,7 +172,7 @@ export const styles = StyleSheet.create({
     alignItems:'center',
   },
   input: {
-    padding:20,
+    padding:15,
     backgroundColor:'#fff',
     width:250,
     borderRadius:60,
@@ -177,13 +185,25 @@ export const styles = StyleSheet.create({
     height:60,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:'#fff',
+    backgroundColor:'#e63946',
     borderRadius:50,
     borderColor:'#C0C0C0',
     borderWidth:1,
+    elevation:12,
 
 
   },
-  addText: {},
+  addText: {
+    fontSize:24,
+    color:'white',
+  },
+  NoTaskWraper:{
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  NoTaskText:{
+    fontSize:24,
+    color:'lightgrey',
+  }
 
 })
