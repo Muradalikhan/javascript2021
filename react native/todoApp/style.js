@@ -148,6 +148,12 @@ export const styles = StyleSheet.create({
     backgroundColor: 'lightgrey',
     marginRight: 10,
   },
+  square2: {
+    width: 24,
+    height: 24,
+    backgroundColor: 'green',
+    marginRight: 10,
+  },
   itemText: {
     fontSize: 16,
     maxWidth: '80%',
@@ -170,6 +176,7 @@ export const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-around',
     alignItems:'center',
+    zIndex:2,
   },
   input: {
     padding:15,
@@ -204,6 +211,9 @@ export const styles = StyleSheet.create({
   NoTaskText:{
     fontSize:24,
     color:'lightgrey',
-  }
+  },
+  iconWrapper:{
+flexDirection:'row',
+  },
 
 })

@@ -1,9 +1,8 @@
 
 
 import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert, Keyboard } from 'react-native'
 import { styles } from './style'
-import Task from './componants/Task'
 import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon1 from 'react-native-vector-icons/SimpleLineIcons';
@@ -13,27 +12,65 @@ import Icon1 from 'react-native-vector-icons/SimpleLineIcons';
 
 
 export default App = () => {
-  const [task, setTask] = useState()
+  const [task, setTask] = useState('')
+  const [editMode, setEditMode] = useState(false)
+  const [completeMode, setCompleteMode] = useState(false)
+  const [index, setIndex] = useState('')
   const [taskList, setTaskList] = useState([])
 
 
   const handleAddTask = () => {
-    Keyboard.dismiss()
-    setTaskList([...taskList, task])
-    setTask('')
+    if (editMode) {
+      taskList[index] = task
+      setIndex(null)
+      setTask('')
+      setEditMode(false)
+      Keyboard.dismiss()
+    } else {
+      if (task.length > 0) {
+        Keyboard.dismiss()
+        setTaskList([...taskList, task])
+        setTask('')
+      }
+      else {
+        Alert.alert('Oops!', 'Empty task not allowed', [
+          { text: 'close', onPress: () => console.log('close') }
+        ])
+      }
+
+    }
   }
 
-  const deleteTask = (item) => {
+  const editTask = (selectedItem, textToEdited) => {
+    setEditMode(true)
+    setIndex(selectedItem)
+    setTask(textToEdited)
+  }
+
+  const deleteTask = (selectedItem) => {
     let copyOftaskList = [...taskList]
-    copyOftaskList.splice(item, 1)
+    copyOftaskList.splice(selectedItem, 1)
     setTaskList(copyOftaskList)
   }
+
 
   const deleteAllTask = () => {
     let copyOftaskList = [...taskList]
     copyOftaskList = []
     setTaskList(copyOftaskList)
   }
+
+  const completeTask = (selectedItem) => {
+    console.log(selectedItem)
+    taskList.filter((item,ind)=>{
+      if (selectedItem===ind) {
+        return setCompleteMode(!completeMode)
+      }
+    })
+    
+  }
+
+
 
 
   return (
@@ -49,11 +86,27 @@ export default App = () => {
 
           <View style={styles.items}>
             {taskList.length !== 0 ?
-              taskList.map((item, index) => {
-                return <TouchableOpacity key={index} onPress={() => deleteTask(index)}>
-                  <Task text={item} />
-                </TouchableOpacity>
+              taskList.map((val, index) => {
+                return (
 
+                  <View key={index} style={styles.item}>
+                    <View style={styles.leftItem}>
+                      <TouchableOpacity onPress={() => completeTask(index)}>
+                        <View style={!completeMode ? styles.square : styles.square2}></View>
+                      </TouchableOpacity>
+                      <Text style={styles.itemText}>{val}</Text>
+                    </View>
+                    <View style={styles.iconWrapper}>
+                      <TouchableOpacity onPress={() => deleteTask(index)}>
+                        <Text><Icon name="delete" size={30} color="#c1121f" /></Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => editTask(index, val)}>
+                        <Text><Icon name="edit" size={30} color="green" /></Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                )
               })
               :
               <View style={styles.NoTaskWraper}>
