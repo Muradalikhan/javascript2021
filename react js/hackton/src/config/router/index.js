@@ -10,14 +10,15 @@ import Chat from "../../screen/chat";
 import Error from "../../screen/Error";
 // import ProductList from "../../screen/productList";
 import ProductDetails from "../../screen/productDetail"
-import HotelRegistration from "../../screen/hotelReg";
+import HotelRegistration from "../../screen/hotelRegList";
 import HotelDisplay from "../../screen/hoteldisplay";
 import HotelDetail from "../../screen/hotelDetails";
 import AdminDashboard from "../../screen/admin";
 import Booking from "../../screen/booking"
 import BookingList from "../../screen/bookingList";
-import UserRealdb from "../../screen/tableCrudWithRealTimedb"
-import Testing from "../../screen/testing";
+import HotelRegForm from "../../screen/hotelRegForm";
+// import UserRealdb from "../../screen/tableCrudWithRealTimedb"
+// import Testing from "../../screen/testing";
 
 export default function RouterApp() {
     return (
@@ -29,23 +30,15 @@ export default function RouterApp() {
             <Route path="/dashboard" element={<HotelDisplay/>}> </Route>
             <Route path="/admin" element={<AdminDashboard />}> </Route>
             <Route path="/hotelregistration" element={<HotelRegistration/>}> </Route>
+            <Route path="/registrationForm" element={<HotelRegForm/>}> </Route>
             <Route path="/detail" element={<HotelDetail/>}> </Route>
             <Route path="/booking" element={<Booking/>}> </Route>
             <Route path="/bookinglist" element={<BookingList/>}> </Route>
-            <Route path="/testing" element={<Testing/>}> </Route>
-          
+           
 
 
 
-
-
-
-
-
-
-
-
-
+            {/* <Route path="/testing" element={<Testing/>}> </Route> */}
             {/* <Route path="/" element={<Home/>}> </Route> */}
             {/* <Route path="/" element={<ProductList/>}> </Route> */}
             {/* <Route path="dashboard" element={<ProductList/>}> </Route> */}

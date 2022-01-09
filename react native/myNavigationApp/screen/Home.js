@@ -13,13 +13,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import API_KEY from '../config/config';
 import Catogories from './component/catagories'
 import Trending from './component/trending'
-// import TrendingList from './component/trendingList';
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
-//import globleStyles from './globleStyles'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import BottomTabs from '../router/bottomTab';
 
 
 
+const Tab = createBottomTabNavigator();
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -47,7 +47,7 @@ export default function HomeScreen({ navigation }) {
            
             arr.push(value)
             await AsyncStorage.setItem('@storage_Key',JSON.stringify( arr))
-            navigation.navigate('SavedNews')
+            // navigation.navigate('SavedNews')
           } catch (e) {
             // saving error
           }
@@ -121,8 +121,7 @@ export default function HomeScreen({ navigation }) {
 
 
 
-
-
+          
 
 
 

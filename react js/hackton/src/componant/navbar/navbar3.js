@@ -37,6 +37,9 @@ export default function AdminNavbar() {
                         <li className="nav-item">
                         <a className="nav-link" href="/bookinglist">Booking Details</a>
                         </li>
+                        <li className="nav-item">
+                        <a className="nav-link" href="/hotelregistration">Hotel Regestration</a>
+                        </li>
                         <li className="nav-item float-right">
                         <button class="btn btn-outline-success my-2 my-sm-0 " type="submit" onClick={signout}>Sign out</button>
                         </li>

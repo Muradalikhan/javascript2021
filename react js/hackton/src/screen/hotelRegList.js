@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase/firebase.js'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import { getAuth,onAuthStateChanged } from 'firebase/auth';
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 // import table
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
@@ -40,8 +40,8 @@ function HotelRegistration() {
     let [contact, setContact] = useState('')
     let [country, setCountry] = useState('')
     let [searchhotel, setSearchhotel] = useState('')
-    let [hotel, setHotel] = useState([])
     let [hotelImgUrl, setHotelImgUrl] = useState('')
+    let [hotel, setHotel] = useState([])
     let [btnControll, setBtnControll] = useState(true)
     let [isLogin, setIsLogin] = useState(false)
 
@@ -50,12 +50,12 @@ function HotelRegistration() {
 
     //database refrence
     let hotelCollectionRef = collection(db, 'hotelRegistration')
-    const auth=getAuth()
+    const auth = getAuth()
 
     useEffect(() => {
 
-         //check admin
-         onAuthStateChanged(auth, (currentUser) => {
+        //check admin
+        onAuthStateChanged(auth, (currentUser) => {
             if (currentUser.email === 'admin@gmail.com') {
                 setIsLogin(true)
 
@@ -139,12 +139,16 @@ function HotelRegistration() {
         setPage(0);
     };
 
+    const navigation=useNavigate()
+    const goto=()=>{
+        navigation('/registrationForm')
+    }
 
 
     return (
         <>
             <div>
-            {isLogin===true ? <AdminNavbar /> : <Navbar1 />}
+                {isLogin === true ? <AdminNavbar /> : <Navbar1 />}
                 <h1 className='p-3 bg-dark text-white'>  Hotel Registration</h1>
             </div>
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: 'auto', padding: '10px' }} elevation={12}>
@@ -156,16 +160,12 @@ function HotelRegistration() {
                     noValidate
                     autoComplete="off"
                 >
-                    <TextField value={name} id="outlined-search" label="Name" type="Text" onChange={(e) => setName(e.target.value)} />
-                    <TextField value={services} id="outlined-search" label="Services" type="services" onChange={(e) => setservices(e.target.value)} />
-                    <TextField value={price} id="outlined-search" label="Price per day" type="text" onChange={(e) => setPrice(e.target.value)} />
-                    <TextField value={room} id="outlined-search" label="Room" type="text" onChange={(e) => setRoom(e.target.value)} />
-                    <TextField value={country} id="outlined-search" label="Country" type="text" onChange={(e) => setCountry(e.target.value)} />
-                    <TextField value={contact} id="outlined-search" label="Contact" type="text" onChange={(e) => setContact(e.target.value)} />
-                    <TextField value={hotelImgUrl} id="outlined-search" label="image url" type="text" onChange={(e) => setHotelImgUrl(e.target.value)} />
-                    <TextField value={searchhotel} id="outlined-search" label="Search by name" type="text" onChange={(e) => setSearchhotel(e.target.value)} />
-                    {btnControll ? <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={addData}><AddRounded />ADD</Button>
-                        : <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={updatehotel}><AddRounded />Update</Button>}
+                   
+                    <TextField style={{width:'50%'}} value={searchhotel} id="outlined-search" label="Search by name" type="text" onChange={(e) => setSearchhotel(e.target.value)} />
+                    {/* {btnControll ? <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={addData}><AddRounded />ADD</Button>
+                        : <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={updatehotel}><AddRounded />Update</Button>} */}
+
+                    <Button variant='contained' size='large' sx={{ width: 160, marginTop: 2 }} onClick={goto}><AddRounded />Add New</Button>
 
                 </Box>
             </Paper>
