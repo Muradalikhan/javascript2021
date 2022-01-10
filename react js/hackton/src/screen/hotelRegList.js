@@ -92,38 +92,12 @@ function HotelRegistration() {
         setHotelImgUrl('')
     }
 
-    //update data
-    let updatehotel = async () => {
-        const hotelDoc = doc(db, 'hotelRegistration', updateHotelID)
-        const updatedField = { name: name, services: services, price: price, room: room, contact: contact, country: country, hotelImgUrl: hotelImgUrl }
-        await updateDoc(hotelDoc, updatedField)
-
-
-        setName('')
-        setservices('')
-        setContact('')
-        setCountry('')
-        setPrice('')
-        setRoom('')
-        setHotelImgUrl('')
-        setBtnControll(true)
-
-    }
+    
 
     let setupdateField = (hotel) => {
 
         navigation('/registrationForm', { state: hotel })
-        // setupdateHotelID(id)
-        // setName(name)
-        // setservices(services)
-        // setPrice(price)
-        // setRoom(room)
-        // setContact(contact)
-        // setCountry(country)
-        // setHotelImgUrl(hotelImgUrl)
-        // setBtnControll(false)
-
-
+       
     }
 
     //delte data

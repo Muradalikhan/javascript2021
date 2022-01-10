@@ -35,7 +35,7 @@ export default function HotelRegForm() {
     const auth = getAuth()
     const location=useLocation()
     let hotelfields=location.state
-    console.log(hotelfields.hotel)
+    console.log(hotelfields)
     const navigation=useNavigate()
     
 
@@ -52,9 +52,11 @@ export default function HotelRegForm() {
             }
         });
 
-        if(hotelfields.id!==null){
-            setupdateField()
+        if(hotelfields){
+
+            setupdateField(hotelfields)
         }
+     
        
     }, [])
 
@@ -88,10 +90,13 @@ export default function HotelRegForm() {
         setHotelImgUrl('')
         setBtnControll(true)
 
+        navigation('/hotelregistration')
+
     }
 
     let setupdateField = (hotelfields) => {
-        // setupdateHotelID(hotelfields.id)
+        // console.log(hotelfields)
+        setupdateHotelID(hotelfields.id)
         setName(hotelfields.name)
         setservices(hotelfields.services)
         setPrice(hotelfields.price)
