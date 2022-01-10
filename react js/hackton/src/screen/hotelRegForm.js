@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import Navbar1 from '../componant/navbar/navbar1.js';
 import AdminNavbar from '../componant/navbar/navbar3.js';
 import { AddRounded } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 
 
@@ -29,11 +29,15 @@ export default function HotelRegForm() {
     let [hotelImgUrl, setHotelImgUrl] = useState('')
     let [btnControll, setBtnControll] = useState(true)
     let [isLogin, setIsLogin] = useState(false)
-
+   
     //database refrence
     let hotelCollectionRef = collection(db, 'hotelRegistration')
     const auth = getAuth()
-
+    const location=useLocation()
+    let hotelfields=location.state
+    console.log(hotelfields.hotel)
+    const navigation=useNavigate()
+    
 
     useEffect(() => {
 
@@ -47,9 +51,13 @@ export default function HotelRegForm() {
 
             }
         });
+
+        if(hotelfields.id!==null){
+            setupdateField()
+        }
+       
     }, [])
 
-    const navigation=useNavigate()
     let addData = async () => {
         await addDoc(hotelCollectionRef, { name, services, price, room, country, contact, hotelImgUrl })
         setName('')
@@ -82,18 +90,18 @@ export default function HotelRegForm() {
 
     }
 
-    let setupdateField = (id, name, services, price, room, country, contact, hotelImgUrl) => {
-        setupdateHotelID(id)
-        setName(name)
-        setservices(services)
-        setPrice(price)
-        setRoom(room)
-        setContact(contact)
-        setCountry(country)
-        setHotelImgUrl(hotelImgUrl)
+    let setupdateField = (hotelfields) => {
+        // setupdateHotelID(hotelfields.id)
+        setName(hotelfields.name)
+        setservices(hotelfields.services)
+        setPrice(hotelfields.price)
+        setRoom(hotelfields.room)
+        setContact(hotelfields.contact)
+        setCountry(hotelfields.country)
+        setHotelImgUrl(hotelfields.hotelImgUrl)
         setBtnControll(false)
 
-
+          
     }
 
 

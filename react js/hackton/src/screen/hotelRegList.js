@@ -51,6 +51,8 @@ function HotelRegistration() {
     //database refrence
     let hotelCollectionRef = collection(db, 'hotelRegistration')
     const auth = getAuth()
+    const navigation = useNavigate()
+
 
     useEffect(() => {
 
@@ -108,16 +110,18 @@ function HotelRegistration() {
 
     }
 
-    let setupdateField = (id, name, services, price, room, country, contact, hotelImgUrl) => {
-        setupdateHotelID(id)
-        setName(name)
-        setservices(services)
-        setPrice(price)
-        setRoom(room)
-        setContact(contact)
-        setCountry(country)
-        setHotelImgUrl(hotelImgUrl)
-        setBtnControll(false)
+    let setupdateField = (hotel) => {
+
+        navigation('/registrationForm', { state: hotel })
+        // setupdateHotelID(id)
+        // setName(name)
+        // setservices(services)
+        // setPrice(price)
+        // setRoom(room)
+        // setContact(contact)
+        // setCountry(country)
+        // setHotelImgUrl(hotelImgUrl)
+        // setBtnControll(false)
 
 
     }
@@ -139,8 +143,7 @@ function HotelRegistration() {
         setPage(0);
     };
 
-    const navigation=useNavigate()
-    const goto=()=>{
+    const goto = () => {
         navigation('/registrationForm')
     }
 
@@ -160,8 +163,8 @@ function HotelRegistration() {
                     noValidate
                     autoComplete="off"
                 >
-                   
-                    <TextField style={{width:'50%'}} value={searchhotel} id="outlined-search" label="Search by name" type="text" onChange={(e) => setSearchhotel(e.target.value)} />
+
+                    <TextField style={{ width: '50%' }} value={searchhotel} id="outlined-search" label="Search by name" type="text" onChange={(e) => setSearchhotel(e.target.value)} />
                     {/* {btnControll ? <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={addData}><AddRounded />ADD</Button>
                         : <Button variant='contained' size='large' sx={{ width: 120, marginTop: 2 }} onClick={updatehotel}><AddRounded />Update</Button>} */}
 
@@ -222,7 +225,7 @@ function HotelRegistration() {
                                                         {hotel.contact}
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel.id, hotel.name, hotel.services, hotel.price, hotel.room, hotel.country, hotel.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel) }}><Edit /></Button>
                                                         <Button variant='contained' color='error' size="small" onClick={() => deletehotel(hotel.id)}> <Delete /></Button>
                                                     </TableCell>
 
@@ -248,7 +251,7 @@ function HotelRegistration() {
                                                         {hotel.contact}
                                                     </TableCell>
                                                     <TableCell>
-                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel.id, hotel.name, hotel.services, hotel.price, hotel.room, hotel.country, hotel.contact) }}><Edit /></Button>
+                                                        <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel) }}><Edit /></Button>
                                                         <Button variant='contained' color='error' size="small" onClick={() => deletehotel(hotel.id)}> <Delete /></Button>
                                                     </TableCell>
 
@@ -276,7 +279,7 @@ function HotelRegistration() {
                                                     {hotel.contact}
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel.id, hotel.name, hotel.services, hotel.price, hotel.room, hotel.country, hotel.contact) }}><Edit /></Button>
+                                                    <Button variant='contained' color='success' size="small" onClick={() => { setupdateField(hotel) }}><Edit /></Button>
                                                     <Button variant='contained' color='error' size="small" onClick={() => deletehotel(hotel.id)}> <Delete /></Button>
                                                 </TableCell>
 
