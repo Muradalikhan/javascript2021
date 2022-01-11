@@ -86,7 +86,7 @@ export default function HotelDisplay() {
                             .filter((hotel, index) => {
                                 if (searchUser === '') {
                                     return (
-                                        <div class="card" key={index}>
+                                        <div className="card" key={index}>
                                         <img src={hotel.hotelImgUrl} className="card-img-top" />
                                         <div className="card-body">
                                             <h5 className="card-title" >{hotel.name}</h5>
@@ -99,7 +99,7 @@ export default function HotelDisplay() {
                                 }
                                 else if (hotel.name.toLowerCase().includes(searchUser.toLowerCase())) {
                                     return (
-                                        <div class="card" key={index}>
+                                        <div className="card" key={index}>
                                             <img src={hotel.hotelImgUrl} className="card-img-top" />
                                             <div className="card-body">
                                                 <h5 className="card-title" >{hotel.name}</h5>
@@ -115,7 +115,7 @@ export default function HotelDisplay() {
                             .map((hotel, index) => {
                                 return (
 
-                                    <div class="card" key={index}>
+                                    <div className="card" key={index}>
                                         <img src={hotel.hotelImgUrl} className="card-img-top" />
                                         <div className="card-body">
                                             <h5 className="card-title" >{hotel.name}</h5>

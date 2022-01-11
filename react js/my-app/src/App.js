@@ -1,5 +1,6 @@
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import CovidApp from './componant/Covid19/config';
 // import CardComp from './componant/card/CardComponant';
 // import FilterComp from './componant/filter/filter';
