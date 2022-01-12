@@ -8,6 +8,7 @@ import Navbar1 from '../componant/navbar/navbar1.js'
 import { getAuth, onAuthStateChanged } from '../config/firebase/firebase.js'
 import { Box, Paper, TextField } from '@mui/material'
 import '../componant/card/card3'
+import MyCarosol from '../componant/carosol/MyCarosol.js'
 
 
 
@@ -65,6 +66,8 @@ export default function HotelDisplay() {
 
         <>
             <Navbar1 />
+            <MyCarosol />
+
             <Paper sx={{ width: '80%', overflow: 'hidden', margin: '70px auto', padding: '10px', zIndex: '2' }} elevation={12}>
                 <Box
                     component="form"
@@ -77,6 +80,9 @@ export default function HotelDisplay() {
                 </Box>
                 <TextField value={searchUser} id="outlined-search" fullWidth label="Search by name" type="text" onChange={(e) => setSearchUser(e.target.value)} />
             </Paper>
+
+
+           
 
 
             {hotel.length !== 0 ?
