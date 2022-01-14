@@ -4,12 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Dashboard from './screen/dashboard';
 
-const App = () => (
-  <>
+const App = () => {
+  
 
-    <Dashboard />
+  return (
+    <>
 
-  </>
-);
+      <Dashboard />
+
+    </>
+  )
+
+}
 
 export default App;

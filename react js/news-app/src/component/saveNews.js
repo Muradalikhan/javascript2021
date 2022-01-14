@@ -10,26 +10,25 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function MyCard({ news }) {
-    const [saveNews, setSaveNews] = useState([])
+export default function SavedNews() {
+    const [saveNews, setSaveNews] = useState(false)
 
 
-    useEffect(() => {
+    const getNews = () => {
+        const data = localStorage.getItem('newsArr')
+        const json=JSON.parse(data)
 
-    }, [news,saveNews])
-
-
-
-    const saveNewsData = (item) => {
-        setSaveNews([
-            ...saveNews,
-            item
-        ])
-       
-
-        localStorage.setItem('newsArr', JSON.stringify(saveNews))
+        setSaveNews(json)
         
     }
+
+
+    console.log(saveNews)
+    useEffect(() => {
+        getNews()
+    }, [])
+
+
 
 
 
@@ -42,8 +41,10 @@ export default function MyCard({ news }) {
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 
 
-                {
-                    news.map((item, index) => {
+                {saveNews===null || saveNews===false ? <div className='mt-5 mx-auto'>No saved news</div>
+                    : 
+                    <>
+                   { saveNews.map((item, index) => {
 
                         return (
                             <Grid item xs={12} md={6} lg={4} key={index}>
@@ -63,13 +64,13 @@ export default function MyCard({ news }) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" onClick={() => saveNewsData(item)}>Save</Button>
                                         <Button size="small"><a href={item.url} style={{ textDecoration: 'none' }}>View on web</a> </Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
                         )
-                    })
+                    })}
+                    </>
                 }
 
             </Grid>

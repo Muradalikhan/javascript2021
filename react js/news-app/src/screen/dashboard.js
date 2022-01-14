@@ -16,12 +16,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import MailIcon from '@mui/icons-material/Mail';
 import { FiberNew } from '@mui/icons-material';
 import MyCard from '../component/card'
 import TextField from '@mui/material/TextField';
 import ApiKey from '../config/config';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import SavedNews from '../component/saveNews';
 
 
 
@@ -99,9 +99,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Dashboard() {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-    const [sources, setSources] = React.useState([]);
-    const [searchNews, setSearchNews] = React.useState('');
+    const [open, setOpen] = useState(false);
+    const [sources, setSources] = useState([]);
+    const [news, setNews] = useState([]);
+    const [newsSource, setNewsSource] = useState('bbc-news')
+    const [searchNews, setSearchNews] = useState('');
+    const [searchToggel, setSearchToggel] = useState(false)
+    const [saveToggel, setSaveToggel] = useState(false)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -114,27 +118,54 @@ export default function Dashboard() {
 
 
     const fetchApi = async () => {
-        await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${ApiKey}`)
+
+        await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${ApiKey}`)
             .then(res => res.json())
             .then(res => {
-                setSources(res.articles)
+                setSources(res.sources)
             })
+
+
+        if (searchToggel) {
+            await fetch(`https://newsapi.org/v2/everything?q=${searchNews}&apiKey=${ApiKey}`)
+                .then(res => res.json())
+                .then(res => {
+                    setNews(res.articles)
+                })
+
+        }
+        else {
+            await fetch(`https://newsapi.org/v2/top-headlines?sources=${newsSource}&apiKey=${ApiKey}`)
+                .then(res => res.json())
+                .then(res => {
+                    setNews(res.articles)
+                })
+            setSearchToggel(false)
+
+        }
+        setSearchToggel(false)
+
+
     }
 
     useEffect(() => {
         fetchApi()
-    }, [])
+    }, [newsSource, searchNews])
 
 
-    
-    const showNews=(source)=>{
-        setSources(source)
-        // console.log(source.toLowerCase())
 
+    const showNews = (source) => {
+        setNewsSource(source.toLowerCase())
+        setSearchNews('')
+    }
+
+    const newsOnSearch = (val) => {
+        setSearchNews(val)
+        setSearchToggel(true)
     }
 
 
-    console.log(sources)
+
 
 
     return (
@@ -154,8 +185,11 @@ export default function Dashboard() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography variant="button" noWrap component="div" sx={{cursor:'pointer'}} onClick={()=>{setSaveToggel(false)}}>
                         News App
+                    </Typography>
+                    <Typography variant="button" noWrap component="div" className='mx-4' sx={{cursor:'pointer'}}  onClick={()=>{setSaveToggel(true)}}>
+                        Saved News
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -170,9 +204,9 @@ export default function Dashboard() {
                     {sources.map((text, index) => (
                         <ListItem button key={index}>
                             <ListItemIcon>
-                            <InboxIcon /> 
+                                <InboxIcon />
                             </ListItemIcon>
-                            <ListItemText primary={text.source.name} onClick={()=>showNews(text.source.name)}/>
+                            <ListItemText primary={text.name} onClick={() => showNews(text.id)} />
                         </ListItem>
                     ))}
                 </List>
@@ -181,7 +215,7 @@ export default function Dashboard() {
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
-                                 <FiberNew /> 
+                                <FiberNew />
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -190,11 +224,11 @@ export default function Dashboard() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                
-                    
-                <TextField id="standard-basic" value={searchNews} fullWidth label="Search" variant="standard" className='m-3'onChange={(e)=>setSearchNews(e.target.value)} />       
 
-                <MyCard sources={sources}/>
+
+                <TextField id="standard-basic" value={searchNews} fullWidth label="Search" variant="standard" className='m-3' onChange={(e) => newsOnSearch(e.target.value)} />
+
+                {saveToggel ? <SavedNews /> : <MyCard news={news} />}
 
             </Box>
         </Box>
