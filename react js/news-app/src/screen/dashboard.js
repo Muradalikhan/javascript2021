@@ -16,13 +16,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { FiberNew } from '@mui/icons-material';
 import MyCard from '../component/card'
 import TextField from '@mui/material/TextField';
 import ApiKey from '../config/config';
 import { useEffect, useState } from 'react';
 import SavedNews from '../component/saveNews';
-import Msg from '../component/message';
 
 
 
@@ -107,6 +105,7 @@ export default function Dashboard() {
     const [searchNews, setSearchNews] = useState('');
     const [searchToggel, setSearchToggel] = useState(false)
     const [saveToggel, setSaveToggel] = useState(false)
+    const [topHeadToggel, setTopHeadToggel] = useState(false)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -121,7 +120,7 @@ export default function Dashboard() {
     const fetchApi = async () => {
 
 
-        
+
         await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${ApiKey}`)
             .then(res => res.json())
             .then(res => {
@@ -136,6 +135,12 @@ export default function Dashboard() {
                     setNews(res.articles)
                 })
 
+        }else if(topHeadToggel){
+            await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${ApiKey}`)
+            .then(res => res.json())
+            .then(res => {
+                setNews(res.articles)
+            })
         }
         else {
             await fetch(`https://newsapi.org/v2/top-headlines?sources=${newsSource}&apiKey=${ApiKey}`)
@@ -153,21 +158,27 @@ export default function Dashboard() {
 
     useEffect(() => {
         fetchApi()
-    }, [newsSource, searchNews])
+    }, [newsSource, searchNews,topHeadToggel])
 
 
 
     const showNews = (source) => {
         setNewsSource(source.toLowerCase())
         setSearchNews('')
+        setTopHeadToggel(false)
     }
 
     const newsOnSearch = (val) => {
         setSearchNews(val)
         setSearchToggel(true)
+        setTopHeadToggel(false)
+
     }
 
-
+    const topHeadlines=()=>{
+        setTopHeadToggel(true)
+        console.log(topHeadToggel)
+    }
 
 
 
@@ -188,10 +199,10 @@ export default function Dashboard() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="button" noWrap component="div" sx={{cursor:'pointer'}} onClick={()=>{setSaveToggel(false)}}>
+                    <Typography variant="button" noWrap component="div" sx={{ cursor: 'pointer' }} onClick={() => { setSaveToggel(false) }}>
                         News App
                     </Typography>
-                    <Typography variant="button" noWrap component="div" className='mx-4' sx={{cursor:'pointer'}}  onClick={()=>{setSaveToggel(true)}}>
+                    <Typography variant="button" noWrap component="div" className='mx-4' sx={{ cursor: 'pointer' }} onClick={() => { setSaveToggel(true) }}>
                         Saved News
                     </Typography>
                 </Toolbar>
@@ -204,6 +215,13 @@ export default function Dashboard() {
                 </DrawerHeader>
                 <Divider />
                 <List>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={`Top Headlines`} onClick={topHeadlines}/>
+                    </ListItem>
+                <Divider />
                     {sources.map((text, index) => (
                         <ListItem button key={index}>
                             <ListItemIcon>
@@ -214,14 +232,14 @@ export default function Dashboard() {
                     ))}
                 </List>
                 <Divider />
-              
+
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
 
 
                 <TextField id="standard-basic" value={searchNews} fullWidth label="Search" variant="standard" className='m-3' onChange={(e) => newsOnSearch(e.target.value)} />
-               
+
                 {saveToggel ? <SavedNews /> : <MyCard news={news} />}
 
             </Box>
