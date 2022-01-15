@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
+import { success } from './message';
 
 
 
@@ -28,7 +29,7 @@ export default function MyCard({ news }) {
        
 
         localStorage.setItem('newsArr', JSON.stringify(saveNews))
-        
+        success()
     }
 
 

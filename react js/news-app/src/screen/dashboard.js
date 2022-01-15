@@ -22,6 +22,7 @@ import TextField from '@mui/material/TextField';
 import ApiKey from '../config/config';
 import { useEffect, useState } from 'react';
 import SavedNews from '../component/saveNews';
+import Msg from '../component/message';
 
 
 
@@ -119,6 +120,8 @@ export default function Dashboard() {
 
     const fetchApi = async () => {
 
+
+        
         await fetch(`https://newsapi.org/v2/top-headlines/sources?apiKey=${ApiKey}`)
             .then(res => res.json())
             .then(res => {
@@ -211,23 +214,14 @@ export default function Dashboard() {
                     ))}
                 </List>
                 <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                <FiberNew />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+              
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
 
 
                 <TextField id="standard-basic" value={searchNews} fullWidth label="Search" variant="standard" className='m-3' onChange={(e) => newsOnSearch(e.target.value)} />
-
+               
                 {saveToggel ? <SavedNews /> : <MyCard news={news} />}
 
             </Box>
