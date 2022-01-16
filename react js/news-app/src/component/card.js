@@ -47,8 +47,8 @@ export default function MyCard({ news }) {
                     news.map((item, index) => {
 
                         return (
-                            <Grid item xs={12} md={6} lg={4} key={index}>
-                                <Card sx={{ maxWidth: 345 }}>
+                            <Grid item xs={12} md={6} lg={4} key={index} className='mt-3'>
+                                <Card sx={{ maxWidth: 345 ,boxShadow: '3px 3px 8px hsl(0, 0%, 70%)'}}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
@@ -56,16 +56,16 @@ export default function MyCard({ news }) {
                                         image={item.urlToImage}
                                     />
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" style={{height:'30px'}}>
                                             {item.title.length > 20 ? `${item.title.substring(0, 25)}...` : item.title}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
+                                        <Typography variant="body2" color="text.secondary" style={{height:'50px'}}>
                                             {item.description.length > 20 ? `${item.description.substring(0, 120)}...` : item.description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" onClick={() => saveNewsData(item)}>Save</Button>
-                                        <Button size="small"><a href={item.url} style={{ textDecoration: 'none' }}>View on web</a> </Button>
+                                        <Button variant='contained' size="small" onClick={() => saveNewsData(item)}>Save</Button>
+                                        <Button variant='contained' size="small"><a href={item.url} style={{ textDecoration: 'none',color:'white' }}>View on web</a> </Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
