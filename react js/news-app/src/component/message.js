@@ -1,7 +1,7 @@
 import { message, Button, Space } from 'antd';
 
 const success = () => {
-    message.success('This is a success message');
+    message.success('News have been saved!');
 };
 
 const error = () => {

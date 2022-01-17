@@ -148,17 +148,17 @@ export default function Dashboard() {
                 .then(res => {
                     setNews(res.articles)
                 })
-            setSearchToggel(false)
+           
 
         }
-        setSearchToggel(false)
+       
 
 
     }
 
     useEffect(() => {
         fetchApi()
-    }, [newsSource, searchNews,topHeadToggel])
+    }, [newsSource, searchToggel,topHeadToggel])
 
 
 
@@ -178,6 +178,8 @@ export default function Dashboard() {
     const topHeadlines=()=>{
         setTopHeadToggel(true)
         console.log(topHeadToggel)
+        setSearchToggel(false)
+
     }
 
 
