@@ -53,7 +53,7 @@ function MyCarosol2() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+    <Box sx={{ maxWidth: '100%', flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
@@ -79,9 +79,9 @@ function MyCarosol2() {
               <Box
                 component="img"
                 sx={{
-                  height: 255,
+                  height: 350,
                   display: 'block',
-                  maxWidth: 400,
+                  maxWidth: '100%',
                   overflow: 'hidden',
                   width: '100%',
                 }}
