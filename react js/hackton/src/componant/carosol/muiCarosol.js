@@ -16,22 +16,22 @@ const images = [
   {
     label: 'San Francisco – Oakland Bay Bridge, United States',
     imgPath:
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXrHy8tpvC8EwpfgnSc54nF1tIQ5DWd6ovg&usqp=CAU',
+    'https://media.istockphoto.com/photos/happy-hotel-clerks-are-welcoming-professional-at-counter-picture-id1164435677?k=20&m=1164435677&s=612x612&w=0&h=P-2oRLVtEeZOCPZN8mF-hGpPWiUh0VJbEB4PWGQZ4Ro=',
   },
   {
     label: 'Bird',
     imgPath:
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXrHy8tpvC8EwpfgnSc54nF1tIQ5DWd6ovg&usqp=CAU',
+    'https://cdn2.hubspot.net/hub/491011/hubfs/s2_assets/images/CB-LS-Central-for-hotels-Property-Management-System-hotel-guest-lobby-reception-AdobeStock_280498965.jpg?length=2000&name=CB-LS-Central-for-hotels-Property-Management-System-hotel-guest-lobby-reception-AdobeStock_280498965.jpg',
 },
   {
     label: 'Bali, Indonesia',
     imgPath:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXrHy8tpvC8EwpfgnSc54nF1tIQ5DWd6ovg&usqp=CAU',
+        'https://skytouchtechnology.com/wp-content/uploads/2018/03/Monetize-hotel-guest-check-in.jpg',
 },
   {
     label: 'Goč, Serbia',
     imgPath:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTye2bKuzhIU_SHB5N22ByKfIWy4B4qNVQyYw&usqp=CAU',
+      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
   },
 ];
 

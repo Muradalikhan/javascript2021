@@ -69,7 +69,7 @@ export default function HotelDisplay() {
             <Navbar1 />
             <div style={{marginTop:'70px'}}></div>
             <MyCarosol2/>
-            <Paper sx={{ width: '80%', overflow: 'hidden', margin: '4px auto', padding: '10px', zIndex: '2' }} elevation={12}>
+            <Paper sx={{ width: '83%', overflow: 'hidden', margin: '4px auto', padding: '10px', zIndex: '2' }} elevation={12}>
                 <Box
                     component="form"
                     sx={{
