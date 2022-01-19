@@ -79,7 +79,7 @@ function MyCarosol2() {
               <Box
                 component="img"
                 sx={{
-                  height: 350,
+                  height: 420,
                   display: 'block',
                   maxWidth: '100%',
                   overflow: 'hidden',
