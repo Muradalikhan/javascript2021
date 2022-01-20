@@ -9,29 +9,29 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import img1 from '../../asset/img/banner1.jpg'
+import img2 from '../../asset/img/banner2.jpg'
+import img3 from '../../asset/img/banner3.jpg'
+import img4 from '../../asset/img/banner4.jpeg'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-    'https://media.istockphoto.com/photos/happy-hotel-clerks-are-welcoming-professional-at-counter-picture-id1164435677?k=20&m=1164435677&s=612x612&w=0&h=P-2oRLVtEeZOCPZN8mF-hGpPWiUh0VJbEB4PWGQZ4Ro=',
+    label: 'Book your room now',
+    imgPath:img1,
+   },
+  {
+    label: 'relax and comfortable rooms',
+    imgPath:img2,
+    },
+  {
+    label: 'all over pakistan ',
+    imgPath:img3,
   },
   {
-    label: 'Bird',
-    imgPath:
-    'https://cdn2.hubspot.net/hub/491011/hubfs/s2_assets/images/CB-LS-Central-for-hotels-Property-Management-System-hotel-guest-lobby-reception-AdobeStock_280498965.jpg?length=2000&name=CB-LS-Central-for-hotels-Property-Management-System-hotel-guest-lobby-reception-AdobeStock_280498965.jpg',
-},
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-        'https://skytouchtechnology.com/wp-content/uploads/2018/03/Monetize-hotel-guest-check-in.jpg',
-},
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    label: 'from any where',
+    imgPath:img4,
   },
 ];
 
@@ -79,7 +79,7 @@ function MyCarosol2() {
               <Box
                 component="img"
                 sx={{
-                  height: 420,
+                  height: 400,
                   display: 'block',
                   maxWidth: '100%',
                   overflow: 'hidden',

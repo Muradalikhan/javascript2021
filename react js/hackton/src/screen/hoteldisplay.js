@@ -82,9 +82,7 @@ export default function HotelDisplay() {
                 <TextField value={searchUser} id="outlined-search" fullWidth label="Search by name" type="text" onChange={(e) => setSearchUser(e.target.value)} />
             </Paper>
 
-
-           
-
+             
 
             {hotel.length !== 0 ?
                 <div className='col-sm-10 ' style={{ margin: '20px auto' }}>
