@@ -1,23 +1,30 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import {View,Text} from 'react-native'
-import Styles from './src/config/globleStyle';
-import MyMaps from './src/component/maps'
-import MylocalStorage from './src/component/asyncStorageCard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screen/Home';
+import LoginScreen from './src/screen/LoginScr';
+import aboutScreen from './src/screen/About';
+// import SingUpScreen from './src/screen/signup';
+
+
+
+
+
+const Stack = createNativeStackNavigator();
+
 
 function App() {
   return (
-  <View style={Styles.bg}>
-    <Text style={Styles.h1}>Food App</Text>
-    <Text>choose yourlocation on Map</Text>
-
-    <View>
-      {/* <MyMaps/> */}
-
-      <MylocalStorage/>
-    </View>
-  </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        {/* <Stack.Screen name="login" component={LoginScreen} /> */}
+        <Stack.Screen name="about" component={aboutScreen} />
+        {/* <Stack.Screen name="signup" component={SingUpScreen} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

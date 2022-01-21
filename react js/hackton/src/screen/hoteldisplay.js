@@ -10,6 +10,7 @@ import { Box, Paper, TextField } from '@mui/material'
 import '../componant/card/card3'
 // import MyCarosol from '../componant/carosol/MyCarosol.js'
 import MyCarosol2 from '../componant/carosol/muiCarosol.js'
+import { ListSubheader } from '@mui/material'
 
 
 
@@ -67,8 +68,8 @@ export default function HotelDisplay() {
 
         <>
             <Navbar1 />
-            <div style={{marginTop:'70px'}}></div>
-            <MyCarosol2/>
+            <div style={{ marginTop: '70px' }}></div>
+            <MyCarosol2 />
             <Paper sx={{ width: '83%', overflow: 'hidden', margin: '4px auto', padding: '10px', zIndex: '2' }} elevation={12}>
                 <Box
                     component="form"
@@ -82,7 +83,10 @@ export default function HotelDisplay() {
                 <TextField value={searchUser} id="outlined-search" fullWidth label="Search by name" type="text" onChange={(e) => setSearchUser(e.target.value)} />
             </Paper>
 
-             
+            <ListSubheader sx={{ bgcolor: 'background.paper',zIndex:1 }}>
+                Today
+            </ListSubheader>
+
 
             {hotel.length !== 0 ?
                 <div className='col-sm-10 ' style={{ margin: '20px auto' }}>
@@ -92,14 +96,14 @@ export default function HotelDisplay() {
                                 if (searchUser === '') {
                                     return (
                                         <div className="card" key={index}>
-                                        <img src={hotel.hotelImgUrl} className="card-img-top" />
-                                        <div className="card-body">
-                                            <h5 className="card-title" >{hotel.name}</h5>
-                                            <p className="card-text">Rooms:{hotel.room}</p>
-                                            <p className="card-text">perday: ${hotel.price}</p>
-                                            <button className="btn btnColor" onClick={() => openDetail(hotel)}>View Details</button>
+                                            <img src={hotel.hotelImgUrl} className="card-img-top" />
+                                            <div className="card-body">
+                                                <h5 className="card-title" >{hotel.name}</h5>
+                                                <p className="card-text">Rooms:{hotel.room}</p>
+                                                <p className="card-text">perday: ${hotel.price}</p>
+                                                <button className="btn btnColor" onClick={() => openDetail(hotel)}>View Details</button>
+                                            </div>
                                         </div>
-                                    </div>
                                     )
                                 }
                                 else if (hotel.name.toLowerCase().includes(searchUser.toLowerCase())) {
