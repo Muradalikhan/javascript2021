@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import CardComp from './componant/card/CardComponant';
 // import FilterComp from './componant/filter/filter';
 // import Quizapp from './componant/quizapp/Quizapp';
-// import Signup from './componant/quizapp/signup';
+import Signup from './componant/quizapp/signup';
 // import Alibaba from './componant/Alibaba/alibaba';
 // import Config from './componant/Routing/config';
 // import PaginationTable from './componant/Routing/tablePagination'
@@ -21,11 +21,12 @@ function App() {
     <div className="App bg-secondary">
       {/* <CardComp></CardComp> */}
       {/* <FilterComp></FilterComp> */}
-      {/* <Signup ></Signup> */}
+      <Signup ></Signup> 
+      {/* <Quizapp/> */}
       {/* <Alibaba/> */}
       {/* <PaginationTable/> */}
       {/* <CovidApp/> */}
-      <WeatherApp/>
+      {/* <WeatherApp/> */}
     </div>
   )
 }

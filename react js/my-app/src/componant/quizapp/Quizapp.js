@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import 'bootstrap-4-react/dist/bootstrap-4-react';
-import { Grid } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import { Toolbar } from "@mui/material";
@@ -19,6 +19,7 @@ function Quizapp(props) {
     let [scoreCount, setScoreCount] = useState(0);
     let [colorWidth, setColorWidth] = useState(0);
     let [controllArrlength, setControllArrlength] = useState(true);
+    let [signIn, setSignIn] = useState(false);
 
 
 
@@ -46,12 +47,21 @@ function Quizapp(props) {
         if(selectedAns===correctAns){
             setScoreCount(scoreCount+1)
         }
+        else{
+            setScoreCount(scoreCount)
+
+        }
     }
 
+
+    let signInPage=()=>{
+        setSignIn(true)
+    }
 
 
     return (
         <div>
+            
             <Grid>
                 {
                     controllArrlength ? <Grid>
@@ -92,7 +102,7 @@ function Quizapp(props) {
 
                         </Grid>
                         <Grid sx={6} className='p-5'>
-                            <Button variant='outlined' onClick={increament}>Next</Button>
+                            <Button variant='contained'  onClick={increament}>Next</Button>
 
                         </Grid>
 
@@ -116,6 +126,7 @@ function Quizapp(props) {
                                 
                                <p> you scored : <b>{scoreCount}</b> out of <b>{questionArr.length}</b></p>
 
+                                <Button variant='contained' onClick={signInPage}>Logout </Button>
                             </Paper>
                         </Grid>
                     </Grid>

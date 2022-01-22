@@ -31,7 +31,7 @@ function Signup() {
         <div>
             <div className='main_div'>
 
-               {compControll? <div>
+                {compControll ? <div>
                     <h2 className='bg-info p-3 text-white'>Quiz App</h2>
                     {errorControll ? <Alert severity="error">Empty field not allowed</Alert> : null}
                     <Box sx={{ border: '1px solid black' }} className='p-5'
@@ -59,8 +59,8 @@ function Signup() {
 
                     </Box>
                     <button type="button" className="btn btn-info col-sm-6" onClick={signin}>Let's begin</button>
-                </div>:
-                <Quizapp name={name} email={email}></Quizapp>}
+                </div> :
+                    <Quizapp name={name} email={email}></Quizapp>}
             </div>
         </div>
     )
