@@ -11,8 +11,8 @@ const loginUser=()=>{
 
   return (
       <div>
-          <button onClick={()=>dispatch(loginUser())}>Login</button>
-          <button onClick={()=>dispatch(logout())}>LogOut</button>
+          <button onClick={()=>dispatch(loginUser())} className='btn btn-primary m-1'>Login</button>
+          <button onClick={()=>dispatch(logout())} className='btn btn-primary m-1'>LogOut</button>
       </div>
   );
 }

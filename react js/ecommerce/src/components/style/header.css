@@ -1,0 +1,14 @@
+
+.header{
+display: flex;
+justify-content: space-between;
+padding: 15px;
+box-shadow: 2px 2px 2px lightgray;
+font-size: 18px;
+background-color: tomato;
+color: white;
+position: sticky;
+top:0;
+z-index: 100;
+
+}

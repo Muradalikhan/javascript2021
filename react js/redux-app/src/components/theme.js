@@ -32,7 +32,7 @@ function Theme() {
         <>
             <div className='themeBtn'>
                 <input type="checkbox" className="checkbox" id="checkbox" />
-                <label for="checkbox" className="label" onClick={() => { themeChange() }}>
+                <label htmlFor="checkbox" className="label" onClick={() => { themeChange() }}>
                     <FontAwesomeIcon icon={faMoon} />
                     <FontAwesomeIcon icon={faSun} />
                     <div className='ball'></div>

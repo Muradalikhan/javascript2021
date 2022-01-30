@@ -1,0 +1,33 @@
+
+.card-add{
+    width: 95%;
+    height: 200px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom:5px;
+    display: inline-block;
+    border-bottom: 1px solid balck;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.img-add{
+    width: 100px;
+    height: 100px;
+}
+
+.title-add{
+    padding: 4px;
+}
+
+.action-add{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.price-add{
+    font-weight: bold;
+    color: tomato;
+}

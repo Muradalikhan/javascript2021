@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 
 function Profile() {
     const user = useSelector((state) => state.user.value)
-    const theme = useSelector((state) => state.theme.value)
-    console.log(user)
+  
     return (
         <div >
             <h1>Profile</h1>
