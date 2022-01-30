@@ -12,3 +12,16 @@ top:0;
 z-index: 100;
 
 }
+
+.cart-counter{
+
+    background-color: rgb(177, 32, 32);
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+    z-index: 100;
+    position: fixed;
+    top: 2px;
+    right: 5px;
+}

@@ -1,12 +1,12 @@
 
 .card-add{
     width: 95%;
-    height: 200px;
+    height: 160px;
     text-align: center;
-    padding: 5px;
-    margin-bottom:5px;
+    padding: 4px;
+    margin-bottom:2px;
     display: inline-block;
-    border-bottom: 1px solid balck;
+    border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,6 +16,10 @@
 .img-add{
     width: 100px;
     height: 100px;
+}
+
+.img-add:hover{
+    opacity: 0.5;
 }
 
 .title-add{
@@ -30,4 +34,10 @@
 .price-add{
     font-weight: bold;
     color: tomato;
+}
+
+.quantity{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
