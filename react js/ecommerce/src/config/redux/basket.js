@@ -9,11 +9,15 @@ export const baskitSlice = createSlice({
         baskitItem: (state, action) => {
             state.value = action.payload
         },
+        deleteBaskitItem: (state, action) => {
+            state.value = action.payload
+            return [...state.value.filter((item) => item.id !== action.payload.id)]
+        },
 
     }
 })
 
-export const { baskitItem } = baskitSlice.actions
+export const { baskitItem,deleteBaskitItem } = baskitSlice.actions
 
 export default baskitSlice.reducer
 

@@ -15,7 +15,6 @@ function Header() {
     const cartCounter = useSelector(state => state.showCart.counter)
 
     const cartShow = () => {
-        console.log(showCartstate)
         dispatch(
             showCart(!showCartstate)
         )

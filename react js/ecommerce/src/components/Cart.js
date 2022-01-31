@@ -6,20 +6,14 @@ import './style/cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
-const Cart=()=>{
+const Cart = () => {
   return (
-      <div className='Cart py-4'>
-     <FontAwesomeIcon icon={faShoppingCart}  color='tomato' size='2x'/>
-          <AddCard/>
-          <AddCard/>
-          <AddCard/>
-         
-         <br/>
-         <p>Total: 3500</p>
+    <div className='Cart py-4'>
+      
+      <FontAwesomeIcon icon={faShoppingCart} color='tomato' size='2x' />
+      <AddCard />
 
-         <button className='btn btn-primary'>Check Out</button>
-         
-      </div>
+    </div>
   );
 }
 
