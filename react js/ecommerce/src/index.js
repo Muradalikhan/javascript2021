@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import showCartReducer from './config/redux/showCart'
 import baskitReducer from './config/redux/basket'
+import catogryReducer from './config/redux/catogries'
 
 const store=configureStore({
   reducer:{
     showCart:showCartReducer,
     baskit:baskitReducer,
+    catogry:catogryReducer,
   }
 })
 

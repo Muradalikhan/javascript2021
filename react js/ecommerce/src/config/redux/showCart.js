@@ -9,13 +9,16 @@ export const showCartSlice = createSlice({
         showCart: (state, action) => {
             state.value = action.payload
         },
-        showCartCounter: (state,) => {
+        incCartCounter: (state,) => {
             state.counter = state.counter + 1
+        },
+        decCartCounter: (state,) => {
+            state.counter = state.counter - 1
         }
     }
 })
 
-export const { showCart, showCartCounter } = showCartSlice.actions
+export const { showCart, incCartCounter,decCartCounter } = showCartSlice.actions
 
 export default showCartSlice.reducer
 
