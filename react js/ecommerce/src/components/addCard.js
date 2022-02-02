@@ -17,6 +17,7 @@ const AddCard = () => {
     dispatch(deleteBaskitItem({ id: id }));
     dispatch(decCartCounter());
   };
+  //this was the missed
   useEffect(() => {
     setData(baskitData);
   }, [baskitData]);
