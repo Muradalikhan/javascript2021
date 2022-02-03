@@ -3,6 +3,7 @@ import "./style/card.css";
 import { useSelector, useDispatch } from "react-redux";
 import { incCartCounter } from "../config/redux/showCart";
 import { baskitItem } from "../config/redux/basket";
+import { ToastContainer, toast } from "react-toastify";
 
 const Card = () => {
   const [arr, setArr] = useState([]);
@@ -23,17 +24,17 @@ const Card = () => {
   };
 
   const addtoCart = (item) => {
-    setArr([...arr, item])
-   
+    toast.success("Your item has added!");
+    setArr([...arr, item]);
   };
 
-  useEffect(()=>{
-      console.log(arr)
-      if(arr[0]){
-        dispatch(incCartCounter())
-        dispatch(baskitItem(arr))
-      }
-  },[arr])
+  useEffect(() => {
+    console.log(arr);
+    if (arr[0]) {
+      dispatch(incCartCounter());
+      dispatch(baskitItem(arr));
+    }
+  }, [arr]);
 
   useEffect(() => {
     fetchData();
@@ -65,6 +66,17 @@ const Card = () => {
             </button>
           </div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   });
