@@ -10,6 +10,8 @@ const Card = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const catogry = useSelector((state) => state.catogry.value);
+  const counter = useSelector((state) => state.showCart.counter);
+
 
   const fetchData = async () => {
     if (catogry !== "all" && catogry !== "") {
@@ -24,7 +26,7 @@ const Card = () => {
   };
 
   const addtoCart = (item) => {
-    toast.success("Your item has added!");
+    toast.success(`Your item no ${counter} has added!`);
     setArr([...arr, item]);
   };
 
@@ -57,7 +59,7 @@ const Card = () => {
           <div className="action">
             <span className="price">Pkr: {item.price}</span>
             <button
-              className="btn btn-primary"
+              className="btn btn-info text-white"
               onClick={() => {
                 addtoCart(item);
               }}
