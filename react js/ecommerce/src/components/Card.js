@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { incCartCounter } from "../config/redux/showCart";
 import { baskitItem } from "../config/redux/basket";
 import { ToastContainer, toast } from "react-toastify";
+import {useNavigate} from 'react-router-dom'
 
 const Card = () => {
   const [arr, setArr] = useState([]);
@@ -42,10 +43,15 @@ const Card = () => {
     fetchData();
   }, [products]);
 
+  const navigate=useNavigate()
+  const viewdetails=(item)=>{
+    navigate('/detail',{state:item})
+  }
+
   return products.map((item, ind) => {
     return (
       <div className="card" key={ind}>
-        <img className="img" src={item.image} alt="img" />
+        <img className="img" src={item.image} alt="img" onClick={()=>viewdetails(item)}/>
 
         <div>
           <h3 className="title">
