@@ -4,8 +4,9 @@ import React from 'react';
 import Card from '../components/Card';
 import Cart from '../components/Cart';
 import Header from '../components/header';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Header2 from '../components/header2';
+import SideBar from '../components/sideBar';
 
 
 
@@ -17,14 +18,10 @@ function Products() {
       
       <Header/>
       <Header2/>
-
-      {showCartstate?<Cart/>:null}
+      {/* {showCartstate?<Cart/>:null}
+      <Card/> */}
+      <SideBar/>
       
-
-      <Card/>
-      
-     
-     
       </>
   );
 }

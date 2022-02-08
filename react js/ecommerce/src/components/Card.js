@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./style/card.css";
 import { useSelector, useDispatch } from "react-redux";
 import { incCartCounter } from "../config/redux/showCart";
 import { baskitItem } from "../config/redux/basket";
 import { ToastContainer, toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom'
+import "./style/card.css";
 
 const Card = () => {
   const [arr, setArr] = useState([]);
