@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { incCartCounter } from "../config/redux/showCart";
 import { baskitItem } from "../config/redux/basket";
 import { ToastContainer, toast } from "react-toastify";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import "./style/card.css";
 
 const Card = () => {
@@ -12,7 +12,6 @@ const Card = () => {
   const dispatch = useDispatch();
   const catogry = useSelector((state) => state.catogry.value);
   const counter = useSelector((state) => state.showCart.counter);
-
 
   const fetchData = async () => {
     if (catogry !== "all" && catogry !== "") {
@@ -43,15 +42,20 @@ const Card = () => {
     fetchData();
   }, [products]);
 
-  const navigate=useNavigate()
-  const viewdetails=(item)=>{
-    navigate('/detail',{state:item})
-  }
+  const navigate = useNavigate();
+  const viewdetails = (item) => {
+    navigate("/detail", { state: item });
+  };
 
   return products.map((item, ind) => {
     return (
       <div className="card" key={ind}>
-        <img className="img" src={item.image} alt="img" onClick={()=>viewdetails(item)}/>
+        <img
+          className="img"
+          src={item.image}
+          alt="img"
+          onClick={() => viewdetails(item)}
+        />
 
         <div>
           <h3 className="title">
