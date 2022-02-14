@@ -5,13 +5,13 @@ import { baskitItem } from "../config/redux/basket";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./style/card.css";
+import { Button } from "./Button.style";
 
 const Card = () => {
   const [arr, setArr] = useState([]);
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const catogry = useSelector((state) => state.catogry.value);
-  const counter = useSelector((state) => state.showCart.counter);
 
   const fetchData = async () => {
     if (catogry !== "all" && catogry !== "") {
@@ -26,14 +26,14 @@ const Card = () => {
   };
 
   const addtoCart = (item) => {
-    toast.success(`Your item no ${counter} has added!`);
+    toast.success(`Your item has added to the cart`);
     setArr([...arr, item]);
+    dispatch(incCartCounter());
   };
 
   useEffect(() => {
     console.log(arr);
-    if (arr[0]) {
-      dispatch(incCartCounter());
+    if (arr) {
       dispatch(baskitItem(arr));
     }
   }, [arr]);
@@ -68,18 +68,17 @@ const Card = () => {
           </p>
           <div className="action">
             <span className="price">Pkr: {item.price}</span>
-            <button
-              className="btn btn-info text-white"
+            <Button
               onClick={() => {
                 addtoCart(item);
               }}
             >
               Add to card
-            </button>
+            </Button>
           </div>
         </div>
         <ToastContainer
-          position="top-right"
+          position="top-center"
           autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
