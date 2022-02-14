@@ -25,17 +25,17 @@
   align-items: left;
   width: 100px;
   transition: width 2s;
-  background-color: lightcoral;
+  background-color: white;
 }
 .ListItem:hover {
   width: 200px;
 }
 .active {
-  border-bottom: 3px solid red;
+  border-bottom: 5px solid red;
   font-weight: 700;
 }
 
-@media only screen and(max-width:700px) {
+@media only screen and (max-width: 768px) {
   .List {
     display: none;
   }
