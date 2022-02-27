@@ -1,26 +1,24 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import './style/detail.css'
+import Button from "./Button.js";
+import "./style/detail.css";
 
 const Detail = () => {
   const location = useLocation();
-  const { title, description, price, image } = location.state;
+  const { title, description, price, image, category } = location.state;
 
   return (
     <div>
-      <h1>Details</h1>
-      <div>{location.state.title}</div>
+      <h1 className="p-2 bg-info">{category}</h1>
       <div className="container">
         <div className="card-detail float-left">
           <div className="row ">
             <div className="col-sm-7">
               <div className="card-block">
-                <h4 className="title-detail">{title}</h4>
+                <h4 className="title-detail ">{title}</h4>
                 <p>{description}</p>
-                <p>{price}</p>
-                <a href="#" className="btn btn-primary btn-sm">
-                  Read More
-                </a>
+                <p className="price-tag">{price}</p>
+                <Button title="Add to Cart" />
               </div>
             </div>
 
