@@ -24,11 +24,11 @@
   cursor: pointer;
   align-items: left;
   width: 100px;
-  transition: width 2s;
+  transition: width 1s;
   background-color: white;
 }
 .ListItem:hover {
-  width: 200px;
+  width: 150px;
 }
 .active {
   border-bottom: 5px solid red;
