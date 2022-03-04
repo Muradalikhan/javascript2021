@@ -5,11 +5,7 @@ import { baskitItem } from "../config/redux/basket";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./style/card.css";
-<<<<<<< Updated upstream
-import { Button } from "./Button.style";
-=======
 import Button from "./Button";
->>>>>>> Stashed changes
 
 const Card = () => {
   const [arr, setArr] = useState([]);
@@ -73,20 +69,11 @@ const Card = () => {
           <div className="action">
             <span className="price">Pkr: {item.price}</span>
             <Button
-<<<<<<< Updated upstream
-              onClick={() => {
-                addtoCart(item);
-              }}
-            >
-              Add to card
-            </Button>
-=======
               title=" Add to card"
               onClick={() => {
                 addtoCart(item);
               }}
             />
->>>>>>> Stashed changes
           </div>
         </div>
         <ToastContainer
