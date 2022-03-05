@@ -1,15 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 import { db } from "./config/firebase";
-import { ref, set } from "firebase/database";
+import { ref, set, push } from "firebase/database";
 
 function App() {
   const [task, setTask] = useState("");
   const addTodo = () => {
-    set(ref(db, "Todo/"), {
+    const todoListRef = ref(db, "Todo");
+    const newTodoRef = push(todoListRef);
+    set(newTodoRef, {
       task,
       complete: false,
-    });
+    })
+      .then(() => {
+        alert('data saved')
+      })
+      .catch((error) => {
+        // The write failed...
+      });
     setTask("");
   };
   return (
