@@ -18,7 +18,7 @@ const Card = () => {
       await fetch(`https://fakestoreapi.com/products/category/${catogry}`)
         .then((res) => res.json())
         .then((json) => setProducts(json));
-    } else if (catogry == "" || catogry == "all") {
+    } else if (catogry === "" || catogry === "all") {
       await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((json) => setProducts(json));
