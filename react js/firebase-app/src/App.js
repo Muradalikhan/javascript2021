@@ -1,23 +1,16 @@
-import { useState } from "react";
 import "./App.css";
-import { db } from "./config/firebase";
-import { ref, set, push } from "firebase/database";
+import { useState } from "react";
+import Toaster from "./component/toaster";
+// -------------------------------------------------------
+import { addData } from "./config/firebase";
+import ShowData from "./component/ShowData";
+// -------------------------------------------------------
 
 function App() {
   const [task, setTask] = useState("");
   const addTodo = () => {
-    const todoListRef = ref(db, "Todo");
-    const newTodoRef = push(todoListRef);
-    set(newTodoRef, {
-      task,
-      complete: false,
-    })
-      .then(() => {
-        alert('data saved')
-      })
-      .catch((error) => {
-        // The write failed...
-      });
+    const obj = { task, complete: false };
+    addData("Todo", obj);
     setTask("");
   };
   return (
@@ -28,8 +21,14 @@ function App() {
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="write task..."
+        style={{ padding: "10px" }}
       />
-      <button onClick={addTodo}>Add</button>
+      <button onClick={addTodo} style={{ padding: "10px" }}>
+        Add
+      </button>
+
+      <ShowData />
+      <Toaster />
     </div>
   );
 }

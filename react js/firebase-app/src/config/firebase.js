@@ -1,3 +1,9 @@
+// config firebase
+//--------------------------------------------------
+import {  toast } from "react-toastify";
+// -------------------------------------------------------
+import { ref, set, push } from "firebase/database";
+
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
@@ -12,8 +18,22 @@ const firebaseConfig = {
   measurementId: "G-D248P7G8BQ",
 };
 const app = initializeApp(firebaseConfig);
-
-// Get a reference to the database service
 const db = getDatabase(app);
 
-export { db };
+//--------------------------------------------------
+// crud function
+//--------------------------------------------------
+const addData = (dbRef, obj) => {
+  const todoListRef = ref(db, dbRef);
+  const newTodoRef = push(todoListRef);
+  set(newTodoRef, obj)
+    .then(() => {
+      toast.success("data saved");
+    })
+    .catch((error) => {
+      toast.error("something went wrong", error);
+    });
+};
+
+//--------------------------------------------------
+export { db, addData };
