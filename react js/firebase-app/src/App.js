@@ -15,7 +15,7 @@ function App() {
   };
   return (
     <div className="App">
-      <h2>firebase Todo</h2>
+      <h2>firebase Real-Time Todo</h2>
       <input
         type="text"
         value={task}
