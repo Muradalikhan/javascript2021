@@ -1,10 +1,19 @@
 import { CustomDialog, useDialog } from "react-st-modal";
 import { useState } from "react";
+import { createGlobalStyle } from "styled-components";
+
+const styled = createGlobalStyle({
+  action: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginTop: 10,
+  },
+});
 
 function CustomDialogContent() {
   const dialog = useDialog();
 
-  const [uname, setUname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   return (
@@ -14,9 +23,9 @@ function CustomDialogContent() {
       <input
         type="text"
         placeholder="Name"
-        value={uname}
+        value={name}
         onChange={(e) => {
-          setUname(e.target.uname);
+          setName(e.target.name);
         }}
         style={{ flex: 1, padding: 5, marginTop: 2 }}
       />
@@ -29,16 +38,13 @@ function CustomDialogContent() {
         }}
         style={{ flex: 1, padding: 5, marginTop: 10 }}
       />
-      <div
-        style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}
-      >
+      <div className={styled.action}>
         <button
           className="btn btn-primary"
           onClick={() => {
             // Сlose the dialog and return the value
-            dialog.close(uname);
-            console.log(uname);
-            console.log(email);
+            dialog.close(name);
+            console.log(dialog.close);
           }}
           style={{ flex: 1 }}
         >

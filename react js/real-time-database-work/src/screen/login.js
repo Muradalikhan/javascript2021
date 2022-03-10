@@ -57,7 +57,7 @@ export default function Login() {
   return (
     <div className='col-sm-4 my-5 mx-auto bg-white p-5 shadow-lg rounded'>
       <h2 className='header shadow-lg'>
-        <span class="material-icons md-24">
+        <span className="material-icons md-24">
           person
         </span>Login</h2>
 
