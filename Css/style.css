@@ -58,7 +58,7 @@
   display: flex;
   gap: 10px;
 }
-.toggleSidebar {
+.toggleSidebar-btn {
   width: 40px;
 }
 .lines {
@@ -70,6 +70,9 @@
   background-color: rgb(236, 245, 248);
   height: 100vh;
   padding-top: 20px;
+}
+.toggleSidebar {
+  display: none;
 }
 .content {
   flex: 0.8;
