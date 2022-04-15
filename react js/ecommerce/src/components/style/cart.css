@@ -4,7 +4,7 @@
   top: 70px;
   width: 328px;
   height: max-content;
-  box-shadow: 0px 5px 17px 3px #696969e5;
+  box-shadow: 0px 5px 17px 3px hsl(240deg 7% 62% / 51%);
   text-align: center;
   padding: 5px;
   background-color: white;
