@@ -18,7 +18,7 @@ const Detail = () => {
                 <h4 className="title-detail ">{title}</h4>
                 <p>{description}</p>
                 <p className="price-tag">{price}</p>
-                <Button title="Add to Cart" />
+                <Button title="Add to Cart" style={{width:'100%',backgroundColor:'tomato',padding:'10px'}}/>
               </div>
             </div>
 
