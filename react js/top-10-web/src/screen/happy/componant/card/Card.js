@@ -1,38 +1,32 @@
-import React from 'react'
-import img from "../../asset/bgImg.jpg"
+import React from "react";
+import { Grid } from "@mui/material";
 
-
-
-
-export default function Card() {
-
-    let arr = ['card 1', 'card 2', 'card 3', 'card 3']
-
-    return (
-        <div className='my-4 col-sm-12' >
-
-            {arr.map((card, index) => {
-
-                return (
-                    <div class="card m-3 p-3 col-sm-4 shadow-lg d-inline-block " style={{ maxWidth: "500px" }} key={index}>
-                        <div class="row g-0">
-                            <div class="col-md-6">
-                                <img src={img} class="img-fluid rounded-start" alt="img" style={{ width: '300', height: '300' }} />
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card-body">
-                                    <h5 class="card-title">{card}</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in </p>
-                                    <button class="btn btn-primary">Add to card</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                )
-            })}
-
+export default function Card({ item }) {
+  return (
+    <Grid
+      container
+      sx={{
+        backgroundColor: "#fff",
+        p: 2,
+        boxShadow: "4px 4px 8px #4546467d",
+        "&:hover": { boxShadow: "none" },
+      }}
+    >
+      <Grid item xs={6}>
+        <img
+          src={item.img}
+          class="img-fluid rounded-start"
+          alt="img"
+          style={{ width: "100%", height: "100%" }}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <div class="card-body">
+          <h5 class="card-title">{item.title}</h5>
+          <p class="card-text">{item.des}</p>
+          <button class="btn btn-dark">Add to card</button>
         </div>
-
-    )
+      </Grid>
+    </Grid>
+  );
 }
