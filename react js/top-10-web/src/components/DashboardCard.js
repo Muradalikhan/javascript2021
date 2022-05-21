@@ -22,7 +22,7 @@ export default function DashboardCard({ img, title, onClick }) {
         alt="cardimg"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#000">
           {title}
         </Typography>
       </CardContent>

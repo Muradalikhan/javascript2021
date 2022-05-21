@@ -24,18 +24,14 @@ import DashboardCard from "../components/DashboardCard";
 import img1 from "../asset/images/amazon.jpg";
 import img2 from "../asset/images/argos.jpg";
 import img3 from "../asset/images/happy.jpg";
+import img4 from "../asset/images/w3schools.jpg";
 
 const drawerWidth = 240;
 const data = [
   { img: img1, title: "Amazon", icon: AcUnitIcon },
   { img: img2, title: "Argos", icon: CameraAltIcon },
   { img: img3, title: "Happy", icon: FastfoodIcon },
-  { img: img1, title: "Amazon", icon: AcUnitIcon },
-  { img: img2, title: "Argos", icon: CameraAltIcon },
-  { img: img3, title: "Happy", icon: FastfoodIcon },
-  { img: img1, title: "Amazon", icon: AcUnitIcon },
-  { img: img2, title: "Argos", icon: CameraAltIcon },
-  { img: img3, title: "Happy", icon: FastfoodIcon },
+  { img: img4, title: "W3Schools", icon: AcUnitIcon },
 ];
 function Dashboard(props) {
   const { window } = props;
