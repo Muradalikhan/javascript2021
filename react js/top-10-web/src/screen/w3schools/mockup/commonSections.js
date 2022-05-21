@@ -1,0 +1,73 @@
+import img1 from "../assets/html.png";
+import img2 from "../assets/css.png";
+import img3 from "../assets/javascript.png";
+import img4 from "../assets/python.png";
+import img5 from "../assets/sql.png";
+
+export const data = [
+  {
+    sectionColor: "#D9EEE1",
+    heading: "HTML",
+    description: "The language for building web pages",
+    btn1Text: "Learn Html",
+    btn1Color: "success",
+    btn2Text: "Video Tutorial",
+    btn2Color: "warning",
+    btn3Text: "HTML Refrence",
+    btn3Color: "dark",
+    cardImg: img1,
+    videoTutorial: true,
+  },
+  {
+    sectionColor: "#FFF4A3",
+    heading: "CSS",
+    description: "The language for styling web pages",
+    btn1Text: "Learn CSS",
+    btn1Color: "success",
+    btn2Text: "Video Tutorial",
+    btn2Color: "warning",
+    btn3Text: "CSS Refrence",
+    btn3Color: "dark",
+    cardImg: img2,
+    videoTutorial: false,
+  },
+  {
+    sectionColor: "#282A35",
+    heading: "Javascript",
+    description: "The language for styling web pages",
+    btn1Text: "Learn Javascript",
+    btn1Color: "success",
+    btn2Text: "Video Tutorial",
+    btn2Color: "warning",
+    btn3Text: "Javascript Refrence",
+    btn3Color: "white",
+    cardImg: img3,
+    videoTutorial: false,
+  },
+  {
+    sectionColor: "#F3ECEA",
+    heading: "Python",
+    description: "The language for styling web pages",
+    btn1Text: "Learn Python",
+    btn1Color: "success",
+    btn2Text: "Video Tutorial",
+    btn2Color: "warning",
+    btn3Text: "Python Refrence",
+    btn3Color: "dark",
+    cardImg: img4,
+    videoTutorial: false,
+  },
+  {
+    sectionColor: "#96D4D4",
+    heading: "SQL",
+    description: "The language for styling web pages",
+    btn1Text: "Learn SQL",
+    btn1Color: "success",
+    btn2Text: "Video Tutorial",
+    btn2Color: "warning",
+    btn3Text: "SQL Refrence",
+    btn3Color: "dark",
+    cardImg: img5,
+    videoTutorial: false,
+  },
+];
