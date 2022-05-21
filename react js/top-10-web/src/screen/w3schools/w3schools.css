@@ -1,0 +1,176 @@
+/* Header start */
+.w3-header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.w3-logo {
+  width: 60px;
+  height: 60px;
+}
+.Link,
+.Link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.Link a,
+.Link-btn div {
+  font-size: 24px;
+  font-weight: 500;
+  padding: 20px;
+}
+
+.Link a:hover {
+  background-color: #00ac6d;
+}
+.Link a.w3-logo-wrapper:hover {
+  background-color: #fff;
+}
+
+.Link-btn div > i {
+  color: #000;
+}
+.Link-btn div > i:hover {
+  color: #00ac6d;
+  cursor: pointer;
+}
+.new-tag {
+  border: 1px solid black;
+  border-radius: 24px;
+  font-size: 16px;
+  padding: 3px 12px;
+  background-color: #fff;
+}
+
+/*end of Header*/
+
+/* section 1 */
+.section1 {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+.section1-img {
+  width: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.containerr {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 100px;
+}
+.section1-heading2 {
+  color: #ffc0c7;
+  font-size: 24px;
+  font-weight: 500px;
+}
+.containerr h1,
+h5,
+div {
+  color: #fff;
+}
+.section1-heading {
+  font-size: 75px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+.searchBox-wrapper {
+  display: flex;
+}
+.searchBox {
+  padding: 15px 20px;
+  width: 500px;
+  border-radius: 32px 0 0 32px;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-size: 20px;
+}
+.searchBox-icon {
+  background-color: #00ac6d;
+  padding: 0 50px;
+  font-size: 24px;
+  border-radius: 0 32px 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section1-link {
+  font-size: 30px;
+  font-weight: 700;
+  text-decoration: underline !important;
+  text-transform: capitalize;
+  color: white !important;
+}
+.section1-link:hover {
+  color: #00ac6d !important;
+  cursor: pointer;
+}
+/*end of section 1 */
+
+/* common-section */
+.c-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px;
+}
+.c-section div {
+  color: #000;
+}
+.c-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.c-section h1 {
+  font-size: 140px;
+  font-weight: 700;
+}
+.c-section p {
+  font-size: 24px;
+  font-weight: 500;
+}
+.c-img-container {
+  margin-top: 50px;
+}
+.card-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  flex-direction: column;
+  background-color: #e7e9eb;
+  padding: 50px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+.btn-with-tag {
+  position: relative;
+}
+.tag {
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  background-color: #ffc0c7;
+  border-radius: 24px;
+  padding: 6px 16px;
+  transform: rotate(-32deg);
+}
+
+/*end of common-section */
