@@ -1,11 +1,11 @@
 import React from "react";
 import "../w3schools.css";
-
 import img from "../assets/wave.svg";
 
 const Section1 = () => {
   return (
     <section className="section1">
+      <div className="section1-bg-cover"></div>
       <div className="section1-img-wrapper">
         <img src={img} alt="bg-img" className="section1-img" />
       </div>
