@@ -12,6 +12,13 @@ import {
 } from "./mockup/rectangleCard";
 import RectangleCard from "./components/RectangleCard";
 import RecSmCard from "./components/RecSmCard";
+import CodeEditorSection from "./components/CodeEditorSection";
+import W3SchoolsSpaces from "./components/W3SchoolsSpaces";
+import ColorPicker from "./components/ColorPicker";
+import CodeGame from "./components/CodeGame";
+import ExercisesQuizzes from "./components/ExercisesQuizzes";
+import WebTemplates from "./components/WebTemplates";
+import Kickstart from "./components/Kickstart";
 
 const W3schools = () => {
   return (
@@ -63,6 +70,13 @@ const W3schools = () => {
           </Grid>
         ))}
       </Grid>
+      <CodeEditorSection />
+      <W3SchoolsSpaces />
+      <ColorPicker />
+      <CodeGame />
+      <ExercisesQuizzes />
+      <WebTemplates />
+      <Kickstart />
     </div>
   );
 };
